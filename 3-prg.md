@@ -8,6 +8,11 @@ nav_exclude: false
 $
 \newcommand{\RF}{\mathsf{RF}}
 \newcommand{\PRF}{\mathsf{PRF}}
+\newcommand{\Enc}{\mathsf{Enc}}
+\newcommand{\Dec}{\mathsf{Dec}}
+\newcommand{\Gen}{\mathsf{Gen}}
+\newcommand{\Expr}{\mathsf{Expr}}
+\newcommand{\state}{\mathsf{state}}
 $
 {: .d-none}
 
@@ -531,7 +536,45 @@ Clearly, $f_s$ is easy to compute, and we want to prove it is pseudorandom.
 Secure Encryption Scheme
 ------------------------
 
+Perfect secrecy considers that the adversary gets the ciphertext *only* (but nothing else).
+However, there are other natural adversarial models in practical scenarios.
+
+- Known plaintext attack: The adversary may get to see pairs of form $(m_0, \Enc_k(m_0)) ...$
+- Chosen plain text, CPA: 
+  The adversary gets access to an *encryption oracle* before and after selecting messages.
+- Chosen ciphertext attack, CCA1:
+  The adversary has access to an encryption oracle and to a decryption oracle *before*
+  selecting the messages. ["lunch-time attack", Naor and Young]
+- Chosen ciphertext attack, CCA2:
+  This is just like a CCA1 attack except that the adversary also has access to 
+  decryption oracle *after* selecting the messages. 
+  It is not allowed to decrypt the challenge ciphertext however. [Rackoff and Simon]
+
+We formalize CPA-security next (but leave CCA1/CCA2 later in authentication).
+
 #### **Definition:** Chose-Plaintext-Attack Encryption (CPA)
+
+{: .defn}
+> Let $\Pi = (\Gen, \Enc, \Dec)$ be an encryption scheme.
+> For any NUPPT adversary $A$, for any $n\in\N, b\in\bit$, 
+> define the experiment $\Expr_b^{\Pi, A}(1^n)$ to be:
+> 
+> {: .defn-title}
+>> Experiment $\Expr_b^{\Pi, A}(1^n)$:
+>> 
+>> 1. $k \gets \Gen(1^n)$
+>> 2. $(m_0, m_1, \state) \gets A^{\Enc_k(\cdot)}(1^n)$
+>> 3. $c \gets \Enc_k(m_b)$
+>> 4. Output $A^{\Enc_k(\cdot)}(c, \state)$
+> 
+> Then we say $\Pi$ is CPA secure if for all NUPPT $A$,
+> 
+> $$
+> \left\{\Expr_0^{\Pi,A}(1^n)\right\}_n \approx
+> \left\{\Expr_1^{\Pi,A}(1^n)\right\}_n.
+> $$$
+
+
 
 Hard-Core Bits from any OWF 
 ---------------------------
