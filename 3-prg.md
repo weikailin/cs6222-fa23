@@ -574,6 +574,10 @@ We formalize CPA-security next (but leave CCA1/CCA2 later in authentication).
 > \left\{\Expr_1^{\Pi,A}(1^n)\right\}_n.
 > $$$
 
+Note: the experiment $\Expr$ is often equivalently described as 
+"the adversary $A$ interacts a challenger $C$, 
+where $C$ performs all other steps that are not belong to $A$ 
+(such as $\Gen$, $\Enc$, and answering the queries to $\Enc_k(\cdot)$)".
 
 
 Hard-Core Bits from any OWF 
