@@ -572,7 +572,7 @@ We formalize CPA-security next (but leave CCA1/CCA2 later in authentication).
 > $$
 > \left\{\Expr_0^{\Pi,A}(1^n)\right\}_n \approx
 > \left\{\Expr_1^{\Pi,A}(1^n)\right\}_n.
-> $$$
+> $$
 
 Note: the experiment $\Expr$ is often equivalently described as 
 "the adversary $A$ interacts a challenger $C$, 
@@ -585,6 +585,24 @@ Compared to Shannon/perfect secrecy, what are the differences?
 - orcale after
 - choose $m$
 
+#### **Theorem:** CPA-Secure Encryption from PRF
+
+{: .theorem}
+> Let $\PRF = \set{f_k : \bit^{|s|} \to \bit^{|s|}}_{s\in\bit^\ast}$ be a family of PRFs.
+> Then the following $(\Gen, \Enc, \Dec)$ is a CPA-secure encryption scheme.
+> 
+> - $\Gen(1^n)$: sample and output $k \gets \bit^n$.
+> - $\Enc_k(m)$: given input $m \in \bit^n$, sample $r \gets \bit^n$, and then output
+>   
+>   $$
+>   c := m \oplus f_k(r) ~\|~ r.
+>   $$
+>   
+> - $\Dec_k(c)$: given input $c = c' \| r' \in \bit^{2n}$, output 
+> 
+>   $$
+>   m := c' \oplus f_k(r').
+>   $$
 
 
 
