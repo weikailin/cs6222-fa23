@@ -559,7 +559,7 @@ We formalize CPA-security next (but leave CCA1/CCA2 later in authentication).
 > For any NUPPT adversary $A$, for any $n\in\N, b\in\bit$, 
 > define the experiment $\Expr_b^{\Pi, A}(1^n)$ to be:
 > 
-> {: .defn-title}
+> {: .defn}
 >> Experiment $\Expr_b^{\Pi, A}(1^n)$:
 >> 
 >> 1. $k \gets \Gen(1^n)$
@@ -578,6 +578,14 @@ Note: the experiment $\Expr$ is often equivalently described as
 "the adversary $A$ interacts a challenger $C$, 
 where $C$ performs all other steps that are not belong to $A$ 
 (such as $\Gen$, $\Enc$, and answering the queries to $\Enc_k(\cdot)$)".
+
+Compared to Shannon/perfect secrecy, what are the differences?
+- comp. bounded
+- orcale before
+- orcale after
+- choose $m$
+
+
 
 
 Hard-Core Bits from any OWF 
