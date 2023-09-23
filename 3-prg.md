@@ -604,7 +604,11 @@ Compared to Shannon/perfect secrecy, what are the differences?
 >   m := c' \oplus f_k(r').
 >   $$
 
+The correctness and efficiency of the construction follows from PRF directly.
+It remains to prove CPA security.
 
+{: .proof}
+> To show $\Expr_0$ and $\Expr_1$ are comp. ind., we define hybrid experiments $H_0, H_1$ as follows.
 
 Hard-Core Bits from any OWF 
 ---------------------------
