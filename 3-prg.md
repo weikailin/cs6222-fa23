@@ -641,8 +641,8 @@ It remains to prove CPA security.
 > 
 > By oracle indistinguishability of $\PRF$ and $\RF$ and closure under efficient operations, 
 > we have 
-> $\set{\Expr_0^{\Pi, A}(1^n)} \approx \set{H_0^{A}(1^n)}$ and
-> $\set{\Expr_1^{\Pi, A}(1^n)} \approx \set{H_1^{A}(1^n)}$.
+> $\set{\Expr_0^{\Pi, A}(1^n)}_n \approx \set{H_0^{A}(1^n)}_n$ and
+> $\set{\Expr_1^{\Pi, A}(1^n)}_n \approx \set{H_1^{A}(1^n)}_n$.
 > (Notice that $\PRF$ and $\RF$ are oracle ind., but $\Expr$ and $H$ are comp. ind. of strings.)
 > 
 > Hence, it suffices to prove that the ensembles $H_0$ and $H_1$ are ind.
@@ -652,7 +652,7 @@ It remains to prove CPA security.
 > and in another oracle accesses.
 > Fortunately, hitting the same $r$ twice in polynomial time happens with negligible probability.
 > 
-> We formally prove $\set{H_0^{A}(1^n)} \approx \set{H_1^{A}(1^n)}$ by contra.
+> We formally prove $\set{H_0^{A}(1^n)}_n \approx \set{H_1^{A}(1^n)}_n$ by contra.
 
 
 
