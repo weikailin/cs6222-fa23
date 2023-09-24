@@ -407,9 +407,9 @@ That is, indistinguishable by any NUPPT Turing machine that is *capable of inter
 #### **Definition:** Oracle Indistinguishability
 
 {:.defn}
-> Let $\set{\cO_n}_{n\in\N}$ and $\set{\cO_n}_{n\in\N}$ be ensembles 
-> where $\cO_n, \cO'_n$ are probability distributions over functions.
-> We say that $\set{\cO_n}_{n}$ and $\set{\cO_n}_{n}$ are *computationally indistinguishable*
+> Let $\set{\cO\_n}\_{n\in\N}$ and $\set{\cO\_n}\_{n\in\N}$ be ensembles 
+> where $\cO\_n, \cO'\_n$ are probability distributions over functions.
+> We say that $\set{\cO\_n}\_{n}$ and $\set{\cO\_n}\_{n}$ are *computationally indistinguishable*
 > if if for all NUPPT machines D that is given oracle accesses to a function, 
 > there exists a negligible function $\eps(\cdot)$ such that for all $n\in\N$,
 >   
