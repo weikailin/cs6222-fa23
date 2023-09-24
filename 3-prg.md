@@ -645,7 +645,7 @@ It remains to prove CPA security.
 > $\set{\Expr_1^{\Pi, A}(1^n)} \approx \set{H_1^{A}(1^n)}$.
 > (Notice that $\PRF$ and $\RF$ are oracle ind., but $\Expr$ and $H$ are comp. ind. of strings.)
 > 
-> Hence, it suffices to prove that the ensembles $\H_0$ and $H_1$ are ind.
+> Hence, it suffices to prove that the ensembles $H_0$ and $H_1$ are ind.
 > They seem to be indentically distributed (as in OTP).
 > However, there is a difference: $A$ gets oracle accesses to $O_F$ 
 > (before and after choosing $m_b$), and $O_F$ could sample the same $r$ in the cipher $c$
