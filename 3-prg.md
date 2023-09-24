@@ -610,9 +610,19 @@ It remains to prove CPA security.
 {: .proof}
 > To show $\Expr_0$ and $\Expr_1$ are comp. ind., we define hybrid experiments $H_0, H_1$ as follows.
 
+
+
+
+
+
+
+
+
+
+<!-- 
 Hard-Core Bits from any OWF 
 ---------------------------
-
+ -->
 
 
 
