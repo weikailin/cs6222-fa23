@@ -404,6 +404,26 @@ Note: the random function $F\gets \RF_n$ is also known as *random oracle* in the
 Intuitively, a *pseudo-random* function (PRF) shall look similar to a random function.
 That is, indistinguishable by any NUPPT Turing machine that is *capable of interacting with the function*.
 
+#### **Definition:** Oracle Indistinguishability
+
+{:.defn}
+> Let $\set{\cO_n}_{n\in\N}$ and $\set{\cO_n}_{n\in\N}$ be ensembles 
+> where $\cO_n, \cO'_n$ are probability distributions over functions.
+> We say that $\set{\cO_n}_{n}$ and $\set{\cO_n}_{n}$ are *computationally indistinguishable*
+> if if for all NUPPT machines D that is given oracle accesses to a function, 
+> there exists a negligible function $\eps(\cdot)$ such that for all $n\in\N$,
+>   
+> $$
+> \Pr[F\gets\cO : D^{F(\cdot)}(1^n) = 1] - \Pr[F\gets\cO' : D^{F(\cdot)}(1^n) = 1] \le \eps(n).
+> $$
+
+Note: $D^{f(\cdot)}$ denotes that the TM $D$ may interact with the function $f$ 
+through black-box input and output, while each input-output takes time to read/write 
+but computing $f$ takes 0 time.
+
+It is easy to verify that oracle indistinguishability satisfies “closure under efficient operations”, 
+the Hybrid Lemma, and the Prediction Lemma.
+
 #### **Definition:** Pseudo-random Functions (PRFs)
 
 {:.defn}
@@ -411,17 +431,7 @@ That is, indistinguishable by any NUPPT Turing machine that is *capable of inter
 > is *pseudo-random* if
 > 
 > - (Easy to compute): $f_s(x)$ can be computed by a PPT algo that is given input $s,x$.
-> - (Pseudorandom): for any NUPPT $D$, there exists a negl function $\eps(\cdot)$ s.t.
->   
->   $$
->   \Pr[s\gets \bit^n : D^{f_s(\cdot)}(1^n) = 1] - \Pr[F\gets \RF_n : D^{F(\cdot)}(1^n) = 1] \le \eps(n).
->   $$
->   
->   This is often denoted as $\set{s\gets \bit^n : f_s}_n \approx \set{F \gets \RF_n : F}_n$.
-
-Note: $D^{f(\cdot)}$ denotes that the TM $D$ may interact with the function $f$ 
-through black-box input and output, while each input-output takes time to read/write 
-but computing $f$ takes 0 time.
+> - (Pseudorandom): $\set{s\gets \bit^n : f_s}_n \approx \set{F \gets \RF_n : F}_n$.
 
 Note: similar to PRG, the seed $s$ is not revealed to $D$ (otherwise it is trivial to distinguish).
 
@@ -609,6 +619,22 @@ It remains to prove CPA security.
 
 {: .proof}
 > To show $\Expr_0$ and $\Expr_1$ are comp. ind., we define hybrid experiments $H_0, H_1$ as follows.
+> 
+> {: .defn}
+>> Hybrid $H_b^{A}(1^n)$:
+>> 
+>> 1. $F \gets \RF_n$, and then let $O_F$ to be the following oracle:
+>>    
+>>    $$
+>>    O_F(x) := m \oplus F(r) \| r,
+>>    $$
+>>    
+>>    where $r \gets \bit^n$ is sampled uniformaly.
+>> 2. $(m_0, m_1, \state) \gets A^{O_F(\cdot)}(1^n)$
+>> 3. $c \gets O_F(m_b)$
+>> 4. Output $A^{O_F(\cdot)}(c, \state)$
+> 
+> 
 
 
 

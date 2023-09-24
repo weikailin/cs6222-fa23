@@ -38,6 +38,7 @@ MathJax = {
       cH: "\\mathcal{H}",
       cK: "\\mathcal{K}",
       cM: "\\mathcal{M}",
+      cO: "\\mathcal{O}",
       cX: "\\mathcal{X}",
       cY: "\\mathcal{Y}",
       cZ: "\\mathcal{Z}",
