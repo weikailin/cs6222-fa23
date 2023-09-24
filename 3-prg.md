@@ -424,6 +424,11 @@ but computing $f$ takes 0 time.
 It is easy to verify that oracle indistinguishability satisfies “closure under efficient operations”, 
 the Hybrid Lemma, and the Prediction Lemma.
 
+Also notic that we can transform a distribution of oracle functions to 
+a distribution of strings using an efficient oracle operation, 
+and in that case, the oracle indistinguishability is translated into the comp. indistinguishability
+of strings (see CPA-secure encryption below).
+
 #### **Definition:** Pseudo-random Functions (PRFs)
 
 {:.defn}
@@ -633,6 +638,13 @@ It remains to prove CPA security.
 >> 2. $(m_0, m_1, \state) \gets A^{O_F(\cdot)}(1^n)$
 >> 3. $c \gets O_F(m_b)$
 >> 4. Output $A^{O_F(\cdot)}(c, \state)$
+> 
+> By oracle indistinguishability of $\PRF$ and $\RF$ and closure under efficient operations, 
+> we have 
+> $\set{\Expr_0^{\Pi, A}(1^n)} \approx \set{H_0^{A}(1^n)}$ and
+> $\set{\Expr_1^{\Pi, A}(1^n)} \approx \set{H_1^{A}(1^n)}$.
+> (Notice that $\PRF$ and $\RF$ are oracle ind., but $\Expr$ and $H$ are comp. ind. of strings.)
+> 
 > 
 > 
 
