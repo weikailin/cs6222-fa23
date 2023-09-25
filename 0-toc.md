@@ -18,6 +18,7 @@ Table of Lecture Notes
 | Sep 11    | [Primality testing](2-owf.md#primality-testing)    | [KL 9.2.2] |
 | Sep 13    | [Finish Miller-Rabin, universal OWF](2-owf.md#a-universal-owf)    | [Ps 2.13], [Wichs@NEU](https://www.ccs.neu.edu/home/wichs/class/crypto-fall17/lecture10.pdf) |
 | Sep 18    | [Computational indistinguishability](3-prg.md)    | [Ps 3.1] |
-| Sep 20    | [Pseudo-random generators](3-prg.md#pseudo-random-generator)    | [Ps 3.3.5] [KL 3.3] |
+| Sep 20    | [Pseudo-random generators](3-prg.md#pseudo-random-generator)    | [Ps 3.3.5] [KL 3.3, 8.4.2] |
+| Sep 20    | [Pseudo-random functions](3-prg.md#pseudo-random-functions)    | [Ps 3.7, 3.8] [KL 8.5] |
 
 
