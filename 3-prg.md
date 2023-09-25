@@ -658,17 +658,32 @@ Notice that we could have constructed an efficient CPA-secure encryption from PR
 but using a PRF significantly simplified the construction and the proof.
 
 
-
-
-
-
-
-
-<!-- 
 Hard-Core Bits from any OWF 
 ---------------------------
- -->
 
+So far we have not yet have a candidate construction of PRG (with 1-bit expansion).
+We will next construct a PRG from one-way *permutations*.
+
+#### **Definition:** One-way Permutations
+
+{: .defn}
+> An OWF $f: \bit^n \to \bit^n$ for all $n\in\N$ is called a *one-way permutations*
+> if $f$ is a bijection.
+
+The construct of PRG comes from two properties of OWF:
+- The output of $f(x)$ must be sufficiently random when the input $x$ is uniform; 
+  otherwise, $f$ is constant (for most $x$), then we can invert easily.
+- A sufficiently random $f(x)$ can still be easily inverted (such as indentity func).
+  By hard to invert, there must be *some bits* of $x$ that are hard to guess when $f(x)$ is given.
+
+Suppose $f$ is OWP, then we have "fully random" $f(x)$ (that is stronger than the first propery).
+Additionally utilizing the second property, it seems we can take "some bits" from $x$
+to obtain a 1-bit PRG.
+
+This is indeed the case: 
+if we construct OWP from the RSA assumption, 
+then the least significant bit of $x$ is that "hard to guess" one,
+and then we can obtain PRG from RSA assumption.
 
 
 
