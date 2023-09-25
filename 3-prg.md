@@ -631,7 +631,7 @@ It remains to prove CPA security.
 >> 1. $F \gets \RF_n$, and then let $O_F$ to be the following oracle:
 >>    
 >>    $$
->>    O_F(x) := m \oplus F(r) \| r,
+>>    O_F(x) := x \oplus F(r) \| r,
 >>    $$
 >>    
 >>    where $r \gets \bit^n$ is sampled uniformaly.
@@ -654,7 +654,8 @@ It remains to prove CPA security.
 > 
 > We formally prove $\set{H_0^{A}(1^n)}_n \approx \set{H_1^{A}(1^n)}_n$ by contra.
 
-
+Notice that we could have constructed an efficient CPA-secure encryption from PRG, 
+but using a PRF significantly simplified the construction and the proof.
 
 
 
