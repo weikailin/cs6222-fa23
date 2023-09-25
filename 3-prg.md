@@ -680,11 +680,24 @@ Suppose $f$ is OWP, then we have "fully random" $f(x)$ (that is stronger than th
 Additionally utilizing the second property, it seems we can take "some bits" from $x$
 to obtain a 1-bit PRG.
 
-This is indeed the case: 
-if we construct OWP from the RSA assumption, 
+#### **Definition:** Hard-core Bits
+
+{: .defn}
+> A predicate $h : \bit^\ast \to \bit$ is a *hard-core predicate* 
+> for $f (x)$ if $h$ is efficiently computable given $x$, 
+> and for any NUPPT adversary $A$, there exists a negligible $\eps$
+> so that for all $n\in\N$,
+> 
+> $$
+> \Pr[x \gets \bit^n: A(1^n, f(x)) = h(x)] \le \frac{1}{2} + \eps(n).
+> $$
+
+This is indeed the case for some OWPs.
+If we construct OWP from the RSA assumption, 
 then the least significant bit of $x$ is that "hard to guess" one,
 and then we can obtain PRG from RSA assumption.
 
+However, we want to obtain PRG from *any* OWP (without depending on specific assumptions).
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
