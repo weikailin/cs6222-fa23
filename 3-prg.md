@@ -600,6 +600,9 @@ Compared to Shannon/perfect secrecy, what are the differences?
 - orcale after
 - choose $m$
 
+Suppose that we have a secure encryption even without CPA oracle but the key is shorter than the message.
+Can we get a PRG/PRF? Can we get a OWF?
+
 #### **Theorem:** CPA-Secure Encryption from PRF
 
 {: .theorem}
@@ -697,7 +700,25 @@ If we construct OWP from the RSA assumption,
 then the least significant bit of $x$ is that "hard to guess" one,
 and then we can obtain PRG from RSA assumption.
 
-However, we want to obtain PRG from *any* OWP (without depending on specific assumptions).
+However, we want to obtain PRG from *any* OWP (without depending on specific assumptions)
+or any OWF. That is unfortunately unclear.
+
+Fortunately, Goldreich-Levin showed that for any OWF $f'$, 
+we can obtain another OWF $f$ that we know its hard-core predicate.
+
+#### **Theorem:** Goldreich-Levin, Hard-Core Lemma
+
+{: .theorem}
+> Let $f': \bit^n \to \bit^n$ for all $n\in\N$ be a OWF.
+> Define functions $f: \bit^{2n}\to \bit^{2n}, h: \bit^{2n} \to \bit$ to be the following:
+> 
+> $$
+> f(x,r) := f'(x) \| r, \text{ and }
+> h(x,r) := x \odot r,
+> $$
+> 
+> where $\odot$ denotes the inner product modulo 2.
+> Then, $f$ is a OWF and $h$ is a hard-core predicate for $f$.
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
