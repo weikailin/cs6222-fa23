@@ -639,7 +639,7 @@ It remains to prove CPA security.
 >>    
 >>    where $r \gets \bit^n$ is sampled uniformaly.
 >> 2. $(m_0, m_1, \state) \gets A^{O_F(\cdot)}(1^n)$
->> 3. $c \gets O_F(m_b)$
+>> 3. $r \gets \bit^n, c \gets m_b\oplus F(r) \| r$
 >> 4. Output $A^{O_F(\cdot)}(c, \state)$
 > 
 > By oracle indistinguishability of $\PRF$ and $\RF$ and closure under efficient operations, 
@@ -655,7 +655,42 @@ It remains to prove CPA security.
 > and in another oracle accesses.
 > Fortunately, hitting the same $r$ twice in polynomial time happens with negligible probability.
 > 
-> We formally prove $\set{H_0^{A}(1^n)}_n \approx \set{H_1^{A}(1^n)}_n$ by contra.
+> We formally prove $\set{H_0^{A}(1^n)}_n \approx \set{H_1^{A}(1^n)}_n$ next.
+> Define $R$ to be the set 
+> 
+> $$
+> R := \set{r \in \bit^n : r \text{ is sampled when } A^{O_F(\cdot)}},
+> $$
+> 
+> and let $r$ be the random variable sampled for the cipher $c$.
+> We want to show that $|\Pr[H_0^A(1^n)=1] - \Pr[H_0^A(1^n)=1]|$ is negligible for all NUPPT $A$.
+> Let $H_0$ and $H_1$ be the events for short.
+> 
+> $$
+> \begin{align*}
+> \Pr[H_0]
+> & = \Pr[H_0 \cap r \in R] + \Pr[H_0 \cap r \notin R] \\
+> & \le \Pr[r \in R] + \Pr[H_0 | r \notin R] \cdot \Pr[r \notin R] \\
+> & = \gamma + \Pr[H_0 | r \notin R] \cdot (1 - \gamma),
+> \end{align*}
+> $$
+> 
+> where 
+> $\gamma := |R| / 2^n$.
+> We also have $\Pr[H_0 | r \notin R] = \Pr[H_1 | r \notin R]$,
+> thus
+> 
+> $$
+> \begin{align*}
+> \Pr[H_0]
+> & \le \gamma + \Pr[H_1 | r \notin R] \cdot (1 - \gamma)\\
+> & = \gamma + \Pr[H_1 \cap r \notin R]\\
+> & \le \gamma + \Pr[H_1].
+> \end{align*}
+> $$
+> 
+> Given that $|R|$ is polynomial in $n$ for any NUPPT $A$, 
+> it follows that $\gamma$ is negligible in $n$, which concludes the proof.
 
 Notice that we could have constructed an efficient CPA-secure encryption from PRG, 
 but using a PRF significantly simplified the construction and the proof.
