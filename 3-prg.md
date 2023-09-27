@@ -606,7 +606,7 @@ Can we get a PRG/PRF? Can we get a OWF?
 #### **Theorem:** CPA-Secure Encryption from PRF
 
 {: .theorem}
-> Let $\PRF = \set{f_k : \bit^{|s|} \to \bit^{|s|}}_{s\in\bit^\ast}$ be a family of PRFs.
+> Let $\PRF = \set{f_s : \bit^{|s|} \to \bit^{|s|}}_{s\in\bit^\ast}$ be a family of PRFs.
 > Then the following $(\Gen, \Enc, \Dec)$ is a CPA-secure encryption scheme.
 > 
 > - $\Gen(1^n)$: sample and output $k \gets \bit^n$.
