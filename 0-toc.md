@@ -20,5 +20,6 @@ Table of Lecture Notes
 | Sep 18    | [Computational indistinguishability](3-prg.md)    | [Ps 3.1] |
 | Sep 20    | [Pseudo-random generators](3-prg.md#pseudo-random-generator)    | [Ps 3.3.5] [KL 3.3, 8.4.2] |
 | Sep 25    | [Pseudo-random functions](3-prg.md#pseudo-random-functions)    | [Ps 3.7, 3.8] [KL 8.5] |
+| Sep 25    | [CPA-secure encryption](3-prg.md#secure-encryption-scheme)    | [Ps 3.9] [KL 3.2, 3.4] |
 
 
