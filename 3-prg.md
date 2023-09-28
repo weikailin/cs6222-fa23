@@ -827,7 +827,7 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >    1. For $j = 1$ to $m$, do
 >       1. $r \gets \bit^n$
 >       2. Run $z_{i,j} \gets A(1^{2n}, y \\| e_i\oplus r) \oplus A(1^{2n}, y \\| r)$
->    2. Let $x'_i$ be the majority of $\set{z_{i,j}}_{j\in[m]}$
+>    2. Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
 > 2. Output $x' := x'_1 x'_2 ... x'_n$
 > 
 > To prove $B_2$ succeeds with high prob., we first prove that there are many good $x$'s.
@@ -839,7 +839,7 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >> 
 >> $$
 >> G:= \set{
->> x \in \bit^n ~|~ \Pr_{r}[A(1^{2n}, f(x,r)) = h(x,r)] \ge 3/4 + \alpha(n) / 2 },
+>> x \in \bit^n ~|~ \Pr_{r}[A(1^{2n}, f(x,r)) = h(x,r)] \ge 3/4 + \alpha / 2 },
 >> $$
 >> 
 >> where $\alpha := 1/p(n)$. Then, 
@@ -859,6 +859,15 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >> 
 >> which contradicts Warmup Assumption 2.
 > 
+> Now, suppose that $x \in G$.
+> $A$ fails to invert $y \| e_i \oplus r$ or $y \| r$ w.p. $\lt 1/2 - \alpha$ by union bound.
+> So, for any fixed $i$, $\Pr[z_{i,j} = x_i] \ge 1/2 + \alpha$ for each $j$ independently.
+> By Chernoff bound, the majority of $z_{i,j}$ is $x_i$ w.p. $\ge 1 - e^{-m /2\alpha^2}$.
+> Choosing $m = np^2(n)$, the probability is exponentially close to 1.
+> By union bound again, $B_2$ recovers all $x_i$'s w.p. close to 1.
+> 
+> Finally, $B_2$ succeeds w.p. $\ge \alpha / 4$ for all $x$ uniformly sampled
+> by failing for all $x \notin G$.
 
 
 
