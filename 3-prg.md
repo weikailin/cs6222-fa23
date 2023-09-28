@@ -820,13 +820,35 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 {: .proof}
 > We would like to use $e_i$ as before, 
 > but now $A$ may always fail whenever the suffix of $f(x,r)$ is $e_i$.
-> Hence, we randomize $e_i$ to $r$ and $r \oplus e_$ and then recover the inner product $h$.
+> Hence, we randomize $e_i$ to $r$ and $r \oplus e_i$ and then recover the inner product $h$.
 > 
 > To invert $y \gets f'(x)$, the construction of $B_2(1^n, y)$ is below:
-> 1. For $i = 1, 2, ..., n$, do the following
->   a. Let $e_i$ be the $n$-bit string that only the $i$-th bit is 1 (0 otherwise)
->   b. Run $x'_i \gets A(1^{2n}, y \\| e_i)$
+> 1. For each $i = 1, 2, ..., n$, do
+>    1. For $j = 1$ to $m$, do
+>       1. $r \gets \bit^n$
+>       2. Run $z_{i,j} \gets A(1^{2n}, y \\| e_i\oplus r) \oplus A(1^{2n}, y \\| r)$
+>    2. Let $x'_i$ be the majority of $\set{z_{i,j}}_{j\in[m]}$
 > 2. Output $x' := x'_1 x'_2 ... x'_n$
+> 
+> To prove $B_2$ succeeds with high prob., we first prove that there are many good $x$'s.
+> 
+> {: .theorem-title}
+>> Good instances are plenty.
+>> 
+>> Define $G$ to be the set of good instances,
+>> 
+>> $$
+>> G:= \set{
+>> x \in \bit^n ~|~ \Pr_{r}[A(1^{2n}, f(x,r)) = h(x,r)] \ge 3/4 + \alpha(n) / 2 },
+>> $$
+>> 
+>> where $\alpha := 1/p(n)$. Then, 
+>> $|G| \ge 2^n \cdot \alpha / 2$.
+> 
+> {: .proof}
+>> Suppose not, $|G| \lt 2^n \cdot \alpha / 2$.
+>> Then, 
+
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
