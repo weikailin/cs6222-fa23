@@ -776,6 +776,8 @@ We assume for contra that $h$ is not hard-core, which is the following,
 and then to reach contra, we want to construct another adversary $B$ that inverts $f'$.
 
 #### **Full Assumption:**
+
+{: .defn}
 > There exists NUPPT $A$, polynomial $p$, such that for inf many $n\in\N$,
 > 
 > $$
@@ -785,23 +787,46 @@ and then to reach contra, we want to construct another adversary $B$ that invert
 The construct and analysis of $B$ is involved, so we will start from a couple of warmups.
 
 #### **Warmup Assumption 1:**
-> There exists NUPPT $A$, polynomial $p$, such that for inf many $n\in\N$,
+
+{: .defn}
+> There exists NUPPT $A$, such that for inf many $n\in\N$,
+> for all $r \in \bit^n$,
 > 
 > $$
-> \Pr_{x,r}[A(1^{2n}, f(x,r)) = h(x,r)] = 1.
+> \Pr_{x}[A(1^{2n}, f(x,r)) = h(x,r)] = 1.
 > $$
 
 {: .proof}
 > To invert $y \gets f'(x)$, the construction of $B_1(1^n, y)$ is simple:
 > 1. For $i = 1, 2, ..., n$, do the following
->   a. Let $e_i$ be the $n$-bit string that only the $i$-th bit is 1 (0 otherwise)
->   b. Run $x'_i \gets A(1^n, y \| e_i)$
+>    1. Let $e_i$ be the $n$-bit string that only the $i$-th bit is 1 (0 otherwise)
+>    2. Run $x'_i \gets A(1^{2n}, y \\| e_i)$
 > 2. Output $x' := x'_1 x'_2 ... x'_n$
-> To see why $B_1$ inverts $y \get f'(x)$, observe that $x'_i = h(x) = x \odot e_i = x_i$,
+> To see why $B_1$ inverts $y \gets f'(x)$, observe that $x'_i = h(x) = x \odot e_i = x_i$,
 > where $x = x_1 x_2 ... x_n$.
 > Hence, $B_1$ succeeds w.p. 1, a contradiction.
 
+Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger than we wanted.
 
+#### **Warmup Assumption 2:**
+
+{: .defn}
+> There exists NUPPT $A$, polynomial $p$, such that for inf many $n\in\N$,
+> 
+> $$
+> \Pr_{x,r}[A(1^{2n}, f(x,r)) = h(x,r)] \ge 3/4 + 1/p(n).
+> $$
+
+{: .proof}
+> We would like to use $e_i$ as before, 
+> but now $A$ may always fail whenever the suffix of $f(x,r)$ is $e_i$.
+> Hence, we randomize $e_i$ to $r$ and $r \oplus e_$ and then recover the inner product $h$.
+> 
+> To invert $y \gets f'(x)$, the construction of $B_2(1^n, y)$ is below:
+> 1. For $i = 1, 2, ..., n$, do the following
+>   a. Let $e_i$ be the $n$-bit string that only the $i$-th bit is 1 (0 otherwise)
+>   b. Run $x'_i \gets A(1^{2n}, y \\| e_i)$
+> 2. Output $x' := x'_1 x'_2 ... x'_n$
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
