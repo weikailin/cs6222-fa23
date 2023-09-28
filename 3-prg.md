@@ -825,8 +825,8 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 > To invert $y \gets f'(x)$, the construction of $B_2(1^n, y)$ is below:
 > 1. For each $i = 1, 2, ..., n$, do
 >    1. For $j = 1$ to $m$, do
->       1. $r \gets \bit^n$
->       2. Run $z_{i,j} \gets A(1^{2n}, y \\| e_i\oplus r) \oplus A(1^{2n}, y \\| r)$
+>       - $r \gets \bit^n$
+>       - Run $z_{i,j} \gets A(1^{2n}, y \\| e_i\oplus r) \oplus A(1^{2n}, y \\| r)$
 >    2. Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
 > 2. Output $x' := x'_1 x'_2 ... x'_n$
 > 
