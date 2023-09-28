@@ -856,6 +856,7 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >> & \lt \alpha/2 + \Pr[A=h | x\notin G]\\
 >> & \le \alpha/2 + 3/4 + \alpha /2 = 3/4 + \alpha,
 >> \end{align*}
+>> $$
 >> 
 >> which contradicts Warmup Assumption 2.
 > 
