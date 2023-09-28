@@ -740,6 +740,12 @@ or any OWF. That is unfortunately unclear.
 
 Fortunately, Goldreich-Levin showed that for any OWF $f'$, 
 we can obtain another OWF $f$ that we know its hard-core predicate.
+The intuition is: given $f'$ is hard to invert, in the preimage of $f(x)$,
+there must be at least $\omega(1)$ bits that are hard to guess
+(otherwise, a poly-time adv can invert).
+Hard-core predicate formalizes those bits.
+Even we do not know which bits are hard, 
+we can sample randomly and hope to obtain some of them.
 
 #### **Theorem:** Goldreich-Levin, Hard-Core Lemma
 
@@ -754,6 +760,48 @@ we can obtain another OWF $f$ that we know its hard-core predicate.
 > 
 > where $\odot$ denotes the inner product modulo 2.
 > Then, $f$ is a OWF and $h$ is a hard-core predicate for $f$.
+
+Note: in the above definition of $f$ and $h$, the thm says that
+"even we are given the subset $r$ and $f'(x)$, because $f'(x)$ is hard to invert, 
+we still do not know the parity of $x$ over $r$".
+Since the subset $r$ is chosen uniformly, 
+that implies that $f'$ has many hard-core bits out of $n$, 
+and even we do not know where are them, 
+$r$ hits some hard-core bits with overwhelming probability.
+This is indeed consistent with the earlier intuition.
+
+Clearly $f$ is a OWF, and $h$ is easy to compute.
+The main challenge is to prove that $h$ is hard-core.
+We assume for contra that $h$ is not hard-core, which is the following,
+and then to reach contra, we want to construct another adversary $B$ that inverts $f'$.
+
+#### **Full Assumption:**
+> There exists NUPPT $A$, polynomial $p$, such that for inf many $n\in\N$,
+> 
+> $$
+> \Pr[x \gets \bit^n, r \gets \bit^n: A(1^{2n}, f(x,r)) = h(x,r)] \ge 1/2 + 1/p(n).
+> $$
+
+The construct and analysis of $B$ is involved, so we will start from a couple of warmups.
+
+#### **Warmup Assumption 1:**
+> There exists NUPPT $A$, polynomial $p$, such that for inf many $n\in\N$,
+> 
+> $$
+> \Pr_{x,r}[A(1^{2n}, f(x,r)) = h(x,r)] = 1.
+> $$
+
+{: .proof}
+> To invert $y \gets f'(x)$, the construction of $B_1(1^n, y)$ is simple:
+> 1. For $i = 1, 2, ..., n$, do the following
+>   a. Let $e_i$ be the $n$-bit string that only the $i$-th bit is 1 (0 otherwise)
+>   b. Run $x'_i \gets A(1^n, y \| e_i)$
+> 2. Output $x' := x'_1 x'_2 ... x'_n$
+> To see why $B_1$ inverts $y \get f'(x)$, observe that $x'_i = h(x) = x \odot e_i = x_i$,
+> where $x = x_1 x_2 ... x_n$.
+> Hence, $B_1$ succeeds w.p. 1, a contradiction.
+
+
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
