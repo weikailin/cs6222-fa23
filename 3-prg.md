@@ -847,7 +847,18 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 > 
 > {: .proof}
 >> Suppose not, $|G| \lt 2^n \cdot \alpha / 2$.
->> Then, 
+>> Then,
+>> 
+>> $$
+>> \begin{align*}
+>> \Pr_{x,r}[A(f(x,r)) = h(x,r)]
+>> & = \Pr[A=h \cap x \in G] + \Pr[A=h | x\notin G] \cdot \Pr[x \notin G]\\
+>> & \lt \alpha/2 + \Pr[A=h | x\notin G]\\
+>> & \le \alpha/2 + 3/4 + \alpha /2 = 3/4 + \alpha,
+>> \end{align*}
+>> 
+>> which contradicts Warmup Assumption 2.
+> 
 
 
 
