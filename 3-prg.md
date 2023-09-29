@@ -965,7 +965,7 @@ Now we are ready to prove the full theorem.
 >> $$
 >> 
 >> where $\alpha := 1/p(n)$. 
->> If the (Full Assumption)[#full-assumption] holds, then
+>> If the [Full Assumption](#full-assumption) holds, then
 >> $|G| \ge 2^n \cdot \alpha / 2$.
 >> 
 >> (The proof is almost the same and omitted.)
@@ -980,17 +980,18 @@ Now we are ready to prove the full theorem.
 > w.p.
 > 
 > $$
-> \Pr[ m (1 + \alpha)/2 - X \ge m \alpha/2] \le \frac{\alpha/2}{m (\alpha/2)^2}
+> \Pr[ m (1 + \alpha)/2 - X \ge m \alpha/2] \le \frac{1}{m (\alpha/2)^2}
 > \le 2/m\alpha,
 > $$
 > 
 > where $X = \sum_j X_j$, and $X_j$ denotes the event that $A$ outputs $x\odot(e_i \oplus r_j)$ correctly.
-> Choosing $m(n) := 4n p(n)$, we have that $\Pr[x'_i \neq x_i] \le 1/2n$.
+> Choosing $m(n) := 8n p^2(n)$, we have that $\Pr[x'_i \neq x_i] \le 1/2n$.
 > Taking union bound for all $i$, $\Pr[x' = x] \ge 1/2$, conditioning on $x \in G$ and $b_i$'s are correct.
-> Removing the conditional events\* takes $\alpha/2$ and $1/m$, but $B$ still inverts $y \gets f'(x)$
-> w.p. $\ge 1/(4p(n)m(n)) = 1 / 16 n p^2(n)$, contradicting $f'$ is OWF.
+> Removing the conditional events\* takes $\alpha/2$ and $1/m$, but $B$ still inverts $y$
+> w.p. $\ge 1/(4p(n)m(n)) = 1 / 32 n p^3(n)$, contradicting $f'$ is OWF.
 > 
-> (\*For any events $A,B,C$, $\Pr[A] \ge \Pr[A | B \cap C] \Pr[B \cap C]$.)
+> (\*For any events $A,B,C$, 
+> $\Pr[A] \ge \Pr[A | B \cap C] \Pr[B \cap C]$.)
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
 
