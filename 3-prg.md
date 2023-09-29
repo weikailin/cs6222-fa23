@@ -137,7 +137,7 @@ Fortunately, it implies the following.
 {: .proof}
 > (left as exercise)
 
-**Notice**{: .label}
+**Discuss**{: .label}
 If the number of hybrid distributions (between two ensembles) depends on 
 the size $n$ (of the distributions in the ensembles), the above corollary is tricky.
 Consider two ensembles $\cX = \set{X_n}_n, \cY=\set{Y_n}_n$, and suppose that
@@ -348,7 +348,7 @@ Example: if $g: \bit^n \to \bit^{n+1}$ for all $n$ is a PRG, then $g$ is a OWF.
 > where the last inequality follows by (AC).
 > That is, $D'$ distinguishes $g(x)$ w.p. at least $\frac{1}{\ell(n)p(n)}$, contradicting $g$ is a PRG.
 
-**Notice:**{:.label}
+**Discuss**{:.label}
 In the above, we proved it formally and preserved the uniformity (if $D$ is a uniform TM, then $D'$ is also uniform). 
 We did not apply Hybrid Lemma (and no triangular ineq), nor did we use Closure Lemma.
 Alternatively after (AC), one may apply Hybrid Lemma which claims that exists $j^\ast$
@@ -1015,7 +1015,7 @@ that are hard to invert (from $f(x)$ to $x$).
 This is non-trivial because we do not know which are the hard bits,
 and ${n \choose c \log n} \ge (n/c \log n)^{c\log n}$ is a super-polynomial.
 
-**Notice**{:.label}
+**Discuss**{:.label}
 How far does the Hard-core Lemma extend to? 
 Suppose $f'$ is OWF, and suppose $h'$ is a hard-core predicate for $f'$.
 - Is $f(x) := f'(x) \\| h'(x)$ a OWF?
