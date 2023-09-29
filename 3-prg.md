@@ -848,7 +848,8 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >> x \in \bit^n ~|~ \Pr_{r}[A(1^{2n}, f(x,r)) = h(x,r)] \ge 3/4 + \alpha / 2 },
 >> $$
 >> 
->> where $\alpha := 1/p(n)$. Then, 
+>> where $\alpha := 1/p(n)$.  
+>> If the Warmup Assumption 2 holds, then
 >> $|G| \ge 2^n \cdot \alpha / 2$.
 > 
 > {: .proof}
@@ -885,17 +886,30 @@ The main challenges from the previous $3/4$ proof is:
   For $1/2$, that lowers to only $\alpha$, 
   and then that is too low for the following majority and Chernoff bound.
 
-The first idea is to *guess* the output of $A(y \\| r)$ uniformly at random, 
+The first idea is to *guess* the inner product $x \oplus r$ uniformly at random, 
 which is a correct guess w.p. $1/2$.
 Suppose that $p(n)$ is a small constant and then $m(n) = O(n)$,
 all $m$ guesses are correct w.p. $1/2^m = 1 / \poly(n)$, 
-then conditioned on correct guesses, we have $A(y \\| e_i \oplus r)$ correct w.p. $1/2 + \alpha$ due to independent,
+then conditioned on correct guesses, we have $A(y \\| e_i \oplus r)$ correct w.p. $1/2 + \alpha$ (when $x$ is good),
 and then we can continue with Chernoff bound and finish the prove.
 For large $p(n)$, the guesses are too many and $1/2^m$ approaches negligible.
 
 The second idea is to use *pairwise independent* guesses.
 Particularly, we have Chebychev's bound for the measure concentration of pairwise indep. r.v.
 (instead of Chernoff bound for fully indep.).
+
+#### **Theorem:** Chebychev's inequality
+
+{:.theorem}
+> Let $X_1, ..., X_m \in [0,1]$ be pairwise independent random variables such that for all $j$,
+> $\E[X_j] = \mu$. Then,
+>
+> $$
+> \Pr\left[ |X - m \mu| \ge m \delta m \right] \le \frac{1-\mu^2}{m \delta^2},
+> $$
+> 
+> where $X := \sum_{j\in[m]} X_i$.
+
 We can then reduce the number of guesses from  $m$ to $\log m$.
 
 #### **Fact of pairwise independent random strings:**
@@ -930,15 +944,53 @@ Now we are ready to prove the full theorem.
 >>    1. Let $\ell := \log m$, $(u_1, ..., u_\ell)$ be fully independent and $(r_1,..., r_m)$ be pairwise independent
 >>       $n$-bit random strings as in Fact of pairwise indep.
 >>    2. For each $k \in [\ell]$, sample guess bit $b_k$ uniformly. For each $j \in [m]$, 
->>       compute the guess bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
+>>       compute the bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
 >>       (so that for any $x$, $g_{i,j} = x \odot r_j$ and $b_k = x \odot u_k$ for all $k$).
 >>    3. For each $j=1,2,..., m$,
 >>       - Run $z_{i,j} \gets A(1^{2n}, y \\| e_i \oplus r_j) \oplus g_{i,j}$.
+>>
 >>       Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
 >> 2. Output $x' := x'_1 x'_2 ... x'_n$
 > 
+> We begin with claiming the number of good instances of $x$.
 > 
-
+> {: .theorem-title}
+>> Good instances are plenty.
+>> 
+>> Define $G$ to be the set of good instances,
+>> 
+>> $$
+>> G:= \set{
+>> x \in \bit^n ~|~ \Pr_{r}[A(1^{2n}, f(x,r)) = h(x,r)] \ge 1/2 + \alpha / 2 },
+>> $$
+>> 
+>> where $\alpha := 1/p(n)$. 
+>> If the (Full Assumption)[#full-assumption] holds, then
+>> $|G| \ge 2^n \cdot \alpha / 2$.
+>> 
+>> (The proof is almost the same and omitted.)
+> 
+> We condition on the good event that $x \in G$.
+> Next, we condition on the "lucky event" that 
+> the guess $b_k$ equals to $x \odot u_k$ for all $k$, which happens w.p. $1/m$.
+> That implies $(g_{i,1}, ..., g_{i,m})$ are all correct.
+> With the conditioning, for any $j \neq j'$, $r_j$ and $r_{j'}$ are still pairwise indep.,
+> and thus $(g_{i,j}, g_{i,j'})$ are pairwise indep. as well.
+> Therefore, by Chebychev's ineq., the majority of $g_{i,j}$ equals to $x \odot e_i$
+> w.p.
+> 
+> $$
+> \Pr[ m (1 + \alpha)/2 - X \ge m \alpha/2] \le \frac{\alpha/2}{m (\alpha/2)^2}
+> \le 2/m\alpha,
+> $$
+> 
+> where $X = \sum_j X_j$, and $X_j$ denotes the event that $A$ outputs $x\odot(e_i \oplus r_j)$ correctly.
+> Choosing $m(n) := 4n p(n)$, we have that $\Pr[x'_i \neq x_i] \le 1/2n$.
+> Taking union bound for all $i$, $\Pr[x' = x] \ge 1/2$, conditioning on $x \in G$ and $b_i$'s are correct.
+> Removing the conditional events\* takes $\alpha/2$ and $1/m$, but $B$ still inverts $y \gets f'(x)$
+> w.p. $\ge 1/(4p(n)m(n)) = 1 / 16 n p^2(n)$, contradicting $f'$ is OWF.
+> 
+> (\*For any events $A,B,C$, $\Pr[A] \ge \Pr[A | B \cap C] \Pr[B \cap C]$.)
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
 
