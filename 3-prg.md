@@ -846,6 +846,7 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >> $|G| \ge 2^n \cdot \alpha / 2$.
 > 
 > {: .proof}
+>> (This is actually a standard averaging argument or a Markov ineq.)
 >> Suppose not, $|G| \lt 2^n \cdot \alpha / 2$.
 >> Then,
 >> 
@@ -861,14 +862,28 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >> which contradicts Warmup Assumption 2.
 > 
 > Now, suppose that $x \in G$.
-> $A$ fails to invert $y \| e_i \oplus r$ or $y \| r$ w.p. $\lt 1/2 - \alpha$ by union bound.
+> $A$ fails to invert $y \\| e_i \oplus r$ or $y \\| r$ w.p. $\lt 1/2 - \alpha$ by union bound.
 > So, for any fixed $i$, $\Pr[z_{i,j} = x_i] \ge 1/2 + \alpha$ for each $j$ independently.
-> By Chernoff bound, the majority of $z_{i,j}$ is $x_i$ w.p. $\ge 1 - e^{-m /2\alpha^2}$.
+> By Chernoff bound, the majority of $z_{i,j}$ is $x_i$ w.p. $\ge 1 - e^{-m\alpha^2 /2}$.
 > Choosing $m = np^2(n)$, the probability is exponentially close to 1.
-> By union bound again, $B_2$ recovers all $x_i$'s w.p. close to 1.
+> By union bound over all $i\in[n]$, $B_2$ recovers $x$ w.p. close to 1.
 > 
 > Finally, $B_2$ succeeds w.p. $\ge \alpha / 4$ for all $x$ uniformly sampled
 > by failing for all $x \notin G$.
+
+To complete the full proof, We want to lower from $3/4$ to $1/2$.
+The "good set" still holds when modified to $1/2$ (since it is a simple averaging).
+The main challenges from the previous $3/4$ proof is:
+
+- The union bound of inverting both $y \\| e_i \oplus r$ and $y \\| r$. 
+  For $1/2$, that lowers to only $\alpha$, 
+  and then that is too low for the following majority and Chernoff bound.
+
+The first idea is to *guess* the output of $A(y \\| r)$ uniformly at random, 
+which is a correct guess w.p. $1/2$, and the guess is *independent* of $A(y \\| e_i \oplus r)$.
+Suppose that $p(n)$ is a small constant and then $m(n) = O(n)$,
+all $m$ guesses are correct w.p. $1/2^m = 1 / \poly(n)$, 
+and then we can continue with Chernoff bound and finish the prove.
 
 
 
