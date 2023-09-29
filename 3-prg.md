@@ -822,6 +822,12 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 > but now $A$ may always fail whenever the suffix of $f(x,r)$ is $e_i$.
 > Hence, we randomize $e_i$ to $r$ and $r \oplus e_i$ and then recover the inner product $h$.
 > 
+> {:.theorem-title}
+>> Fact
+>> 
+>> For all $n$, any strings $x, a, b \in \bit^n$, it holds that
+>> $(x \odot a) \oplus (x \odot b) = x \odot (a \oplus b)$.
+> 
 > To invert $y \gets f'(x)$, the construction of $B_2(1^n, y)$ is below:
 > 1. For each $i = 1, 2, ..., n$, do
 >    1. For $j = 1$ to $m$, do
@@ -892,7 +898,7 @@ Particularly, we have Chebychev's bound for the measure concentration of pairwis
 (instead of Chernoff bound for fully indep.).
 We can then reduce the number of guesses from  $m$ to $\log m$.
 
-#### **Fact:** Sampling pairwise independent random strings
+#### **Fact of pairwise independent random strings:**
 
 {: .theorem}
 > For any $n, m \in \N$, let $(u_i : u_i \gets \bit^n)_{i \in [\log m]}$ 
@@ -909,6 +915,29 @@ We can then reduce the number of guesses from  $m$ to $\log m$.
 > 
 > (The proof is left as exercise.)
 
+Now we are ready to prove the full theorem.
+
+{: .proof-title}
+> Proof of Hard-Core Lemma (Goldreich-Levin)
+> 
+> Given NUPPT $A$ in the (Full Assumption)[#full-assumption],
+> we construct $B$ that inverts $y \gets f'(x)$ as follows.
+> 
+> {:.defn-title}
+>> Algorithm $B(1^n, y)$
+>> 
+>> 1. For each $i=1,2, .., n$,
+>>    1. Let $\ell := \log m$, $(u_1, ..., u_\ell)$ be fully independent and $(r_1,..., r_m)$ be pairwise independent
+>>       $n$-bit random strings as in Fact of pairwise indep.
+>>    2. For each $k \in [\ell]$, sample guess bit $b_k$ uniformly. For each $j \in [m]$, 
+>>       compute the guess bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
+>>       (so that for any $x$, $g_{i,j} = x \odot r_j$ and $b_k = x \odot u_k$ for all $k$).
+>>    3. For each $j=1,2,..., m$,
+>>       - Run $z_{i,j} \gets A(1^{2n}, y \\| e_i \oplus r_j) \oplus g_{i,j}$.
+>>       Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
+>> 2. Output $x' := x'_1 x'_2 ... x'_n$
+> 
+> 
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
