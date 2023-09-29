@@ -31,6 +31,7 @@ MathJax = {
       bits: "\\bit^\\ast",
       N: "\\mathbb{N}",
       eps: "\\epsilon",
+      poly: "\\mathrm{poly}",
       cA: "\\mathcal{A}",
       cB: "\\mathcal{B}",
       cC: "\\mathcal{C}",
