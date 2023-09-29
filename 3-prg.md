@@ -1013,7 +1013,7 @@ How far does the Hard-core Lemma extend to? Suppose $f'$ is OWF.
 - Let $f(x,t,r) := f'(x) \\| t \\| x \odot t \\| r$, and let $h(x,t,r) := x \odot r$. 
   Is $f$ a OWF? If so, is $h$ a hard-core predicate for $f$?
 
-The questions are highly relevant when we want to 
+The questions are highly relevant when we want to construct PRG from any one-way *function*.
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
