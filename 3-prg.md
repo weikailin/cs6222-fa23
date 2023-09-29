@@ -1003,6 +1003,12 @@ Now we are ready to prove the full theorem.
 > (\*For any events $A,B,C$, 
 > $\Pr[A] \ge \Pr[A \| B \cap C] \Pr[B \cap C]$.)
 
+**Notice**{:.label}
+How far does the Hard-core Lemma extend to? Suppose $f'$ is OWF. 
+- Let $f(x,t,r) := f'(x) \| t \| r$, and let $h(x,t,r) := x \odot r$. 
+  Is $h$ a hard-core predicate for $f$?
+- Let $f(x,t,r) := f'(x) \| t \| r$, and let $h(x,t,r) := x \odot r$. 
+
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
