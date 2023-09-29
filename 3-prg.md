@@ -991,8 +991,7 @@ Now we are ready to prove the full theorem.
 > w.p.
 > 
 > $$
-> \Pr[ m (1 + \alpha)/2 - X \ge m \alpha/2] \le \frac{1}{m (\alpha/2)^2}
-> \le 2/m\alpha,
+> \Pr[ m (1 + \alpha)/2 - X \ge m \alpha/2] \le \frac{1}{m (\alpha/2)^2},
 > $$
 > 
 > where $X = \sum_j X_j$, and $X_j$ denotes the event that $A$ outputs $x\odot(e_i \oplus r_j)$ correctly.
@@ -1002,7 +1001,9 @@ Now we are ready to prove the full theorem.
 > w.p. $\ge 1/(4p(n)m(n)) = 1 / 32 n p^3(n)$, contradicting $f'$ is OWF.
 > 
 > (\*For any events $A,B,C$, 
-> $\Pr[A] \ge \Pr[A | B \cap C] \Pr[B \cap C]$.)
+> $\Pr[A] \ge \Pr[A \| B \cap C] \Pr[B \cap C]$.)
+
+
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
 
