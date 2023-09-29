@@ -1013,7 +1013,8 @@ Since the guessed bits entails information about $x$,
 the proof implies that there must be $\omega(\log n)$ bits 
 that are hard to invert (from $f(x)$ to $x$).
 This is non-trivial because we do not know which are the hard bits,
-and ${n \choose c \log n} \ge (n/c \log n)^{c\log n}$ is a super-polynomial.
+and ${n \choose c \log n} \ge (n/c \log n)^{c\log n}$ is a super-polynomial,
+yet we have an efficient attack using pairwise indep.
 
 **Discuss**{:.label}
 How far does the Hard-core Lemma extend to? 
