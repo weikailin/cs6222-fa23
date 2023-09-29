@@ -1065,13 +1065,14 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > such that each $h \in \cH$ is $2 \max(n,m)$ bits.
 
 
+#### **Theorem:** Leftover Hash Lemma
+
+{:.theorem}
+> If H = {h : {0, 1}n → {0, 1}m} is a pairwise independent (or even 2-universal) family of hash functions 
+> where m = k − 2 log(1/ε), then Ext(x, h) def = h(x) is a strong (k, ε)-extractor. 
+> Equivalently, Ext(x, h) = (h, h(x)) is a standard (k, ε)-extractor.
+>
 
 
-Theorem 6.18 (Leftover Hash Lemma). If H = {h : {0, 1}n → {0, 1}m} is a pairwise indepen-
-dent (or even 2-universal) family of hash functions where m = k − 2 log(1/ε), then Ext(x, h) def
-= h(x)
-is a strong (k, ε)-extractor. Equivalently, Ext(x, h) = (h, h(x)) is a standard (k, ε)-extractor.
->
->
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
 
