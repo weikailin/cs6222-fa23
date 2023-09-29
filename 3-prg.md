@@ -745,6 +745,9 @@ and then we can obtain PRG from RSA assumption.
 > $$
 > g(x) := f(x) \| h(x).
 > $$
+> 
+> (The proof is a standard reduction: if there exists a NUPPT distinguisher $D$ against $g$,
+> then we can build a NUPPT adversary $A$ that inverts $f$ by running $D$.)
 
 However, we want to obtain PRG from *any* OWP (without depending on specific assumptions)
 or any OWF. That is unfortunately unclear.
@@ -1005,10 +1008,12 @@ Now we are ready to prove the full theorem.
 
 **Notice**{:.label}
 How far does the Hard-core Lemma extend to? Suppose $f'$ is OWF. 
-- Let $f(x,t,r) := f'(x) \| t \| r$, and let $h(x,t,r) := x \odot r$. 
+- Let $f(x,t,r) := f'(x) \\| t \\| r$, and let $h(x,t,r) := x \odot r$. 
   Is $h$ a hard-core predicate for $f$?
-- Let $f(x,t,r) := f'(x) \| t \| r$, and let $h(x,t,r) := x \odot r$. 
+- Let $f(x,t,r) := f'(x) \\| t \\| x \odot t \\| r$, and let $h(x,t,r) := x \odot r$. 
+  Is $f$ a OWF? If so, is $h$ a hard-core predicate for $f$?
 
+The questions are highly relevant when we want to 
 
 
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
