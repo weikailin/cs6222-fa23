@@ -735,6 +735,17 @@ If we construct OWP from the RSA assumption,
 then the least significant bit of $x$ is that "hard to guess" one,
 and then we can obtain PRG from RSA assumption.
 
+#### **Theorem:** PRG from OWP and hard-core predicate
+
+{:.theorem}
+> Suppose that $f: \bit^n \to \bit^n$ is a OWP and $h: \bit^n \to \bit$ is 
+> a hard-core predicate for $f$ (for all $n\in\N$).
+> Then, $g: \bit^n \to \bit^{n+1}$ to be defined below is a PRG:
+> 
+> $$
+> g(x) := f(x) \| h(x).
+> $$
+
 However, we want to obtain PRG from *any* OWP (without depending on specific assumptions)
 or any OWF. That is unfortunately unclear.
 
