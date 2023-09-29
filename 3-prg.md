@@ -1006,10 +1006,21 @@ Now we are ready to prove the full theorem.
 > (\*For any events $A,B,C$, 
 > $\Pr[A] \ge \Pr[A \| B \cap C] \Pr[B \cap C]$.)
 
+**Discuss**{:.label}
+The number of bits we guessed is $\log m = O(\log p(n)) = O(\log n)$, 
+where $p(n)$ depends on the (hypothetical) NUPPT $A$.
+Since the guessed bits entails information about $x$,
+the proof implies that there must be $\omega(\log n)$ bits 
+that are hard to invert (from $f(x)$ to $x$).
+This is non-trivial because we do not know which are the hard bits,
+and ${n \choose c \log n} \ge (n/c \log n)^{c\log n}$ is a super-polynomial.
+
 **Notice**{:.label}
-How far does the Hard-core Lemma extend to? Suppose $f'$ is OWF. 
+How far does the Hard-core Lemma extend to? 
+Suppose $f'$ is OWF, and suppose $h'$ is a hard-core predicate for $f'$.
+- Is $f(x) := f'(x) \\| h'(x)$ a OWF?
 - Let $f(x,t,r) := f'(x) \\| t \\| r$, and let $h(x,t,r) := x \odot r$. 
-  Is $h$ a hard-core predicate for $f$?
+  Is $f$ a OWF? If so, is $h$ a hard-core predicate for $f$?
 - Let $f(x,t,r) := f'(x) \\| t \\| x \odot t \\| r$, and let $h(x,t,r) := x \odot r$. 
   Is $f$ a OWF? If so, is $h$ a hard-core predicate for $f$?
 
