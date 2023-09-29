@@ -880,10 +880,34 @@ The main challenges from the previous $3/4$ proof is:
   and then that is too low for the following majority and Chernoff bound.
 
 The first idea is to *guess* the output of $A(y \\| r)$ uniformly at random, 
-which is a correct guess w.p. $1/2$, and the guess is *independent* of $A(y \\| e_i \oplus r)$.
+which is a correct guess w.p. $1/2$.
 Suppose that $p(n)$ is a small constant and then $m(n) = O(n)$,
 all $m$ guesses are correct w.p. $1/2^m = 1 / \poly(n)$, 
+then conditioned on correct guesses, we have $A(y \\| e_i \oplus r)$ correct w.p. $1/2 + \alpha$ due to independent,
 and then we can continue with Chernoff bound and finish the prove.
+For large $p(n)$, the guesses are too many and $1/2^m$ approaches negligible.
+
+The second idea is to use *pairwise independent* guesses.
+Particularly, we have Chebychev's bound for the measure concentration of pairwise indep. r.v.
+(instead of Chernoff bound for fully indep.).
+We can then reduce the number of guesses from  $m$ to $\log m$.
+
+#### **Fact:** Sampling pairwise independent random strings
+
+{: .theorem}
+> For any $n, m \in \N$, let $(u_i : u_i \gets \bit^n)_{i \in [\log m]}$ 
+> be strings independently sampled uniformly at random 
+> (we abuse notation and round up $\log m$ to the next integer).
+> Define strings $r_I$ for each $I \subseteq [\log m]$ to be
+> 
+> $$
+> r_I := \bigoplus_{i \in I} u_i.
+> $$
+> 
+> The random variables $(r_1, r_2, ..., r_m)$ are pairwise independent,
+> where $r_j$ denotes $r_I$ such that $I$ is the $j$-th subset of $[\log m]$.
+> 
+> (The proof is left as exercise.)
 
 
 
