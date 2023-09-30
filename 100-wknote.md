@@ -115,6 +115,46 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > 
 > [V, Theorem 3.26, p66]
 
+#### **Theorem:** Weak PEG from OWF
+
+{: .theorem}
+> Let $f': \bit^n \to \bit^n$ for all $n\in\N$ be a OWF,
+> let $\cH$ be a pairwise independent hash family that for each $h \in \cH$, 
+> $h : \bit^n \to \bit^n$ and $|h| = 2n$.
+> Define function $f$ to be the following:
+> 
+> $$
+> f(x,i,h,r) := (f'(x), i, h, h_i(x), r, x \odot r), \text{ and }
+> $$
+> 
+> where $h$ is abused to denote the description of $h \in \cH$, 
+> $h_i(x)$ denotes the $i$-bit prefix of $h(x)$.
+> Then, $f$ is a weak PEG.
+
+Let random variables $Y,Z,Z_{i^*}'$ be the following
+
+$$
+\begin{align*}
+Y &:= (f'(x), i, h, h_i(x), r),\\
+Z &:= x \odot r,\\
+Z' &:= \begin{cases}
+ \text{random bit} & \text{if } i = i^*\\
+ x \odot r  & \text{otherwise.}
+\begin{align*}
+$$
+
+#### **Claim:**
+
+{: .theorem}
+> For each $x \in \bit^n$, let 
+> $i^*(x) := \log |f'^{-1}(f'(x))|$.
+> It holds that $\set{YZ}_n \approx \set{YZ'_{i^*(x)}}_n$.
+
+{: .proof-title}
+> Proof Sketch.
+> 
+> 
+
 #### **Theorem:** Hard-core function
 
 {: .theorem}
