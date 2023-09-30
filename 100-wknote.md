@@ -147,7 +147,7 @@ Y := (f(x), i, h, h_i(x), r), ~ Z := x \odot r, \text{ and}
 $$
 
 $$
-Z' &:= \begin{cases}
+Z' := \begin{cases}
  \text{random bit} & \text{if } i = i^*\\
  x \odot r  & \text{otherwise.}
 \end{cases}
