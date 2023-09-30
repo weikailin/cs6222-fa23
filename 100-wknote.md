@@ -79,11 +79,13 @@ PRG from any OWF
 #### **Definition:** Pairwise independent hash family.
 
 {:.defn}
-> A family of functions $\cH = \set{h : \bit^n \to \bit^m}$ is pairwise independent 
+> A family of functions $\cH = \set{h : \bit^n \to \bit^m}$ is *pairwise independent* 
 > if the following two conditions hold when $H \gets \cH$ is a function chosen uniformly at random from $\cH$:
 > 
 > 1. For all $x \in \bit^n$, the random variable $H(x)$ is uniform in $\bit^m$.
-> 2. For all $x_1\neq x_2 \in \bit^n$, $H(x_1)$ and $H(x_2)$ are independent.
+> 2. For all $x_1\neq x_2 \in \bit^n$, the random variables $H(x_1)$ and $H(x_2)$ are independent.
+> 
+> [V, Definition 3.21, p64]
 
 #### **Lemma:** Pairwise independent hash from linear mapping.
 
@@ -95,6 +97,8 @@ PRG from any OWF
 > $$
 > 
 > $\cH$ is a pairwise independent hash family.
+> 
+> [V, Construction 3.23, p65]
 
 If $m \ge n$,
 choosing the field to be $F_{2^m}$ gives a construction such that 
@@ -107,6 +111,8 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 {:.theorem}
 > For any $n,m\in\N$, there exists a pairwise independent hash family $\cH_{n,m}$
 > such that each $h \in \cH$ is $2 \max(n,m)$ bits.
+> 
+> [V, Theorem 3.26, p66]
 
 #### **Theorem:** Hard-core function
 
@@ -132,5 +138,7 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > If H = {h : {0, 1}n → {0, 1}m} is a pairwise independent (or even 2-universal) family of hash functions 
 > where m = k − 2 log(1/ε), then Ext(x, h) def = h(x) is a strong (k, ε)-extractor. 
 > Equivalently, Ext(x, h) = (h, h(x)) is a standard (k, ε)-extractor.
->
+> 
+> [V, Theorem 6.18, p179]
+
 
