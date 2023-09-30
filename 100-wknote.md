@@ -118,13 +118,13 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 #### **Theorem:** Weak PEG from OWF
 
 {: .theorem}
-> Let $f': \bit^n \to \bit^n$ for all $n\in\N$ be a OWF,
+> Let $f: \bit^n \to \bit^n$ for all $n\in\N$ be a OWF,
 > let $\cH$ be a pairwise independent hash family that for each $h \in \cH$, 
 > $h : \bit^n \to \bit^n$ and $|h| = 2n$.
 > Define function $f$ to be the following:
 > 
 > $$
-> f(x,i,h,r) := (f'(x), i, h, h_i(x), r, x \odot r), \text{ and }
+> F(x,i,h,r) := (f(x), i, h, h_i(x), r, x \odot r), \text{ and }
 > $$
 > 
 > where $h$ is abused to denote the description of $h \in \cH$, 
@@ -135,7 +135,7 @@ Let random variables $Y,Z,Z_{i^*}'$ be the following
 
 $$
 \begin{align*}
-Y &:= (f'(x), i, h, h_i(x), r),\\
+Y &:= (f(x), i, h, h_i(x), r),\\
 Z &:= x \odot r,\\
 Z' &:= \begin{cases}
  \text{random bit} & \text{if } i = i^*\\
@@ -147,13 +147,31 @@ $$
 
 {: .theorem}
 > For each $x \in \bit^n$, let 
-> $i^*(x) := \log |f'^{-1}(f'(x))|$.
+> $i^*(x) := \log |f^{-1}(f(x))|$.
 > It holds that $\set{YZ}_n \approx \set{YZ'_{i^*(x)}}_n$.
 
 {: .proof-title}
 > Proof Sketch.
 > 
+> It is similar to the proof of Hard-core Lemma.
+> Let $i^*$ to be $i^*(x)$ and $Z'$ to be $Z'_{i^*(x)}$ for short.
+> Because $YZ, YZ'$ differ only when $i = i^*$, 
+> assume for contradiction, there exists NUPPT $A$, polynomial $p$, such that for inf many $n$,
 > 
+> $$
+> \Pr_{x,h,r} [A(f(x),i^*,h,h_{i^*}(x),r) = x\odot r] \ge 1/2 + \alpha,
+> $$
+> 
+> where $alpha = 1/p(n)$.
+> 
+> We want to consturct $B$ that inverts $y \gets f(x)$.
+> We have a similar claim of good $x$'s:
+> let $G$ to be the set
+> 
+> $$
+> G := \set{ x \in \bit^n ~|~ \Pr_{h,r}[A(f(x),i^*,h,h_i(x),r) = h(x,r)] \ge 1/2 + \alpha / 2 }.
+> $$
+
 
 #### **Theorem:** Hard-core function
 
