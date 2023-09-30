@@ -158,7 +158,10 @@ $$
 {: .theorem}
 > For each $x \in \bit^n$, let 
 > $i^\ast(x) := \log |f^{-1}(f(x))|$.
-> It holds that $\set{YZ}_n \approx \set{YZ'_{i^\ast(x)}}_n$.
+> 
+> $$
+> \set{YZ}_n \approx \set{YZ'_{i^\ast(x)}}_n.
+> $$
 
 {: .proof-title}
 > Proof Sketch.
