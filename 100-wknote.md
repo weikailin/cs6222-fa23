@@ -188,11 +188,18 @@ $$
 > 
 > Now, we can condition on $x \in G$ and $h \in \cH_x$.
 > Namely, given $y \gets f(x)$, $B$ samples $i \gets [n], h \gets \cH$ uniformly,
-> and we have that $i=i^*$ and $h \in \cH_x$ w.p. $1/\poly(n)$.
+> and we have that $i=i^*$ and $h \in \cH_x$ w.p. $1/q(n)$ for some poly $q$.
 > It remains to find the correct $h(x)$ so that $B$ can run $A$ repeatedly using
 > pairwise independent $r$'s.
-> 
-> 
+> We have $x$ fixed and $h$ sampled independently from $\cH$,
+> given $f(x)$, the min-entropy of $x$ is $i^*$, by Leftover Hash Lemma, 
+> the first $i^* - d$ bits of $h(x)$ is $2^{-d}$-close to uniform.
+> This implies that we can hit the prefix $i^* - d$ bits of $h_{i^*}(x)$
+> w.p. $1 - 2^{-d}$ by sampling them uniformly at random.
+> Choosing $d$ such that $2^{-d} \le 1/2q$,
+> we can still hit w.p. $\ge 1/2$.
+> With the above, we can try all remaining $d = O(\log n)$ bits and then 
+> check if the outcome $x'$ satisfies $f(x') = y$.
 
 
 #### **Theorem:** Hard-core function
