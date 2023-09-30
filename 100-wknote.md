@@ -138,29 +138,25 @@ Y := (f(x), i, h, h_i(x), r), ~ Z := x \odot r, \text{ and}
 $$
 
 $$
-\begin{align*}
-Y &:= (f(x), i, h, h_i(x), r),\\
-Z &:= x \odot r,\\
 Z' &:= \begin{cases}
  \text{random bit} & \text{if } i = i^*\\
  x \odot r  & \text{otherwise.}
 \end{cases}
-\begin{align*}
 $$
 
 #### **Claim:**
 
 {: .theorem}
 > For each $x \in \bit^n$, let 
-> $i^*(x) := \log |f^{-1}(f(x))|$.
-> It holds that $\set{YZ}_n \approx \set{YZ'_{i^*(x)}}_n$.
+> $i^\ast(x) := \log |f^{-1}(f(x))|$.
+> It holds that $\set{YZ}_n \approx \set{YZ'_{i^\ast(x)}}_n$.
 
 {: .proof-title}
 > Proof Sketch.
 > 
 > It is similar to the proof of Hard-core Lemma.
-> Let $i^*$ to be $i^*(x)$ and $Z'$ to be $Z'_{i^*(x)}$ for short.
-> Because $YZ, YZ'$ differ only when $i = i^*$, 
+> Let $i^\ast$ to be $i^\ast(x)$ and $Z'$ to be $Z'_{i^\ast(x)}$ for short.
+> Because $YZ, YZ'$ differ only when $i = i^\ast$, 
 > assume for contradiction, there exists NUPPT $A$, polynomial $p$, such that for inf many $n$,
 > 
 > $$
@@ -191,9 +187,12 @@ $$
 > $|\cH_x| \ge |\cH| \cdot \alpha / 2$.
 > 
 > Now, we can condition on $x \in G$ and $h \in \cH_x$.
-> Namely, given $y \gets \f(x)$, $B$ samples $i \gets [n], h \gets \cH$ uniformly,
+> Namely, given $y \gets f(x)$, $B$ samples $i \gets [n], h \gets \cH$ uniformly,
 > and we have that $i=i^*$ and $h \in \cH_x$ w.p. $1/\poly(n)$.
-> It remains to 
+> It remains to find the correct $h(x)$ so that $B$ can run $A$ repeatedly using
+> pairwise independent $r$'s.
+> 
+> 
 
 
 #### **Theorem:** Hard-core function
