@@ -134,12 +134,17 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 Let random variables $Y,Z,Z_{i^*}'$ be the following
 
 $$
+Y := (f(x), i, h, h_i(x), r), ~ Z := x \odot r, \text{ and}
+$$
+
+$$
 \begin{align*}
 Y &:= (f(x), i, h, h_i(x), r),\\
 Z &:= x \odot r,\\
 Z' &:= \begin{cases}
  \text{random bit} & \text{if } i = i^*\\
  x \odot r  & \text{otherwise.}
+\end{cases}
 \begin{align*}
 $$
 
@@ -169,8 +174,22 @@ $$
 > let $G$ to be the set
 > 
 > $$
-> G := \set{ x \in \bit^n ~|~ \Pr_{h,r}[A(f(x),i^*,h,h_i(x),r) = h(x,r)] \ge 1/2 + \alpha / 2 }.
+> G := \set{ x \in \bit^n ~|~ \Pr_{h,r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \alpha / 2 }.
 > $$
+> 
+> Then, 
+> $|G| \ge 2^n \cdot \alpha / 2$.
+> We can next fix $h$ similarly:
+> for each $x\in G$,
+> let $G_x$ to be the set
+> 
+> $$
+> G_x := \set{ h \in \cH ~|~ \Pr_{r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \alpha / 4 }.
+> $$
+> 
+> Then, 
+> $|G_x| \ge |\cH| \cdot \alpha / 2$.
+> 
 
 
 #### **Theorem:** Hard-core function
