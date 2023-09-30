@@ -197,14 +197,19 @@ $$
 > 
 > Now, we can condition on $x \in G$ and $h \in \cH_x$.
 > Namely, given $y \gets f(x)$, $B$ samples $i \gets [n], h \gets \cH$ uniformly,
-> and we have that $i=i^*$ and $h \in \cH_x$ w.p. $1/q(n)$ for some poly $q$.
+> and we have that $i=i^\ast$ and $h \in \cH_x$ w.p. $1/q(n)$ for some poly $q$.
 > It remains to find the correct $h(x)$ so that $B$ can run $A$ repeatedly using
 > pairwise independent $r$'s.
-> We have $x$ fixed and $h$ sampled independently from $\cH$,
-> given $f(x)$, the min-entropy of $x$ is $i^*$, by Leftover Hash Lemma, 
-> the first $i^* - d$ bits of $h(x)$ is $2^{-d}$-close to uniform.
-> This implies that we can hit the prefix $i^* - d$ bits of $h_{i^*}(x)$
+> 
+> Suppose that $x$ is fixed and $h$ is sampled uniformly and independently from $\cH$.
+> Given $y = f(x)$, the min-entropy of $x$ is $i^\ast(x)$ because 
+> each $x' \in f^{-1}(y)$ can be mapped to $y$.
+> By Leftover Hash Lemma, 
+> the first $i^\ast - d$ bits of $h(x)$ is $2^{-d}$-close to uniform.
+> This implies that we can hit the prefix $i^\ast - d$ bits of $h_{i^*}(x)$
 > w.p. $1 - 2^{-d}$ by sampling them uniformly at random.
+> 
+> However, we conditioned on $h \in \cH_x$.
 > Choosing $d$ such that $2^{-d} \le 1/2q$,
 > we can still hit w.p. $\ge 1/2$.
 > With the above, we can try all remaining $d = O(\log n)$ bits and then 
