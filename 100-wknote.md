@@ -108,6 +108,23 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > For any $n,m\in\N$, there exists a pairwise independent hash family $\cH_{n,m}$
 > such that each $h \in \cH$ is $2 \max(n,m)$ bits.
 
+#### **Theorem:** Hard-core function
+
+{: .theorem}
+> Let $f': \bit^n \to \bit^n$ for all $n\in\N$ be a OWF,
+> and let $\ell := \ell(n) = c \log n$ for some constant $c$.
+> Define functions $f: \bit^{3n}\to \bit^{3n}, h: \bit^{3n} \to \bit^{\ell}$ to be the following:
+> 
+> $$
+> f(x,r) := f'(x) \| r, \text{ and }
+> h(x,r) := h_1 h_2 ... h_\ell,
+> $$
+> 
+> where $h_i$ denotes the inner product $x \odot r[i ... i+n-1]$.
+> Then, $f$ is a OWF and $h$ is a hard-core function for $f$.
+> 
+> [G, Theorem 2.5.6, p74]
+
 
 #### **Theorem:** Leftover Hash Lemma
 
