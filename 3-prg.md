@@ -1029,50 +1029,5 @@ Suppose $f'$ is OWF, and suppose $h'$ is a hard-core predicate for $f'$.
 The questions are highly relevant when we want to construct PRG from any one-way *function*.
 
 
-PRG from any OWF
-----------------
-
-#### **Definition:** Pairwise independent hash family.
-
-{:.defn}
-> A family of functions $\cH = \set{h : \bit^n \to \bit^m}$ is pairwise independent 
-> if the following two conditions hold when $H \gets \cH$ is a function chosen uniformly at random from $\cH$:
-> 
-> 1. For all $x \in \bit^n$, the random variable $H(x)$ is uniform in $\bit^m$.
-> 2. For all $x_1\neq x_2 \in \bit^n$, $H(x_1)$ and $H(x_2)$ are independent.
-
-#### **Lemma:** Pairwise independent hash from linear mapping.
-
-{:.theorem}
-> For any finite field $F$, define $\cH$ to be the following set:
-> 
-> $$
-> \cH := \set{h_{a,b} : h_{a,b}(x) = a x + b \mod p, a,b\in F}.
-> $$
-> 
-> $\cH$ is a pairwise independent hash family.
-
-If $m \ge n$,
-choosing the field to be $F_{2^m}$ gives a construction such that 
-each function takes $2m$ bits to describe.
-If $m \lt n$,
-choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise independent.
-
-#### **Corollary:**
-
-{:.theorem}
-> For any $n,m\in\N$, there exists a pairwise independent hash family $\cH_{n,m}$
-> such that each $h \in \cH$ is $2 \max(n,m)$ bits.
-
-
-#### **Theorem:** Leftover Hash Lemma
-
-{:.theorem}
-> If H = {h : {0, 1}n → {0, 1}m} is a pairwise independent (or even 2-universal) family of hash functions 
-> where m = k − 2 log(1/ε), then Ext(x, h) def = h(x) is a strong (k, ε)-extractor. 
-> Equivalently, Ext(x, h) = (h, h(x)) is a standard (k, ε)-extractor.
->
-
-
 <!-- #### **Definition:** Chose-Ciphertext-Attack Encryption (CCA 1/2) -->
 
