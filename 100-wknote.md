@@ -184,12 +184,16 @@ $$
 > let $G_x$ to be the set
 > 
 > $$
-> G_x := \set{ h \in \cH ~|~ \Pr_{r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \alpha / 4 }.
+> \cH_x := \set{ h \in \cH ~|~ \Pr_{r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \alpha / 4 }.
 > $$
 > 
 > Then, 
-> $|G_x| \ge |\cH| \cdot \alpha / 2$.
+> $|\cH_x| \ge |\cH| \cdot \alpha / 2$.
 > 
+> Now, we can condition on $x \in G$ and $h \in \cH_x$.
+> Namely, given $y \gets \f(x)$, $B$ samples $i \gets [n], h \gets \cH$ uniformly,
+> and we have that $i=i^*$ and $h \in \cH_x$ w.p. $1/\poly(n)$.
+> It remains to 
 
 
 #### **Theorem:** Hard-core function
