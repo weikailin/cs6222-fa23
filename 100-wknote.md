@@ -115,6 +115,15 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > 
 > [V, Theorem 3.26, p66]
 
+#### **Theorem:** Leftover Hash Lemma
+
+{:.theorem}
+> If H = {h : {0, 1}n → {0, 1}m} is a pairwise independent (or even 2-universal) family of hash functions 
+> where m = k − 2 log(1/ε), then Ext(x, h) def = h(x) is a strong (k, ε)-extractor. 
+> Equivalently, Ext(x, h) = (h, h(x)) is a standard (k, ε)-extractor.
+> 
+> [V, Theorem 6.18, p179]
+
 #### **Theorem:** Weak PEG from OWF
 
 {: .theorem}
@@ -219,14 +228,5 @@ $$
 > 
 > [G, Theorem 2.5.6, p74]
 
-
-#### **Theorem:** Leftover Hash Lemma
-
-{:.theorem}
-> If H = {h : {0, 1}n → {0, 1}m} is a pairwise independent (or even 2-universal) family of hash functions 
-> where m = k − 2 log(1/ε), then Ext(x, h) def = h(x) is a strong (k, ε)-extractor. 
-> Equivalently, Ext(x, h) = (h, h(x)) is a standard (k, ε)-extractor.
-> 
-> [V, Theorem 6.18, p179]
 
 
