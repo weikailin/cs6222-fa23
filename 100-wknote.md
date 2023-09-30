@@ -3,6 +3,7 @@ layout: page
 title: Wei-Kai's Notes
 # nav_order: 0
 nav_exclude: true
+search_exclude: true
 toc: true
 ---
 

@@ -124,8 +124,11 @@ Introduction to Modern Cryptography. Jonathan Katz and Yehuda Lindell.
 [https://www.cs.umd.edu/~jkatz/imc.html](https://www.cs.umd.edu/~jkatz/imc.html).  
 [online access in UVA library](https://search.lib.virginia.edu/sources/uva_library/items/u10203454).
 
-\[Goldreich\]  
+\[Goldreich, G\]  
 The Foundations of Cryptography. Oded Goldreich.  
 [https://www.wisdom.weizmann.ac.il/~oded/foc-book.html](https://www.wisdom.weizmann.ac.il/~oded/foc-book.html).  
 [online access in UVA library](https://search.lib.virginia.edu/sources/uva_library/items/u8631726).
 
+\[Vadhan, V\]
+Pseudorandomness.
+[https://people.seas.harvard.edu/~salil/pseudorandomness/pseudorandomness-published-Dec12.pdf](https://people.seas.harvard.edu/~salil/pseudorandomness/pseudorandomness-published-Dec12.pdf)
