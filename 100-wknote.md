@@ -118,9 +118,8 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 #### **Theorem:** Leftover Hash Lemma
 
 {:.theorem}
-> If H = {h : {0, 1}n → {0, 1}m} is a pairwise independent (or even 2-universal) family of hash functions 
-> where m = k − 2 log(1/ε), then Ext(x, h) def = h(x) is a strong (k, ε)-extractor. 
-> Equivalently, Ext(x, h) = (h, h(x)) is a standard (k, ε)-extractor.
+> If $\cH = \set{h : \bit^n \to \bit^m}$ is a pairwise independent family of hash functions 
+> where $m = k − 2 \log(1/\eps)$, then $\Ext(x, h) = (h, h(x))$ is a standard $(k, \eps)$-extractor.
 > 
 > [V, Theorem 6.18, p179]
 
