@@ -213,8 +213,8 @@ $$
 > $|\cH_x| \ge |\cH| \cdot \alpha / 2$.
 > 
 > Now, we can condition on $x \in G$ and $h \in \cH_x$.
-> Namely, given $y \gets f(x)$, $B$ samples $i \gets [n], h \gets \cH$ uniformly,
-> and we have that $i=i^\ast$ and $h \in \cH_x$ w.p. $1/q(n)$ for some poly $q$.
+> Namely, given $y \gets f(x)$, $B$ tries all $i \gets [n]$ and samples $h \gets \cH$ uniformly,
+> and we have that $i=i^\ast$ and $h \in \cH_x$ w.p. $\beta := \alpha/4$.
 > It remains to find the correct $h(x)$ so that $B$ can run $A$ repeatedly using
 > pairwise independent $r$'s.
 > 
@@ -227,10 +227,45 @@ $$
 > w.p. $1 - 2^{-d}$ by sampling them uniformly at random.
 > 
 > However, we conditioned on $h \in \cH_x$.
-> Choosing $d$ such that $2^{-d} \le 1/2q$,
+> Choosing $d$ such that $2^{-d} \le \beta / 2$,
 > we can still hit w.p. $\ge 1/2$.
 > With the above, we can try all remaining $d = O(\log n)$ bits and then 
 > check if the outcome $x'$ satisfies $f(x') = y$.
+> 
+> {: .defn-title}
+>> Algorithm $B(y)$:
+>> 
+>> 1. $h \gets \cH$
+>> 2. $d := -\log (\beta / 2)$
+>> 3. For each $i=1,...,n$,
+>>    1. $t_1 \gets \bit^{i - d}$
+>>    2. For each $t_2 \in \bit^d$,
+>>       - Let $t := t_1 \| t_2$.
+>>       - Run $x' \gets B_0(y, i, h, t)$.
+>>       - Output $x'$ if $f(x') = y$.
+>
+> The subroutine $B_0$ performs almost identical to the standard Goldreich-Levin,
+> and the only difference is that $A$ takes additional input $(i, h, h_i)$.
+> 
+> {: .defn-title}
+>> Algorithm $B_0(y, i, h, h_i)$
+>> 
+>> 1. For each $i=1,2, .., n$,
+>>    1. Let $\ell := \log m$, $(u_1, ..., u_\ell)$ be fully independent and 
+>>       $(r_1,..., r_m)$ be pairwise independent $n$-bit random strings.
+>>    2. For each $k \in [\ell]$, sample guess bit $b_k$ uniformly. For each $j \in [m]$, 
+>>       compute the bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
+>>       (so that for any $x$, $g_{i,j} = x \odot r_j$ and $b_k = x \odot u_k$ for all $k$).
+>>    3. For each $j=1,2,..., m$,
+>>       - Run $z_{i,j} \gets A(y, i, h, h_i, e_i \oplus r_j) \oplus g_{i,j}$.
+>>
+>>       Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
+>> 2. Output $x' := x'_1 x'_2 ... x'_n$
+> 
+> The parameter $m$ is choosen according to the success probability of $A$
+> conditioned on $x \in G$ and $h\in \cH_x$ and $(i, h_i)$ are consistent, which is $1/2 + \beta$.
+> Notice that $B$ runs over all possible $i$ and $t_2$, and $t_1$ is consistent w.p. $\ge 1/2$.
+> Hence, the overall success probability is $\poly(1/n, 1/p(n))$.
 
 
 #### **Theorem:** Hard-core function
