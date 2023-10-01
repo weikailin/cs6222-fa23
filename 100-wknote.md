@@ -77,6 +77,12 @@ Quizzes:
 PRG from any OWF
 ----------------
 
+We assume that the OWF $f: \bit^n \to \bit^n$.
+This is w.l.o.g.: if input is shorter, then we pad the input with unused random bits;
+if the output is shorter, then we pad the output with fixed bits.
+
+We will use pairwise independent hash functions.
+
 #### **Definition:** Pairwise independent hash family.
 
 {:.defn}
@@ -115,6 +121,12 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > 
 > [V, Theorem 3.26, p66]
 
+#### **Definition:** statistical distance
+
+#### **Definition:** min-entropy
+
+#### **Definition:** $(k,\eps)$-extractor
+
 #### **Theorem:** Leftover Hash Lemma
 
 {:.theorem}
@@ -122,6 +134,9 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > where $m = k − 2 \log(1/\eps)$, then $\Ext(x, h) = (h, h(x))$ is a standard $(k, \eps)$-extractor.
 > 
 > [V, Theorem 6.18, p179]
+
+
+
 
 #### **Theorem:** Weak PEG from OWF
 
