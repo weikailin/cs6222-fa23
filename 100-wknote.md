@@ -81,6 +81,12 @@ We assume that the OWF $f: \bit^n \to \bit^n$.
 This is w.l.o.g.: if input is shorter, then we pad the input with unused random bits;
 if the output is shorter, then we pad the output with fixed bits.
 
+Historically, the first construction of PRG from OWF is given by [HILL'99](https://epubs.siam.org/doi/10.1137/S0097539793244708),
+which was initiated by [IL'89](https://ieeexplore.ieee.org/document/63483) and [ILL'89](https://dl.acm.org/doi/10.1145/73007.73009).
+The construction here is presented by [a lecture of Barak at Princeton](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf),
+which followed the paper of [Holenstein'06](https://link.springer.com/chapter/10.1007/11681878_23).
+Later, [HRV'13](https://epubs.siam.org/doi/10.1137/100814421) and [VZ'12](https://dl.acm.org/doi/10.1145/2213977.2214051) improved the efficiency.
+
 We will use pairwise independent hash functions.
 
 #### **Definition:** Pairwise independent hash family.
@@ -121,11 +127,54 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > 
 > [V, Theorem 3.26, p66]
 
-#### **Definition:** statistical distance
+#### **Definition:** statistical difference
 
-#### **Definition:** min-entropy
+{:.defn}
+> For random variables $X$ and $Y$ taking values in $U$, 
+> their *statistical difference* (also known as *variation distance*) is 
+> $\Delta(X, Y) := \max_{T \subseteq U} | \Pr[X \in T ] − \Pr[Y \in T]|$. 
+> We say that $X$ and $Y$ are $\eps$-close if $\Delta(X, Y ) \leq \eps$.
+> 
+> [V, Definition 6.2, p169]
+
+#### **Definition:** entropy measures
+
+{:.defn}
+> Let $X$ be a random variable. Then
+> 
+> - the Shannon entropy of $X$ is:
+>   
+>   $$
+>   H(X) = \E_{x \get X}\left[\log \frac{1}{\Pr[X=x]}\right].
+>   $$
+>   
+> - the min-entropy of $X$ is:
+> 
+>   $$
+>   H_\infty(X) = \min_{x}\left\{\log \frac{1}{\Pr[X=x]}\right\}.
+>   $$
+>   
+> where all logs are base 2.
+> 
+> [V, Definition 6.7, p171]
+
+
+#### **Definition:** $k$-source
+
+{:.defn}
+> A random variable $X$ is a $k$-source if 
+> $H_\infty(X) \ge k$, i.e., if $\Pr [X = x] \le 2^{-k}$.
+> 
+> [V, Definition 6.9, p173]
 
 #### **Definition:** $(k,\eps)$-extractor
+
+{:.defn}
+> A function $\mathrm{Ext} : \bit^n \times \bit^d \to\bit^m$ is a 
+> $(k, \eps)$-extractor if for every $k$-source $X$ on $\bit^n$,
+> $\mathrm{Ext}(X, U_d)$ is $\eps$-close to $U_m$.
+> 
+> [V, Definition 6.13, p176]
 
 #### **Theorem:** Leftover Hash Lemma
 
