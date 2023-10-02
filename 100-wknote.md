@@ -102,6 +102,8 @@ the pre-image set $f^{-1}(f(x))$ is the same cardinality.
 Still, the full construction
 
 > ... is even more complex and is not suitable for a book of this nature.
+> 
+> --<cite>Goldreich, Section 3.5</cite>
 
 The only teaching material we found is
 the lecture of [Barak](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf).
@@ -209,6 +211,13 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > For any $n \in \N$, $\eps \ge 0$ and random variable $X$, 
 > if $X$ is $\eps$-close to $U_n$, then $\Pr[ y \gets U_n: y \in \Supp(X)] \ge 1-\eps$,
 > where $\Supp(X) := \set{x : \Pr[X = x] \gt 0}$ denotes the support of $X$.
+
+### Weak Pseudo-Entropy Generator (PEG)
+
+The first step, a gap in Shannon entropy and pseudo-entropy.
+
+#### **Definition:** weak PEG
+
 
 #### **Theorem:** Weak PEG from OWF
 
