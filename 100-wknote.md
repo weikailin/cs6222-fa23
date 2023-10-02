@@ -114,8 +114,8 @@ We will use pairwise independent hash functions.
 > A family of functions $\cH = \set{h : \bit^n \to \bit^m}$ is *pairwise independent* 
 > if the following two conditions hold when $H \gets \cH$ is a function chosen uniformly at random from $\cH$:
 > 
-> 1. For all $x \in \bit^n$, the random variable $H(x)$ is uniform in $\bit^m$.
-> 2. For all $x_1\neq x_2 \in \bit^n$, the random variables $H(x_1)$ and $H(x_2)$ are independent.
+> 1. For all $x \in \bit^n$, the random variable $h(x)$ is uniform in $\bit^m$.
+> 2. For all $x_1\neq x_2 \in \bit^n$, the random variables $h(x_1)$ and $h(x_2)$ are independent.
 > 
 > [V, Definition 3.21, p64]
 
@@ -226,6 +226,9 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > $h_i(x)$ denotes the $i$-bit prefix of $h(x)$.
 > Then, $f$ is a weak PEG.
 
+For each $x \in \bit^n$, let 
+$i^\ast(x) := \ceil{\log |f^{-1}(f(x))|}+1$.
+Let $i^\ast$ to be $i^\ast(x)$ and $Z'$ to be $Z'_{i^\ast(x)}$ for short.
 Let random variables $Y,Z,Z_{i^*}'$ be the following
 
 $$
@@ -239,12 +242,51 @@ Z' := \begin{cases}
 \end{cases}
 $$
 
-#### **Claim:**
+#### **Claim:** Low Shannon entropy
 
 {: .theorem}
-> For each $x \in \bit^n$, let 
-> $i^\ast(x) := \log |f^{-1}(f(x))|$.
+> $$
+> H(YZ') \ge H(YZ) + \frac{1}{2n}
+> $$
+
+{:.proof}
+> We have 
+> $H(YX) = H(Y) + H(X | Y)$ for all $X,Y$.
+> Hence, it suffices to show that 
+> $H(Z' | Y) \ge H(Z | Y) + \frac{1}{2n}$.
+> Conditioned on $i \neq i^\ast$, we have $H(Z' | Y) = H(Z | Y)$.
+> We want to show that when conditioned on $i = i^\ast$, 
+> $H(Z' | Y) = 1 \ge H(Z | Y) + \frac{1}{2}$, which happens w.p. $1/n$.
+> It remains to show that $H(Z | Y) \le 1/2$.
+> We will show that given $f(x), i=i^\ast, h, h_i(x), r$, $x$ is uniquely determined w.h.p.,
+> and thus $Z = x \odot r$ is also determined (and gives 0 entropy).
 > 
+> For any $x \in \bit^n$ and $y \gets f(x)$, define the pre-image
+> $S := \set{ x' \in \bit^n : f(x') = y, x' \neq x}$.
+> Notice that $|S| \le 2^{i^\ast -1}$ 
+> (where the floor is taken when $S = \empty$ and $i^\ast = 0$).
+> By $h$ is pairwise independent, for any $x' \in S$,
+> 
+> $$
+> \Pr_h[h_i(x') = h_i(x)] = 1/2^{i^\ast}.
+> $$
+> 
+> To see $x$ is determined over the random $h$,
+> 
+> $$
+> \begin{align*}
+> \Pr_h[\notexists x' \in S \text{ s.t. }  h(x') = h(x)]
+> & = 1 - \Pr[\exists x' \in S \text{ s.t. } h(x') = h(x)] \\
+> & \ge 1 - |S|/2^{i^\ast} \ge 1/2,
+> \end{align*}
+> $$
+> by union bound and then by $|S|$.
+> 
+> (The calculation of conditional entropy is left as exercise.)
+
+#### **Claim:** High pseudo-entropy
+
+{: .theorem}
 > $$
 > \set{YZ}_n \approx \set{YZ'_{i^\ast(x)}}_n.
 > $$
@@ -253,7 +295,6 @@ $$
 > Proof Sketch.
 > 
 > It is similar to the proof of Hard-core Lemma.
-> Let $i^\ast$ to be $i^\ast(x)$ and $Z'$ to be $Z'_{i^\ast(x)}$ for short.
 > Because $YZ, YZ'$ differ only when $i = i^\ast$, 
 > assume for contradiction, there exists NUPPT $A$, polynomial $p$, such that for inf many $n$,
 > 
@@ -278,28 +319,28 @@ $$
 > let $G_x$ to be the set
 > 
 > $$
-> \cH_x := \set{ h \in \cH ~|~ \Pr_{r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \alpha / 4 }.
+> \cH_x := \set{ h \in \cH ~|~ \Pr_{r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \beta }.
 > $$
 > 
 > Then, 
-> $|\cH_x| \ge |\cH| \cdot \alpha / 2$.
+> $|\cH_x| \ge |\cH| \cdot \beta$, where $\beta := \alpha/4.
 > 
 > Now, we can condition on $x \in G$ and $h \in \cH_x$.
 > Namely, given $y \gets f(x)$, $B$ tries all $i \gets [n]$ and samples $h \gets \cH$ uniformly,
-> and we have that $i=i^\ast$ and $h \in \cH_x$ w.p. $\beta := \alpha/4$.
+> and we have that $i=i^\ast$ and $h \in \cH_x$ w.p. $\beta$.
 > It remains to find the correct $h(x)$ so that $B$ can run $A$ repeatedly using
 > pairwise independent $r$'s.
 > 
 > Suppose that $x$ is fixed and $h$ is sampled uniformly and independently from $\cH$.
-> Given $y = f(x)$, the min-entropy of $x$ is $i^\ast(x)$ because 
+> Given $y = f(x)$, the min-entropy of $x$ is $\ge i^\ast(x)-1$ because 
 > each $x' \in f^{-1}(y)$ can be mapped to $y$.
 > By Leftover Hash Lemma, 
-> the first $i^\ast - d$ bits of $h(x)$ is $2^{-d}$-close to uniform.
+> the first $i^\ast - d$ bits of $h(x)$ is $2^{-d+1}$-close to uniform.
 > This implies that we can hit the prefix $i^\ast - d$ bits of $h_{i^*}(x)$
-> w.p. $1 - 2^{-d}$ by sampling them uniformly at random.
+> w.p. $1 - 2^{-d+1}$ by sampling them uniformly at random.
 > 
 > However, we conditioned on $x \in G$ (instead of uniform $x$).
-> Thus, choosing $d$ such that $2^{-d} \le \alpha / 4$,
+> Thus, choosing $d$ such that $2^{-d+1} \le \alpha / 4$,
 > we can still hit w.p. $\ge 1/2$.
 > With the above, we can try all remaining $d = O(\log n)$ bits and then 
 > check if the outcome $x'$ satisfies $f(x') = y$.
@@ -308,7 +349,7 @@ $$
 >> Algorithm $B(y)$:
 >> 
 >> 1. $h \gets \cH$
->> 2. $d := -\log (\beta / 2)$
+>> 2. $d := -\log (\alpha / 4) + 1$
 >> 3. For each $i=1,...,n$,
 >>    1. $t_1 \gets \bit^{i - d}$
 >>    2. For each $t_2 \in \bit^d$,
@@ -342,6 +383,9 @@ $$
 > Hence, the overall success probability is $\poly(1/n, 1/p(n))$.
 
 
+
+
+<!-- 
 #### **Theorem:** Hard-core function
 
 {: .theorem}
@@ -358,6 +402,6 @@ $$
 > Then, $f$ is a OWF and $h$ is a hard-core function for $f$.
 > 
 > [G, Theorem 2.5.6, p74]
-
+ -->
 
 
