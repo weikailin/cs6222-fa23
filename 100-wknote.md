@@ -164,7 +164,7 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > - the Shannon entropy of $X$ is:
 >   
 >   $$
->   H(X) = \E_{x \get X}\left[\log \frac{1}{\Pr[X=x]}\right].
+>   H(X) = \E_{x \gets X}\left[\log \frac{1}{\Pr[X=x]}\right].
 >   $$
 >   
 > - the min-entropy of $X$ is:
@@ -199,7 +199,7 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 
 {:.theorem}
 > If $\cH = \set{h : \bit^n \to \bit^m}$ is a pairwise independent family of hash functions 
-> where $m = k − 2 \log(1/\eps)$, then $\Ext(x, h) = (h, h(x))$ is a standard $(k, \eps)$-extractor.
+> where $m = k − 2 \log(1/\eps)$, then $\mathrm{Ext}(x, h) = (h, h(x))$ is a standard $(k, \eps)$-extractor.
 > 
 > [V, Theorem 6.18, p179]
 
