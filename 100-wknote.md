@@ -135,8 +135,12 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > 
 > [V, Theorem 6.18, p179]
 
+#### **Corollary:**
 
-
+{:.theorem}
+> For any $n \in \N$, $\eps \ge 0$ and random variable $X$, 
+> if $X$ is $\eps$-close to $U_n$, then $\Pr[ y \gets U_n: y \in \Supp(X)] \ge 1-\eps$,
+> where $\Supp(X) := \set{x : \Pr[X = x] \gt 0}$ denotes the support of $X$.
 
 #### **Theorem:** Weak PEG from OWF
 
@@ -189,7 +193,7 @@ $$
 > \Pr_{x,h,r} [A(f(x),i^*,h,h_{i^*}(x),r) = x\odot r] \ge 1/2 + \alpha,
 > $$
 > 
-> where $alpha = 1/p(n)$.
+> where $\alpha = 1/p(n)$.
 > 
 > We want to consturct $B$ that inverts $y \gets f(x)$.
 > We have a similar claim of good $x$'s:
@@ -226,8 +230,8 @@ $$
 > This implies that we can hit the prefix $i^\ast - d$ bits of $h_{i^*}(x)$
 > w.p. $1 - 2^{-d}$ by sampling them uniformly at random.
 > 
-> However, we conditioned on $h \in \cH_x$.
-> Choosing $d$ such that $2^{-d} \le \beta / 2$,
+> However, we conditioned on $x \in G$ (instead of uniform $x$).
+> Thus, choosing $d$ such that $2^{-d} \le \alpha / 4$,
 > we can still hit w.p. $\ge 1/2$.
 > With the above, we can try all remaining $d = O(\log n)$ bits and then 
 > check if the outcome $x'$ satisfies $f(x') = y$.
@@ -263,8 +267,10 @@ $$
 >> 2. Output $x' := x'_1 x'_2 ... x'_n$
 > 
 > The parameter $m$ is choosen according to the success probability of $A$
-> conditioned on $x \in G$ and $h\in \cH_x$ and $(i, h_i)$ are consistent, which is $1/2 + \beta$.
-> Notice that $B$ runs over all possible $i$ and $t_2$, and $t_1$ is consistent w.p. $\ge 1/2$.
+> conditioned on $x \in G$ and $h\in \cH_x$ and $(i, h_i)$ are consistent.
+> Notice that conditioned on $x \in G$, the events $h \in \cH_x$ and $t_1$ hits $h_i(x)$
+> are independent, w.p. $\beta$ and $1/2$.
+> Also, $B$ runs over all possible $i$ and $t_2$.
 > Hence, the overall success probability is $\poly(1/n, 1/p(n))$.
 
 
