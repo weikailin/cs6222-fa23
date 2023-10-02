@@ -86,6 +86,25 @@ which was initiated by [IL'89](https://ieeexplore.ieee.org/document/63483) and [
 The construction here is presented by [a lecture of Barak at Princeton](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf),
 which followed the paper of [Holenstein'06](https://link.springer.com/chapter/10.1007/11681878_23).
 Later, [HRV'13](https://epubs.siam.org/doi/10.1137/100814421) and [VZ'12](https://dl.acm.org/doi/10.1145/2213977.2214051) improved the efficiency.
+Interestingly in constructions of PRG, 
+there are several novel tools that are useful later, e.g.,
+the Leftover Hash Lemma, due to [ILL'89].
+
+Even the result is impactful, the full construction is often skipped in textbooks
+and graduate-level cryptography.
+Many books and courses cover the Goldreich-Levin hard-core lemma [Ps, KL], 
+but only few of them goes beyond that
+(such as [the lecture of Bellare, 1999](https://cseweb.ucsd.edu/~mihir/papers/gl.pdf)).
+The book of [Goldreich, Section 3.5](https://doi.org/10.1017/CBO9780511546891)
+is one that goes much deeper, which constructs PRG from any "regular" OWF,
+where regular means that for the same length $x$, 
+the pre-image set $f^{-1}(f(x))$ is the same cardinality.
+Still, the full construction
+
+> ... is even more complex and is not suitable for a book of this nature.
+
+The only teaching material we found is
+the lecture of [Barak](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf).
 
 We will use pairwise independent hash functions.
 
