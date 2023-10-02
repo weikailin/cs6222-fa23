@@ -32,6 +32,7 @@ MathJax = {
       N: "\\mathbb{N}",
       eps: "\\epsilon",
       poly: "\\mathrm{poly}",
+      Supp: "\\mathrm{Supp}",
       E: "\\mathop{\\mathbb{E}}",
       cA: "\\mathcal{A}",
       cB: "\\mathcal{B}",
