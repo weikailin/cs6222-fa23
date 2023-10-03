@@ -618,6 +618,9 @@ and then construct $G$ from XORing $\hat G_k$ for all $k \in [n]$.
 > by narrowing the gap in the construct of $G'$ by 1/2.
 > The input length is $(3n+2m)\cdot 2n/\Delta$, and
 > the output length is $3n+2m + \Delta$, which is still shrinking (but much better).
+> 
+> Also notice that the expansion calls the underlying PEG and thus OWF
+> *sequentially*, which is also improved in later constructs [HRV'13].
 
 This concludes the construction from OWF to PRG.
 
