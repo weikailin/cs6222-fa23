@@ -462,7 +462,7 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > \Pr_{x}[g(x) \notin T] \le 2^{-\Omega(\beta^2 k \ell / n)}.
 > $$
 > 
-> This implies that $H_\infty(g(U_{n\ell})) \le k \ell (1 - \beta)$ for 
+> This implies that $H_\infty(g(U_{n\ell})) \le k \ell (1 + \beta)$ for 
 > all but $2^{-\Omega(n)}$ fraction of $x$'s.
 
 {:.proof}
@@ -493,9 +493,9 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > \begin{align*}
 > & \Pr_{y=(y_1 ... y_\ell) \gets g(x)}\left[\Pr_{z}[g(z) = y] \notin 2^{-k\ell(1 \pm \beta)} \right] \\
 > = & \Pr_{y}\left[ \prod_{i\in[\ell]} \gamma(y_i) \notin 2^{-k\ell(1 \pm \beta)} \right] \\
-> = & \Pr_{y}\left[ \sum{i\in[\ell]} -\log \gamma(y_i) \notin k\ell(1 \pm \beta) \right] \\
-> = & \Pr_{y}\left[ \left| \sum{i\in[\ell]} X_i - k\ell \right| \ge \pm \beta k \ell \right] \\
-> \le & 2^{-\Omega(\beta k \ell / n)},
+> = & \Pr_{y}\left[ \sum_{i\in[\ell]} -\log \gamma(y_i) \notin k\ell(1 \pm \beta) \right] \\
+> = & \Pr_{y}\left[ \left| \sum_{i\in[\ell]} X_i - k\ell \right| \ge \pm \beta k \ell \right] \\
+> \le & 2^{-\Omega(\beta^2 k \ell / n)},
 > \end{align*}
 > $$
 > 
@@ -518,20 +518,20 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > we have that for all except for exponentially small probability,
 > 
 > $$
-> \Pr_{y \gets Z}[ \gamma(y) \ge 2^{-(k \ell + \ell/100n)(1 \pm \beta)} ] \le 2^{-\Omega(\beta \ell/ n)},
+> \Pr_{y \gets Z}[ \gamma(y) \ge 2^{-(k \ell + \ell/100n)(1 \pm \beta)} ] \le 2^{-\Omega(\beta^2 \ell/ n)},
 > $$
 > 
 > where $\gamma(y) := \Pr_{y' \gets Z}[y' = y]$ for all $y$.
 > We simply get rid of those "bad $y$" from $Z$ and obtain the distribution $Y$
-> by moving the probability mass $2^{-\Omega(\beta \ell/ n)}$ to all strings in $\bit^{m\ell}$ uniformly,
+> by moving the probability mass $2^{-\Omega(\beta^2 \ell/ n)}$ to all strings in $\bit^{m\ell}$ uniformly,
 > which yields $Y$ with min-entropy at most
 > 
 > $$
-> -\log\left( 2^{-\ell \cdot (k + 1/100n) \cdot (1-\beta)} + 2^{-\ell m} \cdot 2^{-\Omega(\beta \ell/ n)} \right)
+> -\log\left( 2^{-\ell \cdot (k + 1/100n) \cdot (1-\beta)} + 2^{-\ell m} \cdot 2^{-\Omega(\beta^2 \ell/ n)} \right)
 > $$
 > 
 > which is at least $(k\ell + \Omega(\ell / n))(1 - \beta)$.
-> Choosing $\ell(n) = n^9$, we have $\alpha \gt 0$ for sufficiently large $n$.
+> Choosing $\beta(n) := 1/2n^2$ and $\ell(n) = n^9$, we have $\alpha \gt 0$ for sufficiently large $n$.
 
 
 <!-- 
