@@ -218,6 +218,17 @@ The first step, a gap in Shannon entropy and pseudo-entropy.
 
 #### **Definition:** weak PEG
 
+{:.defn}
+> A function $F : \bit^n \to \bit^m$ is called a *weak pseudo-entropy generator(PEG)*, 
+> if there exists a $k$ such that
+> 1. There exists $Y_n$ such that $\set{F(U\_n)}\_n \approx \set{Y\_n}\_n$ and
+>	 $H(Y_n) \ge k + \frac{1}{100n}$.
+>	 (This is called *pseudo Shannon entropy*.)
+> 2. $H(F(U_n)) \le k$.
+
+
+**Discuss**{:.label}
+Is a weak PEG also a weak OWF?
 
 #### **Theorem:** Weak PEG from OWF
 
@@ -402,13 +413,17 @@ i.e., $F$ is a *weak* OWF.
 #### **Definition:** Pseudo-entropy generator (PEG)
 
 {:.defn}
-> A function $G : \bit^m \to \bit^n$ is called a *pseudo-entropy generator(PEG)*, 
+> A function $g : \bit^m \to \bit^n$ is called a *pseudo-entropy generator(PEG)*, 
 > if there exists a $k$ such that
-> 1. There exists $Y_m$ such that $\set{G(U\_m)}\_m \approx \set{Y\_m}\_m$ and
+> 1. There exists $Y_m$ such that $\set{g(U\_m)}\_m \approx \set{Y\_m}\_m$ and
 >	 $H\_\infty(Y_m) \ge k + n^\alpha$ for some constant $\alpha \gt 0$.
-> 2. $H_\infty(G(U_m)) \le k$ with probability $1 − \eps(m)$ for negligible $\eps$. 
-> 	 More precisely, there is a $Y' \subseteq G (U_n)$ 
-> 	 with $H_\infty(Y') \le k$ such that $\Pr_x(G (x) \in Y') \ge 1 − \eps(n)$.
+>	 (This is called *pseudo min-entropy*.)
+> 2. $H_\infty(g(U_m)) \le k$ with probability $1 − \eps(m)$ for negligible $\eps$. 
+> 	 More precisely, there is a $Y' \subseteq g(U_n)$ 
+> 	 with $H_\infty(Y') \le k$ such that $\Pr_x(g(x) \in Y') \ge 1 − \eps(n)$.
+
+Notice that compared to weak PEG, here for PEG, we require that the entropy gap to be min-entropy
+(instead of Shannon entropy) and that the entropy gap to be much more than constant bits.
 
 #### **Theorem:** PEG from Weak PEG
 
@@ -422,6 +437,69 @@ i.e., $F$ is a *weak* OWF.
 > 
 > where $x_i \in \bit^n$ for all $i$, and $\ell:=\ell(n)$ is a polynomial (to be chosen later). 
 > Then, $g$ is a PEG.
+
+**Discuss**{:.label}
+The construction of $g$ is identical to that from weak OWF to strong OWF.
+Also recall that the weak PEG is also a weak OWF.
+
+Let $k'$ be the Shannon entropy of $F(U_n)$, and let $Y'$ be the distribution such that is 
+indistinguishable from $F(U_n)$ but $H(Y) = k + \frac{1}{100n}$.
+
+#### **Claim:** Low min-entropy
+
+{: .theorem}
+> Let $S := \Supp(g(x_1 ... x_\ell))$ be the support of $g$.
+> Define $T$ to be the set 
+> 
+> $$
+> T := \set{y \in S | \Pr[g(x_1 ... x_\ell) = y] \in 2^{-k\ell \cdot (1\pm \beta)}},
+> $$
+> 
+> where the probability is over $x_1 ... x_\ell$ that are sampled uniformly,
+> and $\beta \gt 0$.
+> Then
+> 
+> $$
+> \Pr_{x}[g(x) \notin T] \le 2^{-\Omega(\beta^2 k \ell / n)}.
+> $$
+> 
+> This implies that $H_\infty(g(U_{n\ell})) \le k \ell (1 - \beta)$ for 
+> all but $2^{-\Omega(n)}$ fraction of $x$'s.
+
+{:.proof-title}
+> Proof idea.
+> 
+> In general, min-entropy is less than the Shannon entropy of the same variable.
+> Here, we want to show the opposite by relaxing a $\beta$ fraction in entropy
+> and by skipping a small fraction of $y$'s.
+> 
+> The idea is that repeating $F$ for $\ell(n)$ times independently "smooths"
+> the overall distribution.
+> Because $H(F(U_n)) = k$ is an average notion, 
+> a majority of $y' \in \Supp(F(U_n))$ satisfy that $\Pr[F(U_n) = y'] \in 2^{-k(1 \pm \beta)}$,
+> where the majority is measured in probability mass.
+> Repeating independently, the majority is further concentrated to an overwhelming
+> probability mass by Chernoff bound of the following form.
+> 
+> Let $X_1 ... X_\ell \in [0, n]$ be independent random variables,
+> let $X := \sum_{i\in [\ell]} X_i$, and let $\mu := \E[X]$. 
+> For any $0 \lt \delta \lt 1$,
+> 
+> $$
+> \Pr[|X - \mu| \ge \delta \mu] \le 2e^{-\mu \delta^2 / 3n}.
+> $$
+> 
+> The calculation is as follows.
+> Let $\gamma(y') := \Pr[F(U_n) = y']$ for any $y' \in \bit^m$.
+> 
+> $$
+> \begin{align*}
+> & \Pr_{y=(y_1 ... y_\ell) \gets g(x)}\left[\Pr_{z}[g(z) = y] \notin 2^{-k\ell(1 \pm \beta)} \right] \\
+> = & \Pr_{y}\left[ \prod_{i\in[\ell]} \gamma(y_i) \notin 2^{-k\ell(1 \pm \beta)} \right] \\
+> = & \Pr_{y}\left[ \sum{i\in[\ell]} \frac{1}{\log \gamma(y_i)} \notin k\ell(1 \pm \beta) \right] \\
+> = & \Pr_{y}\left[ \left| \sum{i\in[\ell]} X_i - k\ell \right| \ge \pm \beta k \ell \right] \\
+> \le & 2^{-\Omega(\beta k \ell / n)}.
+> $$
 
 
 
