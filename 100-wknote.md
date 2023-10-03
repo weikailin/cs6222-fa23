@@ -331,7 +331,7 @@ $$
 > $$
 > 
 > Then, 
-> $|\cH_x| \ge |\cH| \cdot \beta$, where $\beta := \alpha/4.
+> $|\cH_x| \ge |\cH| \cdot \beta$, where $\beta := \alpha/4$.
 > 
 > Now, we can condition on $x \in G$ and $h \in \cH_x$.
 > Namely, given $y \gets f(x)$, $B$ tries all $i \gets [n]$ and samples $h \gets \cH$ uniformly,
@@ -389,6 +389,13 @@ $$
 > are independent, w.p. $\beta$ and $1/2$.
 > Also, $B$ runs over all possible $i$ and $t_2$.
 > Hence, the overall success probability is $\poly(1/n, 1/p(n))$.
+
+**Discuss**{: .label}
+Is $F$ a OWF?
+No, consider the case $i=n$, which happens w.p. $1/n$,
+and then w.h.p. over $h$, we can solve $x$ from $(h,h_i(x))$.
+However, the above claim also showed that $F$ is hard to invert when $i = i^\ast(x)$,
+i.e., $F$ is a *weak* OWF.
 
 
 
