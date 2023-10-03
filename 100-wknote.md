@@ -237,8 +237,8 @@ The first step, a gap in Shannon entropy and pseudo-entropy.
 
 For each $x \in \bit^n$, let 
 $i^\ast(x) := \ceil{\log |f^{-1}(f(x))|}+1$.
-Let $i^\ast$ to be $i^\ast(x)$ and $Z'$ to be $Z'_{i^\ast(x)}$ for short.
-Let random variables $Y,Z,Z_{i^*}'$ be the following
+Let $i^\ast$ to be $i^\ast(x)$ and $Z'$ to be $Z'\_{i^\ast(x)}$ for short.
+Let random variables $Y,Z,Z\_{i^\ast}'$ be the following
 
 $$
 Y := (f(x), i, h, h_i(x), r), ~ Z := x \odot r, \text{ and}
@@ -397,6 +397,31 @@ and then w.h.p. over $h$, we can solve $x$ from $(h,h_i(x))$.
 However, the above claim also showed that $F$ is hard to invert when $i = i^\ast(x)$,
 i.e., $F$ is a *weak* OWF.
 
+### PEG from Weak PEG
+
+#### **Definition:** Pseudo-entropy generator (PEG)
+
+{:.defn}
+> A function $G : \bit^m \to \bit^n$ is called a *pseudo-entropy generator(PEG)*, 
+> if there exists a $k$ such that
+> 1. There exists $Y_m$ such that $\set{G(U_m)}_m \approx \set{Y_m}_m$ and
+>	 $H_\infty(Y_m) \ge k + n^\alpha$ for some constant $\alpha \gt 0$.
+> 2. $H_\infty(G(U_m)) \le k$ with probability $1 − \eps(m)$ for negligible $\eps$. 
+> 	 More precisely, there is a $Y' \subseteq G (U_n)$ 
+> 	 with $H_\infty(Y') \le k$ such that $\Pr_x(G (x) \in Y') \ge 1 − \eps(n)$.
+
+#### **Theorem:** PEG from Weak PEG
+
+{:.theorem}
+> Suppose $F: \bit^n \to \bit^m$ is a weak PEG.
+> Let $g: \bit^{n\ell} \to \bit^{m\ell}$ to be the function
+> 
+> $$
+> g(x_1 ... x_\ell) := F(x_1) ... F(x_\ell),
+> $$
+> 
+> where $x_i \in \bit^n$ for all $i$, and $\ell:=\ell(n)$ is a polynomial (to be chosen later). 
+> Then, $g$ is a PEG.
 
 
 
