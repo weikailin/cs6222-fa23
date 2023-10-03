@@ -404,8 +404,8 @@ i.e., $F$ is a *weak* OWF.
 {:.defn}
 > A function $G : \bit^m \to \bit^n$ is called a *pseudo-entropy generator(PEG)*, 
 > if there exists a $k$ such that
-> 1. There exists $Y_m$ such that $\set{G(U_m)}_m \approx \set{Y_m}_m$ and
->	 $H_\infty(Y_m) \ge k + n^\alpha$ for some constant $\alpha \gt 0$.
+> 1. There exists $Y_m$ such that $\set{G(U\_m)}\_m \approx \set{Y\_m}\_m$ and
+>	 $H\_\infty(Y_m) \ge k + n^\alpha$ for some constant $\alpha \gt 0$.
 > 2. $H_\infty(G(U_m)) \le k$ with probability $1 − \eps(m)$ for negligible $\eps$. 
 > 	 More precisely, there is a $Y' \subseteq G (U_n)$ 
 > 	 with $H_\infty(Y') \le k$ such that $\Pr_x(G (x) \in Y') \ge 1 − \eps(n)$.
