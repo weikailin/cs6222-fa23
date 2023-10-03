@@ -506,11 +506,31 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 
 {: .theorem}
 > Let $Y'$ be the distribution such that is indistinguishable from $F(U_n)$ 
-> but $H(Y') = k + \frac{1}{100n}$.
-> Then, $g(U_{n\ell})$ is indistinguishable from $Y:=Y_1 ... Y_\ell$
+> but $H(Y') \ge k + \frac{1}{100n}$.
+> There exists a distribution $Y$ such that $H_\infty \ge k \ell (1-\beta) + n^\alpha$
+> and that $Y$ is indistinguishable from $g(x)$, where $\alpha > 0$ is a constant.
+
+{: .proof}
+> By a non-uniform reduction, $g(U_{n\ell})$ is indistinguishable from $Z:=Y_1 ... Y_\ell$
 > such that $Y_1, Y_2, ..., Y_\ell$ are sampled from $Y'$ independently.
-> Moreover, 
+> We have Shannon entropy $H(Z) \ge k \ell + \ell/100n$, but we want $Y$ with high *min-entropy*.
+> By a Chernoff bound that is similar to the previous claim,
+> we have that for all except for exponentially small probability,
 > 
+> $$
+> \Pr_{y \gets Z}[ \gamma(y) \ge 2^{-(k \ell + \ell/100n)(1 \pm \beta)} ] \le 2^{-\Omega(\beta \ell/ n)},
+> $$
+> 
+> where $\gamma(y) := \Pr_{y' \gets Z}[y' = y]$ for all $y$.
+> We simply get rid of those "bad $y$" from $Z$ and obtain the distribution $Y$
+> by moving the probability mass $2^{-\Omega(\beta \ell/ n)}$ to all strings in $\bit^{m\ell}$ uniformly,
+> which yields $Y$ with min-entropy at most
+> 
+> $$
+> -\log\left( 2^{-\ell \cdot (k + 1/100n) \cdot (1-\beta)} + 2^{-\ell m} \cdot 2^{-\Omega(\beta \ell/ n)} \right)
+> $$
+> 
+> which is at least $k\ell + \Omega(\ell / n)$.
 
 
 <!-- 
