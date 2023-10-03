@@ -583,6 +583,22 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > 
 > which is expanding as wanted.
 
+Finally, it remains to show that we can construct PRG from PEG
+*without knowing* the min-entropy $k$.
+We can achieve that by *enumerating all possible $k$*
+from $1$ to $n$, that is
+
+$$
+G(x_1,...,x_n) := G'_1(x_1) \oplus  G'_2(x_2) \oplus ...G'_n(x_n),
+$$
+
+where each $G'_k$ assumes the given PEG gives min-entropy $k$.
+Because the given PEG must give min-entropy $k$ for some $k$ (for all input),
+the output of $G$ is pseudorandom even all other $k' \neq k$ are not.
+This, unfortunately, shrinks the output length by $n$,
+and that is *not acceptable* since we expanded only $n^\alpha = o(n)$ bits in PEG.
+
+
 
 
 <!-- 
