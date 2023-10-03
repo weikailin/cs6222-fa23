@@ -531,6 +531,7 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > $$
 > 
 > which is at least $k\ell + \Omega(\ell / n)$.
+> Choosing $\ell(n) = n^9$, we have $\alpha \ge 1$ for sufficiently large $n$.
 
 
 <!-- 
