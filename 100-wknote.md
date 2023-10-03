@@ -416,11 +416,11 @@ i.e., $F$ is a *weak* OWF.
 > A function $g : \bit^m \to \bit^n$ is called a *pseudo-entropy generator(PEG)*, 
 > if there exists a $k$ such that
 > 1. There exists $Y_m$ such that $\set{g(U\_m)}\_m \approx \set{Y\_m}\_m$ and
->	 $H\_\infty(Y_m) \ge k + n^\alpha$ for some constant $\alpha \gt 0$.
+>	 $H\_\infty(Y_m) \ge k + m^\alpha$ for some constant $\alpha \gt 0$.
 >	 (This is called *pseudo min-entropy*.)
 > 2. $H_\infty(g(U_m)) \le k$ with probability $1 − \eps(m)$ for negligible $\eps$. 
-> 	 More precisely, there is a $Y' \subseteq g(U_n)$ 
-> 	 with $H_\infty(Y') \le k$ such that $\Pr_x(g(x) \in Y') \ge 1 − \eps(n)$.
+> 	 More precisely, there is a $Y' \subseteq g(U_m)$ 
+> 	 with $H_\infty(Y') \le k$ such that $\Pr_x(g(x) \in Y') \ge 1 − \eps(m)$.
 
 Notice that compared to weak PEG, here for PEG, we require that the entropy gap to be min-entropy
 (instead of Shannon entropy) and that the entropy gap to be much more than constant bits.
@@ -531,7 +531,7 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > $$
 > 
 > which is at least $k\ell + \Omega(\ell / n)$.
-> Choosing $\ell(n) = n^9$, we have $\alpha \ge 1$ for sufficiently large $n$.
+> Choosing $\ell(n) = n^9$, we have $\alpha \gt 0$ for sufficiently large $n$.
 
 
 <!-- 
