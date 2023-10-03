@@ -598,7 +598,28 @@ the output of $G$ is pseudorandom even all other $k' \neq k$ are not.
 This, unfortunately, shrinks the output length by $n$,
 and that is *not acceptable* since we expanded only $n^\alpha = o(n)$ bits in PEG.
 
+The trick is that for each $G'_k$, construct $\hat G_k$ such that 
+expands to $\poly(n)$ bits (which is exactly the same as 
+expanding PRG from 1-bit to many-bit expansion), 
+and then construct $G$ from XORing $\hat G_k$ for all $k \in [n]$.
 
+> **Discuss**{:.label}
+> We can use less XORs to get better result.
+> Observe that given entropy gap of PEG $g$ is $\Delta = n^\alpha$, 
+> we can increment the possible $k$ by a fraction $\Delta / 2$.
+> That is,
+> 
+> $$
+> G(x_1,...,x_{2n/\Delta) := \bigoplus_{i\in[2n/\Delta]} G'_{1+i\Delta/2}(x_i).
+> $$
+> 
+> Notice that for any $k\in[n]$ such that $g$ is PEG, 
+> there exists $i$ such that $G'_{1+i\Delta/2}$ is also a PRG 
+> by narrowing the gap in the construct of $G'$ by 1/2.
+> The input length is $(3n+2m)\cdot 2n/\Delta$, and
+> the output length is $3n+2m + \Delta$, which is still shrinking (but much better).
+
+This concludes the construction from OWF to PRG.
 
 
 <!-- 
