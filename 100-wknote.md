@@ -610,7 +610,7 @@ and then construct $G$ from XORing $\hat G_k$ for all $k \in [n]$.
 > That is,
 > 
 > $$
-> G(x_1,...,x_{2n/\Delta) := \bigoplus_{i\in[2n/\Delta]} G'_{1+i\Delta/2}(x_i).
+> G(x_1,...,x_{2n/\Delta} := \bigoplus_{i\in[2n/\Delta]} G'_{1+i\Delta/2}(x_i).
 > $$
 > 
 > Notice that for any $k\in[n]$ such that $g$ is PEG, 
