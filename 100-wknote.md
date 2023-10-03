@@ -530,7 +530,7 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > -\log\left( 2^{-\ell \cdot (k + 1/100n) \cdot (1-\beta)} + 2^{-\ell m} \cdot 2^{-\Omega(\beta \ell/ n)} \right)
 > $$
 > 
-> which is at least $k\ell + \Omega(\ell / n)$.
+> which is at least $(k\ell + \Omega(\ell / n))(1 - \beta)$.
 > Choosing $\ell(n) = n^9$, we have $\alpha \gt 0$ for sufficiently large $n$.
 
 
