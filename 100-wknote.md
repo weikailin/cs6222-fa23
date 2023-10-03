@@ -532,6 +532,57 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > 
 > which is at least $(k\ell + \Omega(\ell / n))(1 - \beta)$.
 > Choosing $\beta(n) := 1/2n^2$ and $\ell(n) = n^9$, we have $\alpha \gt 0$ for sufficiently large $n$.
+> 
+> Notice that the entropy gap is roughly $\Omega(\ell / n) - 2\beta k \ell$, which incurs a huge $\ell$.
+
+
+### PRG from PEG
+
+#### **Theorem:** PRG from PEG of Known Min-Entropy
+
+{:.theorem}
+> Suppose $g: \bit^n \to \bit^m$ is a PEG such that $H_\infty(g(U_n)) = k$ is known,
+> where $k \le n \le m$.
+> Let $h_1: \bit^n \to \bit^{l_1}, h_2 \bit^m \to \bit^{l_2}$ be pairwise independent hash functions
+> sampled uniformly at random from $\cH_1, \cH_2$, where $l_1, l_2$ are chosen properly later.
+> Let $G'$ to be the function
+> 
+> $$
+> G'(x, h_1, h_2) := (h_1, h_1(x), h_2, h_2(g(x))).
+> $$
+> 
+> Then, $g$ is a PRG.
+
+{:.proof}
+> It suffices to show that 
+> 
+> 1. $\cD_0 := G'(U_n, U_{l_1}, U_{l_2})$ is satistically close to $\cD_1 := (h_1, U_{l_1}, h_2, h_2(g(U_m)))$, and
+> 2. $\cD_1$ is computationally indistinguishable from $\cD_2:= (h_1, U_{l_1}, h_2, h_2(Y))$, 
+>    where $Y$ is indistinguishable from $g(U_m)$ and $H_\infty(Y) \ge k + n^\alpha$.
+> 3. $\cD_2$ is statistically close to $\cD_3 := (h_1, U_{l_1}, h_2, U_{l_2})$.
+> 
+> For 1, observe that 
+> $\cD_0$ is $2^{-d/2}$-close to $\cD_1$ by Leftover Hash Lemma
+> when $l_1 \le n-k-d$ because $x$ has min-entropy at least $n-k$ given $g(x)$
+> (the set $g^{-1}(g(x))$ is at least $2^{n-k}$ by the min-entropy of $g(x)$).
+> 
+> For 2, it follows by standard reduction (computational indistinguishability is closed under efficient operations).
+> 
+> For 3, observe that $k+n^\alpha \le m$ by $G$ is PEG.
+> by Leftover Hash Lemma, 
+> $\cD_2$ is $2^{-d/2}$-close to $\cD_3$
+> when $l_2 \le k+n^\alpha - d$ because $Y$ has min-entropy.
+> 
+> We choose $d := n^\alpha / 4$ so that $2^{-d/2}$ in the above is negligible.
+> The input size of $G'$ is $n + 2n + 2m$, while the output size is
+> 
+> $$
+> 2n + l_1 + 2m + l_2
+> = 2n+(n-k-d)+2m+(k+n^\alpha-d) = 3n + 2m + n^\alpha / 2,
+> $$
+> 
+> which is expanding as wanted.
+
 
 
 <!-- 
