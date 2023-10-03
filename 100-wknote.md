@@ -442,8 +442,7 @@ Notice that compared to weak PEG, here for PEG, we require that the entropy gap 
 The construction of $g$ is identical to that from weak OWF to strong OWF.
 Also recall that the weak PEG is also a weak OWF.
 
-Let $k'$ be the Shannon entropy of $F(U_n)$, and let $Y'$ be the distribution such that is 
-indistinguishable from $F(U_n)$ but $H(Y) = k + \frac{1}{100n}$.
+Let $k$ be the Shannon entropy of $F(U_n)$.
 
 #### **Claim:** Low min-entropy
 
@@ -466,9 +465,7 @@ indistinguishable from $F(U_n)$ but $H(Y) = k + \frac{1}{100n}$.
 > This implies that $H_\infty(g(U_{n\ell})) \le k \ell (1 - \beta)$ for 
 > all but $2^{-\Omega(n)}$ fraction of $x$'s.
 
-{:.proof-title}
-> Proof idea.
-> 
+{:.proof}
 > In general, min-entropy is less than the Shannon entropy of the same variable.
 > Here, we want to show the opposite by relaxing a $\beta$ fraction in entropy
 > and by skipping a small fraction of $y$'s.
@@ -498,9 +495,22 @@ indistinguishable from $F(U_n)$ but $H(Y) = k + \frac{1}{100n}$.
 > = & \Pr_{y}\left[ \prod_{i\in[\ell]} \gamma(y_i) \notin 2^{-k\ell(1 \pm \beta)} \right] \\
 > = & \Pr_{y}\left[ \sum{i\in[\ell]} \frac{1}{\log \gamma(y_i)} \notin k\ell(1 \pm \beta) \right] \\
 > = & \Pr_{y}\left[ \left| \sum{i\in[\ell]} X_i - k\ell \right| \ge \pm \beta k \ell \right] \\
-> \le & 2^{-\Omega(\beta k \ell / n)}.
+> \le & 2^{-\Omega(\beta k \ell / n)},
+> \end{align*}
 > $$
+> 
+> where $X_i := \frac{1}{\log \gamma(y_i)}$ by definition, and 
+> $\E[X_i] = H(F(U_n)) = k$ by definition of Shannon entropy and weak PEG.
 
+#### **Claim:** High pseudo-min-entropy
+
+{: .theorem}
+> Let $Y'$ be the distribution such that is indistinguishable from $F(U_n)$ 
+> but $H(Y') = k + \frac{1}{100n}$.
+> Then, $g(U_{n\ell})$ is indistinguishable from $Y:=Y_1 ... Y_\ell$
+> such that $Y_1, Y_2, ..., Y_\ell$ are sampled from $Y'$ independently.
+> Moreover, 
+> 
 
 
 <!-- 
