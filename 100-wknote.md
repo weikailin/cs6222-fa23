@@ -272,8 +272,7 @@ $$
 > 
 > For any $x \in \bit^n$ and $y \gets f(x)$, define the pre-image
 > $S := \set{ x' \in \bit^n : f(x') = y, x' \neq x}$.
-> Notice that $|S| \le 2^{i^\ast -1}$ 
-> (where the floor is taken when $S = \empty$ and $i^\ast = 0$).
+> Notice that $|S| \le 2^{i^\ast -1}$.
 > By $h$ is pairwise independent, for any $x' \in S$,
 > 
 > $$
@@ -284,7 +283,7 @@ $$
 > 
 > $$
 > \begin{align*}
-> \Pr_h[\notexists x' \in S \text{ s.t. }  h(x') = h(x)]
+> \Pr_h[\nexists x' \in S \text{ s.t. }  h(x') = h(x)]
 > & = 1 - \Pr[\exists x' \in S \text{ s.t. } h(x') = h(x)] \\
 > & \ge 1 - |S|/2^{i^\ast} \ge 1/2,
 > \end{align*}
