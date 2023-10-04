@@ -80,6 +80,7 @@ PRG from any OWF
 We assume that the OWF $f: \bit^n \to \bit^n$.
 This is w.l.o.g.: if input is shorter, then we pad the input with unused random bits;
 if the output is shorter, then we pad the output with fixed bits.
+The same applies to the new notions in this section, namely weak PEG and PEG.
 
 Historically, the first construction of PRG from OWF is given by [HILL'99](https://epubs.siam.org/doi/10.1137/S0097539793244708),
 which was initiated by [IL'89](https://ieeexplore.ieee.org/document/63483) and [ILL'89](https://dl.acm.org/doi/10.1145/73007.73009).
@@ -428,8 +429,8 @@ Notice that compared to weak PEG, here for PEG, we require that the entropy gap 
 #### **Theorem:** PEG from Weak PEG
 
 {:.theorem}
-> Suppose $F: \bit^n \to \bit^m$ is a weak PEG.
-> Let $g: \bit^{n\ell} \to \bit^{m\ell}$ to be the function
+> Suppose $F: \bit^n \to \bit^n$ is a weak PEG.
+> Let $g: \bit^{n\ell} \to \bit^{n\ell}$ to be the function
 > 
 > $$
 > g(x_1 ... x_\ell) := F(x_1) ... F(x_\ell),
@@ -508,7 +509,7 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > Let $Y'$ be the distribution such that is indistinguishable from $F(U_n)$ 
 > but $H(Y') \ge k + \frac{1}{100n}$.
 > There exists a distribution $Y$ such that $H_\infty \ge k \ell (1-\beta) + n^\alpha$
-> and that $Y$ is indistinguishable from $g(x)$, where $\alpha > 0$ is a constant.
+> and that $Y$ is indistinguishable from $g(x)$, where $\alpha \gt 0$ is a constant.
 
 {: .proof}
 > By a non-uniform reduction, $g(U_{n\ell})$ is indistinguishable from $Z:=Y_1 ... Y_\ell$
@@ -527,11 +528,11 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > which yields $Y$ with min-entropy at most
 > 
 > $$
-> -\log\left( 2^{-\ell \cdot (k + 1/100n) \cdot (1-\beta)} + 2^{-\ell m} \cdot 2^{-\Omega(\beta^2 \ell/ n)} \right)
+> -\log\left( 2^{-\ell \cdot (k + 1/100n) \cdot (1-\beta)} + 2^{-\ell n} \cdot 2^{-\Omega(\beta^2 \ell/ n)} \right)
 > $$
 > 
 > which is at least $(k\ell + \Omega(\ell / n))(1 - \beta)$.
-> Choosing $\beta(n) := 1/2n^2$ and $\ell(n) = n^9$, we have $\alpha \gt 0$ for sufficiently large $n$.
+> Choosing $\beta(n) := 1/2n^2$ and $\ell(n) = n^9$, we have $\alpha \ge (\ell n)^{0.7} \gt 0$ for sufficiently large $n$.
 > 
 > Notice that the entropy gap is roughly $\Omega(\ell / n) - 2\beta k \ell$, which incurs a huge $\ell$.
 
@@ -541,9 +542,9 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 #### **Theorem:** PRG from PEG of Known Min-Entropy
 
 {:.theorem}
-> Suppose $g: \bit^n \to \bit^m$ is a PEG such that $H_\infty(g(U_n)) = k$ is known,
-> where $k \le n \le m$.
-> Let $h_1: \bit^n \to \bit^{l_1}, h_2 \bit^m \to \bit^{l_2}$ be pairwise independent hash functions
+> Suppose $g: \bit^n \to \bit^n$ is a PEG such that $H_\infty(g(U_n)) = k$ is known,
+> where $k \le n$.
+> Let $h_1: \bit^n \to \bit^{l_1}, h_2 \bit^n \to \bit^{l_2}$ be pairwise independent hash functions
 > sampled uniformly at random from $\cH_1, \cH_2$, where $l_1, l_2$ are chosen properly later.
 > Let $G'$ to be the function
 > 
@@ -556,9 +557,9 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 {:.proof}
 > It suffices to show that 
 > 
-> 1. $\cD_0 := G'(U_n, U_{l_1}, U_{l_2})$ is satistically close to $\cD_1 := (h_1, U_{l_1}, h_2, h_2(g(U_m)))$, and
+> 1. $\cD_0 := G'(U_n, U_{l_1}, U_{l_2})$ is satistically close to $\cD_1 := (h_1, U_{l_1}, h_2, h_2(g(U_n)))$, and
 > 2. $\cD_1$ is computationally indistinguishable from $\cD_2:= (h_1, U_{l_1}, h_2, h_2(Y))$, 
->    where $Y$ is indistinguishable from $g(U_m)$ and $H_\infty(Y) \ge k + n^\alpha$.
+>    where $Y$ is indistinguishable from $g(U_n)$ and $H_\infty(Y) \ge k + n^\alpha$.
 > 3. $\cD_2$ is statistically close to $\cD_3 := (h_1, U_{l_1}, h_2, U_{l_2})$.
 > 
 > For 1, observe that 
@@ -568,17 +569,17 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > 
 > For 2, it follows by standard reduction (computational indistinguishability is closed under efficient operations).
 > 
-> For 3, observe that $k+n^\alpha \le m$ by $G$ is PEG.
+> For 3, observe that $k+n^\alpha \le n$ by $G$ is PEG.
 > by Leftover Hash Lemma, 
 > $\cD_2$ is $2^{-d/2}$-close to $\cD_3$
 > when $l_2 \le k+n^\alpha - d$ because $Y$ has min-entropy.
 > 
 > We choose $d := n^\alpha / 4$ so that $2^{-d/2}$ in the above is negligible.
-> The input size of $G'$ is $n + 2n + 2m$, while the output size is
+> The input size of $G'$ is $n + 2n + 2n$, while the output size is
 > 
 > $$
-> 2n + l_1 + 2m + l_2
-> = 2n+(n-k-d)+2m+(k+n^\alpha-d) = 3n + 2m + n^\alpha / 2,
+> 2n + l_1 + 2n + l_2
+> = 2n+(n-k-d)+2n+(k+n^\alpha-d) = 3n + 2n + n^\alpha / 2,
 > $$
 > 
 > which is expanding as wanted.
@@ -599,9 +600,10 @@ This, unfortunately, shrinks the output length by $n$,
 and that is *not acceptable* since we expanded only $n^\alpha = o(n)$ bits in PEG.
 
 The trick is that for each $G'_k$, construct $\hat G_k$ such that 
-expands to $\poly(n)$ bits (which is exactly the same as 
+expands to $\Omega(n^2)+1$ bits (which is exactly the same as 
 expanding PRG from 1-bit to many-bit expansion), 
 and then construct $G$ from XORing $\hat G_k$ for all $k \in [n]$.
+Thus, the input is $O(n^2)$ while the output is $\Omega(n^2)+1$, expanding as wanted.
 
 > **Discuss**{:.label}
 > We can use less XORs to get better result.
@@ -616,8 +618,8 @@ and then construct $G$ from XORing $\hat G_k$ for all $k \in [n]$.
 > Notice that for any $k\in[n]$ such that $g$ is PEG, 
 > there exists $i$ such that $G'_{1+i\Delta/2}$ is also a PRG 
 > by narrowing the gap in the construct of $G'$ by 1/2.
-> The input length is $(3n+2m)\cdot 2n/\Delta$, and
-> the output length is $3n+2m + \Delta$, which is still shrinking (but much better).
+> The input length is $(3n+2n)\cdot 2n/\Delta$, and
+> the output length is $3n+2n + \Delta$, which is still shrinking (but much better).
 > 
 > Also notice that the expansion calls the underlying PEG and thus OWF
 > *sequentially*, which is also improved in later constructs [HRV'13].
