@@ -1082,10 +1082,12 @@ We will use pairwise independent hash functions.
 > For any finite field $F$, define $\cH$ to be the following set:
 > 
 > $$
-> \cH := \set{h_{a,b} : h_{a,b}(x) = a x + b \mod p, a,b\in F}.
+> \cH := \set{h_{a,b} : h_{a,b}(x) = a x + b, a,b\in F}.
 > $$
 > 
 > $\cH$ is a pairwise independent hash family.
+> We often abuse notation, denoting $h \in \cH$ to be the seed
+> and $h(x)$ to be the evaluation of the hash function.
 > 
 > [V, Construction 3.23, p65]
 
@@ -1167,7 +1169,7 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 > 
 > [V, Theorem 6.18, p179]
 
-#### **Corollary:**
+#### **Corollary:** Guessing the hash value
 
 {:.theorem}
 > Let $\cH$ be a pairwise independent hash family, from $n$-bit strings to $n$-bit strings.
