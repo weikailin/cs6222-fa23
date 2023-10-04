@@ -42,6 +42,8 @@ The only teaching material we found is
 the lecture of [Barak](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf).
 
 We will use pairwise independent hash functions.
+The following facts are borrowed from the book of Salil Vadhan, 
+[*Pseudorandomness*](https://people.seas.harvard.edu/~salil/pseudorandomness/pseudorandomness-published-Dec12.pdf), cited as [V].
 
 #### **Definition:** Pairwise independent hash family.
 
@@ -301,7 +303,7 @@ $$
 > Suppose that $x$ is fixed and $h$ is sampled uniformly and independently from $\cH$.
 > Given $y = f(x)$, the min-entropy of $x$ is $\ge i^\ast(x)-1$ because 
 > each $x' \in f^{-1}(y)$ can be mapped to $y$.
-> By Leftover Hash Lemma, 
+> By the corollary of Leftover Hash Lemma, "Guessing the hash value",
 > the first $i^\ast - d$ bits of $h(x)$ is $2^{-d+1}$-close to uniform.
 > This implies that we can hit the prefix $i^\ast - d$ bits of $h_{i^*}(x)$
 > w.p. $1 - 2^{-d+1}$ by sampling them uniformly at random.
