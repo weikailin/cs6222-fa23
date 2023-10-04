@@ -879,7 +879,7 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 >> \Pr_{x,r}[A(f(x,r)) = h(x,r)]
 >> & = \Pr[A=h \cap x \in G] + \Pr[A=h | x\notin G] \cdot \Pr[x \notin G]\\
 >> & \lt \alpha/2 + \Pr[A=h | x\notin G]\\
->> & \le \alpha/2 + 3/4 + \alpha /2 = 3/4 + \alpha,
+>> & \lt \alpha/2 + 3/4 + \alpha /2 = 3/4 + \alpha,
 >> \end{align*}
 >> $$
 >> 
@@ -1015,11 +1015,12 @@ Now we are ready to prove the full theorem.
 The number of bits we guessed is $\log m = O(\log p(n)) = O(\log n)$, 
 where $p(n)$ depends on the (hypothetical) NUPPT $A$.
 Since the guessed bits entails information about $x$,
-the proof implies that there must be $\omega(\log n)$ bits 
+the proof implies (again) that there must be $\omega(\log n)$ bits 
 that are hard to invert (from $f(x)$ to $x$).
-This is non-trivial because we do not know which are the hard bits,
-and ${n \choose c \log n} \ge (n/c \log n)^{c\log n}$ is a super-polynomial,
-yet we have an efficient attack using pairwise indep.
+Still, having an *efficient and uniform attack* is non-trivial:
+since we do not know which are the hard bits,
+and the number of subsets ${n \choose c \log n} \ge (n/c \log n)^{c\log n}$ is a super-polynomial,
+it was unclear how to guess efficiently if we had not applied the Chebychev bound.
 
 **Discuss**{:.label}
 How far does the Hard-core Lemma extend to? 
