@@ -707,10 +707,11 @@ The construct of PRG comes from two properties of OWF:
   otherwise, $f$ is constant (for most $x$), then we can invert easily.
 - A sufficiently random $f(x)$ can still be easily inverted (such as indentity func).
   By hard to invert, there must be *some bits* of $x$ that are hard to guess when $f(x)$ is given.
+  How many bits are hard to guess for any polynomial-time adversary? Must be $\omega(\log n)$.
 
 Suppose $f$ is OWP, then we have "fully random" $f(x)$ (that is stronger than the first propery).
-Additionally utilizing the second property, it seems we can take "some bits" from $x$
-to obtain a 1-bit PRG.
+Additionally utilizing the second property, it seems we can take just 1 bit from the "hard bits"
+of $x$ to obtain a 1-bit PRG.
 
 #### **Definition:** One-way Permutations
 
@@ -730,7 +731,7 @@ to obtain a 1-bit PRG.
 > \Pr[x \gets \bit^n: A(1^n, f(x)) = h(x)] \le \frac{1}{2} + \eps(n).
 > $$
 
-This is indeed the case for some OWPs.
+This is indeed the case for some OWPs, such as RSA.
 If we construct OWP from the RSA assumption, 
 then the least significant bit of $x$ is that "hard to guess" one,
 and then we can obtain PRG from RSA assumption.
@@ -749,17 +750,17 @@ and then we can obtain PRG from RSA assumption.
 > (The proof is a standard reduction: if there exists a NUPPT distinguisher $D$ against $g$,
 > then we can build a NUPPT adversary $A$ that inverts $f$ by running $D$.)
 
-However, we want to obtain PRG from *any* OWP (without depending on specific assumptions)
-or any OWF. That is unfortunately unclear.
+However, we want to obtain PRG from *any* OWP 
+or any OWF (without depending on specific assumptions). That is unfortunately unclear.
 
 Fortunately, Goldreich-Levin showed that for any OWF $f'$, 
 we can obtain another OWF $f$ that we know its hard-core predicate.
 The intuition is: given $f'$ is hard to invert, in the preimage of $f(x)$,
-there must be at least $\omega(1)$ bits that are hard to guess
+there must be at least $\omega(\log n)$ bits that are hard to guess
 (otherwise, a poly-time adv can invert).
 Hard-core predicate formalizes those bits.
 Even we do not know which bits are hard, 
-we can sample randomly and hope to obtain some of them.
+we can sample randomly and hope to obtain 1 bit out of them.
 
 #### **Theorem:** Goldreich-Levin, Hard-Core Lemma
 
@@ -780,9 +781,9 @@ Note: in the above definition of $f$ and $h$, the thm says that
 "even we are given the subset $r$ and $f'(x)$, because $f'(x)$ is hard to invert, 
 we still do not know the parity of $x$ over $r$".
 Since the subset $r$ is chosen uniformly, 
-that implies that $f'$ has many hard-core bits out of $n$, 
+<!-- that implies that $f'$ has many hard-core bits out of $n$,  -->
 and even we do not know where are them, 
-$r$ hits some hard-core bits with overwhelming probability.
+$r$ hits some "hard bits" with overwhelming probability.
 This is indeed consistent with the earlier intuition.
 
 Clearly $f$ is a OWF, and $h$ is easy to compute.
@@ -835,7 +836,8 @@ Note: the above assumed "for all $r$" and "w.p. $=1$", both are much stronger th
 {: .proof}
 > We would like to use $e_i$ as before, 
 > but now $A$ may always fail whenever the suffix of $f(x,r)$ is $e_i$.
-> Hence, we randomize $e_i$ to $r$ and $r \oplus e_i$ and then recover the inner product $h$.
+> Hence, we randomize $e_i$ to $r$ and $r \oplus e_i$ and then recover the inner product
+> (this is also called "self correction").
 > 
 > {:.theorem-title}
 >> Fact
@@ -901,13 +903,13 @@ The main challenges from the previous $3/4$ proof is:
   For $1/2$, that lowers to only $\alpha$, 
   and then that is too low for the following majority and Chernoff bound.
 
-The first idea is to *guess* the inner product $x \oplus r$ uniformly at random, 
+The first idea is to *guess* the inner product $x \odot r$ uniformly at random, 
 which is a correct guess w.p. $1/2$.
-Suppose that $p(n)$ is a small constant and then $m(n) = O(n)$,
+Supposing that $p(n)$ is a constant, we can choose $m(n) = O(\log n)$,
 all $m$ guesses are correct w.p. $1/2^m = 1 / \poly(n)$, 
 then conditioned on correct guesses, we have $A(y \\| e_i \oplus r)$ correct w.p. $1/2 + \alpha$ (when $x$ is good),
-and then we can continue with Chernoff bound and finish the prove.
-For large $p(n)$, the guesses are too many and $1/2^m$ approaches negligible.
+and then we can continue with Chernoff bound (w.p. $1/\poly(n)$ to fail) and finish the prove.
+For large $p(n)$, the guesses are too many and $1/2^m$ is negligible.
 
 The second idea is to use *pairwise independent* guesses.
 Particularly, we have Chebychev's bound for the measure concentration of pairwise indep. r.v.
@@ -924,10 +926,12 @@ Particularly, we have Chebychev's bound for the measure concentration of pairwis
 > $$
 > 
 > where $X := \sum_{j\in[m]} X_i$.
+> 
+> [Ps, p189]
 
 We can then reduce the number of guesses from  $m$ to $\log m$.
 
-#### **Fact of pairwise independent random strings:**
+#### **Fact:** Sampling pairwise independent random strings
 
 {: .theorem}
 > For any $n, m \in \N$, let $(u_i : u_i \gets \bit^n)_{i \in [\log m]}$ 
@@ -947,9 +951,9 @@ We can then reduce the number of guesses from  $m$ to $\log m$.
 Now we are ready to prove the full theorem.
 
 {: .proof-title}
-> Proof of Hard-Core Lemma (Goldreich-Levin)
+> Proof of Hard-Core Lemma (Goldreich-Levin, 1989)
 > 
-> Given NUPPT $A$ in the (Full Assumption)[#full-assumption],
+> Given NUPPT $A$ in the [Full Assumption](#full-assumption),
 > we construct $B$ that inverts $y \gets f'(x)$ as follows.
 > 
 > {:.defn-title}
