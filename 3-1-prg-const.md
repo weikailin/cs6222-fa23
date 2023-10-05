@@ -303,15 +303,23 @@ $$
 > Suppose that $x$ is fixed and $h$ is sampled uniformly and independently from $\cH$.
 > Given $y = f(x)$, the min-entropy of $x$ is $\ge i^\ast(x)-1$ because 
 > each $x' \in f^{-1}(y)$ can be mapped to $y$.
-> By the corollary of Leftover Hash Lemma, "Guessing the hash value",
-> the first $i^\ast - d$ bits of $h(x)$ is $2^{-d+1}$-close to uniform.
-> This implies that we can hit the prefix $i^\ast - d$ bits of $h_{i^*}(x)$
-> w.p. $1 - 2^{-d+1}$ by sampling them uniformly at random.
+> By the corollary of Leftover Hash Lemma, "guessing the hash value",
+> the first $i^\ast - d$ bits of $h(x)$ is $2^{-(d-1)/2}$-close to uniform.
+> This implies that we can hit the first $i^\ast - d$ bits of $h_{i^*}(x)$
+> w.p. $1 - 2^{-(d-1)/2}$ by sampling them uniformly at random.
 > 
-> However, we conditioned on $x \in G$ (instead of uniform $x$).
-> Thus, choosing $d$ such that $2^{-d+1} \le \alpha / 4$,
-> we can still hit w.p. $\ge 1/2$.
-> With the above, we can try all remaining $d = O(\log n)$ bits and then 
+> However, to apply $A$, we also conditioned on $h \in \cH_x$ (instead of uniform $h$).
+> Hence, we need to take union bound:
+> 
+> - $h \notin \cH_x$ w.p. $\le 1 - \beta$
+> - the guess is not the first $i^\ast - d$ bits of $h(x')$ for all $x' \in f^{-1}(y)$
+>   w.p. $2^{-(d-1)/2}$.
+> 
+> Thus, choosing $d$ such that $2^{-(d-1)/2} \le \beta/2$,
+> we will sample a "good" input $(y = f(x'), i^\ast, h, h_{i^\ast})$ to $A$ w.p. $\ge \beta/2$
+> (only conditioned on $x \in G$).
+> With the above, we can try all remaining $d = O(2 \log \beta) = O(\log n)$ bits 
+> and then 
 > check if the outcome $x'$ satisfies $f(x') = y$.
 > 
 > {: .defn-title}
