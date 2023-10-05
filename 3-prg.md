@@ -702,6 +702,8 @@ Hard-Core Bits from any OWF
 So far we have not yet have a candidate construction of PRG (with 1-bit expansion).
 We will next construct a PRG from one-way *permutations*.
 
+![OWF vs others](assets/images/hclemma-plain.svg)
+
 The construct of PRG comes from two properties of OWF:
 - The output of $f(x)$ must be sufficiently random when the input $x$ is uniform; 
   otherwise, $f$ is constant (for most $x$), then we can invert easily.
