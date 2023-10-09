@@ -961,17 +961,17 @@ Now we are ready to prove the full theorem.
 > {:.defn-title}
 >> Algorithm $B(1^n, y)$
 >> 
->> 1. For each $i=1,2, .., n$,
->>    1. Let $\ell := \log m$, $(u_1, ..., u_\ell)$ be fully independent and $(r_1,..., r_m)$ be pairwise independent
->>       $n$-bit random strings as in Fact of pairwise indep.
->>    2. For each $k \in [\ell]$, sample guess bit $b_k$ uniformly. For each $j \in [m]$, 
->>       compute the bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
->>       (so that for any $x$, $g_{i,j} = x \odot r_j$ and $b_k = x \odot u_k$ for all $k$).
->>    3. For each $j=1,2,..., m$,
+>> 1. Let $\ell := \log m$, $(u_1, ..., u_\ell)$ be fully independent and $(r_1,..., r_m)$ be pairwise independent
+>>    $n$-bit random strings as in Fact of pairwise indep.
+>> 2. For each $k \in [\ell]$, sample guess bit $b_k$ uniformly. For each $j \in [m]$, 
+>>    compute the bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
+>>    (so that for any $x$, $g_{i,j} = x \odot r_j$ and $b_k = x \odot u_k$ for all $k$).
+>> 3. For each $i=1,2, .., n$,
+>>    1. For each $j=1,2,..., m$,
 >>       - Run $z_{i,j} \gets A(1^{2n}, y \\| e_i \oplus r_j) \oplus g_{i,j}$.
 >>
 >>       Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
->> 2. Output $x' := x'_1 x'_2 ... x'_n$
+>> 4. Output $x' := x'_1 x'_2 ... x'_n$
 > 
 > We begin with claiming the number of good instances of $x$.
 > 
@@ -1006,12 +1006,13 @@ Now we are ready to prove the full theorem.
 > 
 > where $X = \sum_j X_j$, and $X_j$ denotes the event that $A$ outputs $x\odot(e_i \oplus r_j)$ correctly.
 > Choosing $m(n) := 8n p^2(n)$, we have that $\Pr[x'_i \neq x_i] \le 1/2n$.
-> Taking union bound for all $i$, $\Pr[x' = x] \ge 1/2$, conditioning on $x \in G$ and $b_i$'s are correct.
+> Taking union bound for all $i$, $\Pr[x' = x] \ge 1/2$, conditioning on $x \in G$ and all $b_i$'s are correct.
 > Removing the conditional events\* takes $\alpha/2$ and $1/m$, but $B$ still inverts $y$
 > w.p. $\ge 1/(4p(n)m(n)) = 1 / 32 n p^3(n)$, contradicting $f'$ is OWF.
 > 
 > (\*For any events $A,B,C$, 
-> $\Pr[A] \ge \Pr[A \| B \cap C] \Pr[B \cap C]$.)
+> $\Pr[A] \ge \Pr[A \| B \cap C] \Pr[B \cap C]$, where $A$ is $x' = x$, $B$ is $x \in G$, 
+> $C$ is all $b_i$'s are correct.)
 
 **Discuss**{:.label}
 The number of bits we guessed is $\log m = O(\log p(n)) = O(\log n)$, 
