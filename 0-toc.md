@@ -22,6 +22,6 @@ Table of Lecture Notes
 | Sep 25    | [Pseudo-random functions](3-prg.md#pseudo-random-functions)    | [Ps 3.7, 3.8] [KL 8.5] |
 | Sep 27    | [CPA-secure encryption](3-prg.md#secure-encryption-scheme)    | [Ps 3.9] [KL 3.2, 3.4] |
 | Oct 4     | [Construct PRG, hard-core lemma](3-prg.md#hard-core-bits-from-any-owf)    | [Ps 3.4] [KL 8.1.3,8.2,8.3] |
-| Oct 9     | [Hard-core lemma](3-prg.md#hard-core-bits-from-any-owf)    | [Ps 3.4] [KL 8.3.3] |
+| Oct 9     | [Hard-core lemma](3-prg.md#hard-core-bits-from-any-owf)    | [Ps 3.4] [KL 8.3.3] [Bellare@UCSD](https://cseweb.ucsd.edu/~mihir/papers/gl.pdf) |
 
 
