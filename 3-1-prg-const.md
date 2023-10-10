@@ -469,9 +469,11 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > There exists a distribution $Y$ such that $H_\infty \ge k \ell (1-\beta) + n^\alpha$
 > and that $Y$ is indistinguishable from $g(x)$, where $\alpha \gt 0$ is a constant.
 
-{: .proof}
+{: .proof-title}
+> Proof sketch.
+> 
 > By a non-uniform reduction, $g(U_{n\ell})$ is indistinguishable from $Z:=Y_1 ... Y_\ell$
-> such that $Y_1, Y_2, ..., Y_\ell$ are sampled from $Y'$ independently.
+> such that $Y_1, Y_2, ..., Y_\ell$ are sampled from $Y'$ independently (\* see caviate below).
 > We have Shannon entropy $H(Z) \ge k \ell + \ell/100n$, but we want $Y$ with high *min-entropy*.
 > By a Chernoff bound that is similar to the previous claim,
 > we have that for all except for exponentially small probability,
@@ -493,7 +495,15 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > Choosing $\beta(n) := 1/2n^2$ and $\ell(n) = n^9$, we have $\alpha \ge (\ell n)^{0.7} \gt 0$ for sufficiently large $n$.
 > 
 > Notice that the entropy gap is roughly $\Omega(\ell / n) - 2\beta k \ell$, which incurs a huge $\ell$.
-
+> 
+> \* Caviate (on the non-uniform reduction):
+> The reduction is non-trivial because the distribution $Y_i$ is only *existential* 
+> by the definition of weak PEG $F$ (but the reduction needs to sample $Y_i$ efficiently).
+> Using *non-uniform* reduction, we can hardwire the samples needed.
+> It is more involved for *uniform* reduction: we need to rely on the construct of $F$ (from OWF $f$)
+> so that we can invert $f(x)$ even we do not know the entropy $i^\ast(x)$. 
+> This is called *uniform* hard-core lemma, which we skip here
+> (see [Holenstein'06, Barak'08, HRV'13] for details).
 
 PRG from PEG
 ----------------------------
