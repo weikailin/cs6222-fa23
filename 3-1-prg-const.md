@@ -49,7 +49,7 @@ The following facts are borrowed from the book of Salil Vadhan,
 
 {:.defn}
 > A family of functions $\cH = \set{h : \bit^n \to \bit^m}$ is *pairwise independent* 
-> if the following two conditions hold when $H \gets \cH$ is a function chosen uniformly at random from $\cH$:
+> if the following two conditions hold when $h \gets \cH$ is a function chosen uniformly at random from $\cH$:
 > 
 > 1. For all $x \in \bit^n$, the random variable $h(x)$ is uniform in $\bit^m$.
 > 2. For all $x_1\neq x_2 \in \bit^n$, the random variables $h(x_1)$ and $h(x_2)$ are independent.
