@@ -496,14 +496,22 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > 
 > Notice that the entropy gap is roughly $\Omega(\ell / n) - 2\beta k \ell$, which incurs a huge $\ell$.
 > 
-> \* Caviate (on the non-uniform reduction):
+> \* Caviate on the non-uniform reduction:
 > The reduction is non-trivial because the distribution $Y_i$ is only *existential* 
 > by the definition of weak PEG $F$ (but the reduction needs to sample $Y_i$ efficiently).
 > Using *non-uniform* reduction, we can hardwire the samples needed.
 > It is more involved for *uniform* reduction: we need to rely on the construct of $F$ (from OWF $f$)
 > so that we can invert $f(x)$ even we do not know the entropy $i^\ast(x)$. 
-> This is called *uniform* hard-core lemma, which we skip here
-> (see [Holenstein'06, Barak'08, HRV'13] for details).
+> 
+> This is called *uniform* hard-core lemma.
+> In the reduction, each $Y_i$ is sufficiently dense (with $1/n$ fraction we replace the inner product with a uniform bit)
+> but maybe hard to sample ($i^\ast(x)$).
+> Hence, if the reduction is equipped with an oracle that decides a potential sample,
+> we can distinguish weak PEG (by calling a distinguisher of PEG in hybrids).
+> Uniform HC lemma says that, given such reduction $A$ without the oracle,
+> we can construct an adversary $B$ (without the oracle) that inverts OWF $f$.
+> We skip the statement and proof of the uniform hard-core lemma as well as 
+> the reduction,see [Holenstein'06, Barak'08, HRV'13] for details.
 
 PRG from PEG
 ----------------------------
