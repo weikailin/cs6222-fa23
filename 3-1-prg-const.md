@@ -511,7 +511,7 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > Uniform HC lemma says that, given such reduction $A$ without the oracle,
 > we can construct an adversary $B$ (without the oracle) that inverts OWF $f$.
 > We skip the statement and proof of the uniform hard-core lemma as well as 
-> the reduction,see [Holenstein'06, Barak'08, HRV'13] for details.
+> the reduction,see [Holenstein'06, Barak'08, HRV'13, [BHK09](https://dl.acm.org/doi/pdf/10.5555/1496770.1496899)] for details.
 
 PRG from PEG
 ----------------------------
