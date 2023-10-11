@@ -330,7 +330,7 @@ $$
 >> 3. For each $i=1,...,n$,
 >>    1. $t_1 \gets \bit^{i - d}$
 >>    2. For each $t_2 \in \bit^d$,
->>       - Let $t := t_1 \| t_2$.
+>>       - Let $t := t_1 \\| t_2$.
 >>       - Run $x' \gets B_0(y, i, h, t)$.
 >>       - Output $x'$ if $f(x') = y$.
 >
