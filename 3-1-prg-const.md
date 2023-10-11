@@ -153,7 +153,7 @@ choosing $F_{2^n}$ and chopping the output to $m$ bits is still pairwise indepen
 
 {:.theorem}
 > Let $\cH$ be a pairwise independent hash family, from $n$-bit strings to $n$-bit strings.
-> Let $X \in \bit^n$ be a random variable such that $H_\infty(X) = k \le n$.
+> For any random variable $X \in \bit^n$ such that $H_\infty(X) = k \le n$,
 > 
 > $$
 > \Pr[h\gets \cH, y \gets U_{k-d}: \exists x \in \Supp(X), h_{k-d}(x) = y ] \ge 1-2^{-d/2}
