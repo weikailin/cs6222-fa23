@@ -221,7 +221,7 @@ $$
 
 {:.proof}
 > We have 
-> $H(YX) = H(Y) + H(X | Y)$ for all $X,Y$.
+> $H(YX) = H(Y) + H(X | Y)$ for all $X,Y$ (proof left as exercise).
 > Hence, it suffices to show that 
 > $H(Z' | Y) \ge H(Z | Y) + \frac{1}{2n}$.
 > Conditioned on $i \neq i^\ast$, we have $H(Z' | Y) = H(Z | Y)$.
