@@ -62,6 +62,12 @@ When $M$ terminates, it should output $M \| M(x)$.
 If not, we have an easy way to invert: given an output $z$ that is short, 
 we invert it to $(M', z)$ s.t. $M'(x)$ just output $x$.
 
+### [Ps, algorithm 89.6: B(y) for the General case, p.89]
+
+The sampling of $(b_1, r_1) ...$ pairs should be used for all $i$,
+that is, to move it up and prior to any for loop.
+This is necessary to ensure all $x_i$'s are correct w.h.p.,
+and we use union bound anyways.
 
 Others
 -------
