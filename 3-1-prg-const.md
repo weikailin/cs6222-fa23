@@ -244,8 +244,8 @@ $$
 > We will show that given $(f(x), i^\ast, h, h_i(x), r)$, w.h.p. it holds that $x$ is uniquely determined,
 > and thus $Z = x \odot r$ is also determined (and gives 0 Shannon entropy).
 > 
-> For any $x \in \bit^n$ and $y \gets f(x)$, define the pre-image
-> $S := \set{ x' \in \bit^n : f(x') = y, x' \neq x}$.
+> For any $x \in \bit^n$ and $y \gets f(x)$, define the pre-image set 
+> $S := f^{-1}(f(x)) \setminus \set{x}$.
 > Notice that $|S| \le 2^{i^\ast -1}$.
 > By $h$ is pairwise independent, for any $x' \in S$,
 > 
@@ -276,7 +276,6 @@ $$
 {: .proof-title}
 > Proof Sketch.
 > 
-> It is similar to the proof of Hard-core Lemma.
 > Because $YZ, YZ'$ differ only when $i = i^\ast$, 
 > assume for contradiction, there exists NUPPT $A$, polynomial $p$, such that for inf many $n$,
 > 
@@ -286,7 +285,7 @@ $$
 > 
 > where $\alpha = 1/p(n)$.
 > 
-> We want to consturct $B$ that inverts $y \gets f(x)$.
+> We want to construct $B$ that inverts $y \gets f(x)$.
 > We have a similar claim of good $x$'s:
 > let $G$ to be the set
 > 
