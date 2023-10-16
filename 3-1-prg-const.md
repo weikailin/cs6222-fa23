@@ -391,8 +391,8 @@ PEG from Weak PEG
 >  (This is called *pseudo min-entropy*.)
 > 2. $H_\infty(g(U_m)) \le k$ with probability $1 − \eps(m)$ for negligible $\eps$. 
 >    More precisely, there is a $Y' \subseteq g(U_m)$ 
->    such that $\Pr_x(g(x) \in Y') \ge 1 − \eps(m)$ and that
->    for all $a \in Y'$, $\Pr_x(g(x) = a) \ge 2^{-k}$.
+>    such that $\Pr_x[g(x) \in Y'] \ge 1 − \eps(m)$ and that
+>    for all $a \in Y'$, $\Pr_x[g(x) = a] \ge 2^{-k}$.
 
 Notice that compared to weak PEG, here for PEG, we require that the entropy gap to be min-entropy
 (instead of Shannon entropy) and that the entropy gap to be much more than constant bits.
