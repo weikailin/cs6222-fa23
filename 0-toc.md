@@ -24,5 +24,6 @@ Table of Lecture Notes
 | Oct 4     | [Construct PRG, hard-core lemma](3-prg.md#hard-core-bits-from-any-owf)    | [Ps 3.4] [KL 8.1.3,8.2,8.3] |
 | Oct 9     | [Hard-core lemma](3-prg.md#hard-core-bits-from-any-owf)    | [Ps 3.4] [KL 8.3.3] [Bellare@UCSD](https://cseweb.ucsd.edu/~mihir/papers/gl.pdf) |
 | Oct 11    | [Recitation, pairwise independent hash, entropy](3-1-prg-const.md)    | [V, Pseudorandomness] [Barak@Princeton](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf) |
+| Oct 16    | [Weak pseudo-entropy generator](3-1-prg-const.md#weak-pseudo-entropy-generator-peg)    | [Barak@Princeton](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf) |
 
 
