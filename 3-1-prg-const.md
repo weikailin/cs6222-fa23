@@ -278,7 +278,7 @@ $$
 > let $G$ to be the set
 > 
 > $$
-> G := \set{ x \in \bit^n ~|~ \Pr_{h,r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \alpha / 2 }.
+> G := \set{ x \in \bit^n ~|~ \Pr_{h,r}[A(f(x),i^*,h,h_{i^*}(x),r) = x \odot r] \ge 1/2 + \alpha / 2 }.
 > $$
 > 
 > Then, 
@@ -288,7 +288,7 @@ $$
 > let $G_x$ to be the set
 > 
 > $$
-> \cH_x := \set{ h \in \cH ~|~ \Pr_{r}[A(f(x),i^*,h,h_i(x),r) = x \odot r] \ge 1/2 + \beta }.
+> \cH_x := \set{ h \in \cH ~|~ \Pr_{r}[A(f(x),i^*,h,h_{i^*}(x),r) = x \odot r] \ge 1/2 + \beta }.
 > $$
 > 
 > Then, 
