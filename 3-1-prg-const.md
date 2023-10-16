@@ -196,6 +196,19 @@ Is a weak PEG also a weak OWF?
 > $h_i(x)$ denotes the $i$-bit prefix of $h(x)$.
 > Then, $f$ is a weak PEG.
 
+Intuition for the construct:
+- $f(x), r, x \odot r$ is GL hardcore lemma, the starting point to obtain 
+  a pseudo-random bit (i.e., pseudo-entropy). 
+  However, $x \odot r$ gives no extra pseudo-entropy for many-to-one $f$.
+- $f(x), r, x, h(x)$ is attempting to obtain PE by
+  "identifying different" $x' \in f^{-1}(f(x))$ through $h(x)$.
+  However, by randomizing $h$, any $x''$ may map to $h(x)$ (like OTP), bad identification.
+- $f(x), r, x, h, h(x)$ is giving $h$, and we get good identification.
+  However, too good to be easy to invert $x$ since solving $h(x) = a x + b$ is easy.
+- $f(x), r, x, h, h_{i^\ast}(x), i^\ast$ is cutting $h(x)$ short to make inverting hard.
+  For proper choice of $i^\ast(x)$, this works, but $i^\ast(x)$ is hard to compute.
+- We end up with guessing random $i$.
+
 For each $x \in \bit^n$, let 
 $i^\ast(x) := \ceil{\log |f^{-1}(f(x))|}+1$.
 Let $i^\ast$ to be $i^\ast(x)$ and $Z'$ to be $Z'\_{i^\ast(x)}$ for short.
