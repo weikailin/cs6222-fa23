@@ -241,8 +241,8 @@ $$
 > We want to show that when conditioned on $i = i^\ast$, 
 > $H(Z' | Y) = 1 \ge H(Z | Y) + \frac{1}{2}$, which happens w.p. $1/n$.
 > It remains to show that $H(Z | Y) \le 1/2$.
-> We will show that given $f(x), i=i^\ast, h, h_i(x), r$, $x$ is uniquely determined w.h.p.,
-> and thus $Z = x \odot r$ is also determined (and gives 0 entropy).
+> We will show that given $(f(x), i^\ast, h, h_i(x), r)$, w.h.p. it holds that $x$ is uniquely determined,
+> and thus $Z = x \odot r$ is also determined (and gives 0 Shannon entropy).
 > 
 > For any $x \in \bit^n$ and $y \gets f(x)$, define the pre-image
 > $S := \set{ x' \in \bit^n : f(x') = y, x' \neq x}$.
