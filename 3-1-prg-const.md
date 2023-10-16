@@ -207,7 +207,7 @@ Intuition for the construct:
   However, too good to be easy to invert $x$ since solving $h(x) = a x + b$ is easy.
 - $f(x), r, x, h, h_{i^\ast}(x), i^\ast$ is cutting $h(x)$ short to make inverting hard.
   For proper choice of $i^\ast(x)$, this works, but $i^\ast(x)$ is hard to compute.
-- We end up with guessing random $i$.
+- We end up with guessing random $i$. It works, the proof follows below.
 
 For each $x \in \bit^n$, let 
 $i^\ast(x) := \ceil{\log |f^{-1}(f(x))|}+1$.
