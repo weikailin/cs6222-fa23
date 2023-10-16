@@ -340,17 +340,17 @@ $$
 > {: .defn-title}
 >> Algorithm $B_0(y, i, h, h_i)$
 >> 
->> 1. For each $i=1,2, .., n$,
->>    1. Let $\ell := \log m$, $(u_1, ..., u_\ell)$ be fully independent and 
->>       $(r_1,..., r_m)$ be pairwise independent $n$-bit random strings.
->>    2. For each $k \in [\ell]$, sample guess bit $b_k$ uniformly. For each $j \in [m]$, 
->>       compute the bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
->>       (so that for any $x$, $g_{i,j} = x \odot r_j$ and $b_k = x \odot u_k$ for all $k$).
->>    3. For each $j=1,2,..., m$,
+>> 1. Let $\ell := \log m$, $(u_1, ..., u_\ell)$ be fully independent and 
+>>    $(r_1,..., r_m)$ be pairwise independent $n$-bit random strings.
+>> 2. For each $k \in [\ell]$, sample guess bit $b_k$ uniformly. For each $j \in [m]$, 
+>>    compute the bit $g_{i,j}$ from $(b_1, ..., b_\ell)$ in the same way as $r_j$
+>>    (so that for any $x$, $g_{i,j} = x \odot r_j$ and $b_k = x \odot u_k$ for all $k$).
+>> 3. For each $i=1,2, .., n$,
+>>    1. For each $j=1,2,..., m$,
 >>       - Run $z_{i,j} \gets A(y, i, h, h_i, e_i \oplus r_j) \oplus g_{i,j}$.
 >>
->>       Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
->> 2. Output $x' := x'_1 x'_2 ... x'_n$
+>>    2. Let $x'\_i$ be the majority of $\set{z\_{i,j}}\_{j\in[m]}$
+>> 4. Output $x' := x'_1 x'_2 ... x'_n$
 > 
 > The parameter $m$ is choosen according to the success probability of $A$
 > conditioned on $x \in G$ and $h\in \cH_x$ and $(i, h_i)$ are consistent.
