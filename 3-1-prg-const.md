@@ -262,7 +262,8 @@ $$
 > & \ge 1 - |S|/2^{i^\ast} \ge 1/2,
 > \end{align*}
 > $$
-> by union bound and then by $|S|$.
+> 
+> by union bound and then by $|S|$ is small.
 > 
 > (The calculation of conditional entropy is left as exercise.)
 
