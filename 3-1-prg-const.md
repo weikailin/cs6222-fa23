@@ -264,7 +264,6 @@ $$
 > $$
 > 
 > by union bound and then by $|S|$ is small.
-> 
 > (The calculation of conditional entropy is left as exercise.)
 
 #### **Claim:** High pseudo-entropy
