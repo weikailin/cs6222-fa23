@@ -434,6 +434,7 @@ Namely,
 - Each good gives min-entropy close to $k$, and thus
 - it gives total min-entropy close to $k \ell$, upto a small fraction.
 
+This is called entropy equalization in [HRV13].
 Notice that the argument is two-sided. 
 It is formalized in the following and proved by Chernoff bound.
 
