@@ -530,7 +530,7 @@ It is formalized in the following and proved by Chernoff bound.
 > 
 > which is at least $(k\ell + \Omega(\ell / n))(1 - \beta) - 2^{-\Omega(\beta^2 \ell/ n)}$
 > because $\ln(1+x) \to x$ as $x \to 0$ by Taylor series.
-> Choosing $\beta(n) := 1/2n^2$ and $\ell(n) = n^9$, we have $\alpha \ge (\ell n)^{0.7} \gt 0$ for sufficiently large $n$.
+> Choosing $\beta(n) := 1/4n^2$ and $\ell(n) = n^9$, we have $\alpha \ge {0.5}$ for sufficiently large $n$.
 > 
 > Notice that the entropy gap is roughly $\Omega(\ell / n) - 2\beta k \ell$, which incurs a huge $\ell$.
 > 
@@ -601,9 +601,11 @@ PRG from PEG
 > 
 > \* The argument is oversimplified because the set $g^{-1}(g(x))$ can be smaller than $2^{n-k}$
 > when $g(x)$ happens w.p. less than $2^{-k}$ (and the min-entropy $k$ still holds). 
-> An easy fix is to observe and use the fact that except for a negligible fraction,
+> An simple fix is to observe and use the fact that except for a negligible fraction,
 > $g(x)$ happens w.p. $2^{-k(1\pm \beta)}$ for a small fraction $\beta$, 
 > which we has derived in the earlier PEG construction.
+> That gives min-entropy $n-k(1+\beta) = n-k-n^\beta'$ for some constant $\beta' \lt 1$,
+> and then the output length will go through with proper $\beta$.
 
 Finally, it remains to show that we can construct PRG from PEG
 *without knowing* the min-entropy $k$.
