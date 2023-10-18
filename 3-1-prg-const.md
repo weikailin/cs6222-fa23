@@ -617,13 +617,14 @@ The intuition is that:
 > which is expanding as wanted.
 > 
 > \* The argument is oversimplified because the set $g^{-1}(g(x))$ can be smaller than $2^{n-k}$
-> when $g(x)$ happens w.p. less than $2^{-k}$ (and the min-entropy $k$ still holds). 
+> when $g(x)$ happens w.p. less than $2^{-k}$ (yet the min-entropy $k$ still holds). 
 > An simple fix is to observe and use the fact that except for a negligible fraction,
 > $g(x)$ happens w.p. $2^{-k(1\pm \beta)}$ for a small fraction $\beta$, 
 > which we has derived in the earlier PEG construction.
-> That gives min-entropy $n-k(1+\beta) \ge n-k-0.01n^{8/10}$,
-> such that the constants are chosen to be dominated by $n^\alpha$,
-> and thus the output length will go through.
+> That gives sufficiently large $g^{-1}(g(x))$ and thus large min-entropy $n-k(1+\beta)$,
+> and then we choose $l_1 := n-k-k\beta - d$.
+> Because $k\beta$ is dominated by $O(n^\alpha)$,
+> the output length will go through.
 
 Finally, it remains to show that we can construct PRG from PEG
 *without knowing* the min-entropy $k$.
