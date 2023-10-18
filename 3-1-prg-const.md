@@ -579,8 +579,8 @@ PRG from PEG
 > 
 > For 1, observe that 
 > $\cD_0$ is $2^{-d/2}$-close to $\cD_1$ by Leftover Hash Lemma
-> when $l_1 \le n-k-d$ because $x$ has min-entropy at least $n-k$ given $g(x)$
-> (the set $g^{-1}(g(x))$ is at least $2^{n-k}$ by the min-entropy of $g(x)$).
+> when $l_1 \le n-k-d$ because $x$ has min-entropy at least $n-k$ given $g(x)$\*
+> (the set $g^{-1}(g(x))$ is $2^{n-k}$ by the min-entropy of $g(x)$).
 > 
 > For 2, it follows by standard reduction (computational indistinguishability is closed under efficient operations).
 > 
@@ -598,6 +598,12 @@ PRG from PEG
 > $$
 > 
 > which is expanding as wanted.
+> 
+> \* The argument is oversimplified because the set $g^{-1}(g(x))$ can be smaller than $2^{n-k}$
+> when $g(x)$ happens w.p. less than $2^{-k}$ (and the min-entropy $k$ still holds). 
+> An easy fix is to observe and use the fact that except for a negligible fraction,
+> $g(x)$ happens w.p. $2^{-k(1\pm \beta)}$ for a small fraction $\beta$, 
+> which we has derived in the earlier PEG construction.
 
 Finally, it remains to show that we can construct PRG from PEG
 *without knowing* the min-entropy $k$.
