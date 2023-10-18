@@ -527,7 +527,8 @@ It is formalized in the following and proved by Chernoff bound.
 > -\log\left( 2^{-\ell \cdot (k + 1/100n) \cdot (1-\beta)} + 2^{-\ell n} \cdot 2^{-\Omega(\beta^2 \ell/ n)} \right)
 > $$
 > 
-> which is at least $(k\ell + \Omega(\ell / n))(1 - \beta)$.
+> which is at least $(k\ell + \Omega(\ell / n))(1 - \beta) - 2^{-\Omega(\beta^2 \ell/ n)}$
+> because $\ln(1+x) \to x$ as $x \to 0$ by Taylor series.
 > Choosing $\beta(n) := 1/2n^2$ and $\ell(n) = n^9$, we have $\alpha \ge (\ell n)^{0.7} \gt 0$ for sufficiently large $n$.
 > 
 > Notice that the entropy gap is roughly $\Omega(\ell / n) - 2\beta k \ell$, which incurs a huge $\ell$.
