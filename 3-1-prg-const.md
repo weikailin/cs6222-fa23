@@ -604,7 +604,7 @@ PRG from PEG
 > An simple fix is to observe and use the fact that except for a negligible fraction,
 > $g(x)$ happens w.p. $2^{-k(1\pm \beta)}$ for a small fraction $\beta$, 
 > which we has derived in the earlier PEG construction.
-> That gives min-entropy $n-k(1+\beta) = n-k-n^\beta'$ for some constant $\beta' \lt 1$,
+> That gives min-entropy $n-k(1+\beta) = n-k-n^{\beta'}$ for some constant $\beta' \lt 1$,
 > and then the output length will go through with proper $\beta$.
 
 Finally, it remains to show that we can construct PRG from PEG
