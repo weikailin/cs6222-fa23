@@ -386,14 +386,14 @@ PEG from Weak PEG
 #### **Definition:** Pseudo-entropy generator (PEG)
 
 {:.defn}
-> A function $g : \bit^m \to \bit^n$ is called a *pseudo-entropy generator(PEG)*, 
+> A function $g : \bit^n \to \bit^n$ is called a *pseudo-entropy generator(PEG)*, 
 > if there exists a $k$ such that
-> 1. There exists $Y_m$ such that $\set{g(U\_m)}\_m \approx \set{Y\_m}\_m$ and
->  $H\_\infty(Y_m) \ge k + m^\alpha$ for some constant $\alpha \gt 0$.
+> 1. There exists $Y_n$ such that $\set{g(U\_n)}\_n \approx \set{Y\_n}\_n$ and
+>  $H\_\infty(Y_n) \ge k + n^\alpha$ for some constant $\alpha \gt 0$.
 >  (This is called *pseudo min-entropy*.)
-> 2. $H_\infty(g(U_m)) \le k$ with probability $1 − \eps(m)$ for negligible $\eps$. 
->    More precisely, there is a $Y' \subseteq g(U_m)$ 
->    such that $\Pr_x[g(x) \in Y'] \ge 1 − \eps(m)$ and that
+> 2. $H_\infty(g(U_n)) \le k$ with probability $1 − \eps(n)$ for negligible $\eps$. 
+>    More precisely, there is a $Y' \subseteq g(U_n)$ 
+>    such that $\Pr_x[g(x) \in Y'] \ge 1 − \eps(n)$ and that
 >    for all $a \in Y'$, $\Pr_x[g(x) = a] \ge 2^{-k}$.
 
 Notice that compared to weak PEG, here for PEG, we require that the entropy gap to be min-entropy
