@@ -418,18 +418,22 @@ Also recall that the weak PEG is also a weak OWF.
 
 Let $k$ be the Shannon entropy of $F(U_n)$.
 Observe that:
+
 - The min-entropy $H_\infty (F(U_n))$ can be $\ll k$
   (which is *not* good for our purpose); that means
 - There exists *bad* $a$ such that $\Pr_{x}[F(x) = a] \gg 1/2^k$; however,
 - All such $a$ *can not* take much probability mass over all $F(U_n)$ 
   (otherwise, the Shannon entropy would be $\lt k$).
+
 Therefore, since we repeat $F$ independently for $\ell$ instances,
 those bad $a$ can only happen in a small fraction of $\ell$ with non-negligible probability.
 Namely,
+
 - The Shannon entropy of $g(U_{n\ell})$ is $k \ell$.
 - Most of $F(U_n)$ instances in $g(U_{n\ell})$ are good,
 - Each good gives min-entropy close to $k$, and thus
 - it gives total min-entropy close to $k \ell$, upto a small fraction.
+
 Notice that the argument is two-sided. 
 It is formalized in the following and proved by Chernoff bound.
 
