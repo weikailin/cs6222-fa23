@@ -584,7 +584,7 @@ PRG from PEG
 > 
 > For 2, it follows by standard reduction (computational indistinguishability is closed under efficient operations).
 > 
-> For 3, observe that $k+n^\alpha \le n$ by $G$ is PEG.
+> For 3, observe that $k+n^\alpha \le n$ by $G'$ is PEG.
 > by Leftover Hash Lemma, 
 > $\cD_2$ is $2^{-d/2}$-close to $\cD_3$
 > when $l_2 \le k+n^\alpha - d$ because $Y$ has min-entropy.
