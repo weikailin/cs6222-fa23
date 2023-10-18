@@ -416,6 +416,21 @@ The construction of $g$ is identical to that from weak OWF to strong OWF.
 Also recall that the weak PEG is also a weak OWF.
 
 Let $k$ be the Shannon entropy of $F(U_n)$.
+Observe that:
+- The min-entropy $H_\infty (F(U_n))$ can be $\ll k$
+  (which is *not* good for our purpose); that means
+- There exists *bad* $a$ such that $\Pr_{x}[F(x) = a] \gg 1/2^k$; however,
+- All such $a$ *can not* take much probability mass over all $F(U_n)$ 
+  (otherwise, the Shannon entropy would be $\lt k$).
+Therefore, since we repeat $F$ independently for $\ell$ instances,
+those bad $a$ can only happen in a small fraction of $\ell$ with non-negligible probability.
+Namely,
+- The Shannon entropy of $g(U_{n\ell})$ is $k \ell$.
+- Most of $F(U_n)$ instances in $g(U_{n\ell})$ are good,
+- Each good gives min-entropy close to $k$, and thus
+- it gives total min-entropy close to $k \ell$, upto a small fraction.
+Notice that the argument is two-sided. 
+It is formalized in the following and proved by Chernoff bound.
 
 #### **Claim:** Low min-entropy
 
@@ -451,16 +466,18 @@ Let $k$ be the Shannon entropy of $F(U_n)$.
 > Repeating independently, the majority is further concentrated to an overwhelming
 > probability mass by Chernoff bound of the following form.
 > 
-> Let $X_1 ... X_\ell \in [0, n]$ be independent random variables,
-> let $X := \sum_{i\in [\ell]} X_i$, and let $\mu := \E[X]$. 
-> For any $0 \lt \delta \lt 1$,
-> 
-> $$
-> \Pr[|X - \mu| \ge \delta \mu] \le 2e^{-\mu \delta^2 / 3n}.
-> $$
+> {:.theorem-title}
+>> Chernoff's Inequality (For Real Random Variables)
+>> 
+>> Let $X_1 ... X_\ell$ be independent random variables taking real value in $[0, n]$, 
+>> let $X := \sum_{i\in [\ell]} X_i$, and let $\mu := \E[X]$. For any $0 \lt \delta \lt 1$, 
+>> 
+>> $$
+>> \Pr[|X - \mu| \ge \delta \mu] \le 2e^{-\mu \delta^2 / 3n}.
+>> $$
 > 
 > The calculation is as follows.
-> Let $\gamma(y') := \Pr[F(U_n) = y']$ for any $y' \in \bit^m$.
+> For any $y \in \bit^m$, define $\gamma(y) := \Pr[F(U_n) = y]$.
 > 
 > $$
 > \begin{align*}
