@@ -391,10 +391,11 @@ PEG from Weak PEG
 > 1. There exists $Y_n$ such that $\set{g(U\_n)}\_n \approx \set{Y\_n}\_n$ and
 >  $H\_\infty(Y_n) \ge k + n^\alpha$ for some constant $\alpha \gt 0$.
 >  (This is called *pseudo min-entropy*.)
-> 2. $H_\infty(g(U_n)) \le k$ with probability $1 − \eps(n)$ for negligible $\eps$. 
+> 2. $H_\infty(g(U_n)) \in k(1\pm \beta(n))$ with probability $1 − \eps(n)$ for negligible $\eps$ 
+>    and small fraction $\beta(n) \le 0.1 n^{\alpha-1}$. 
 >    More precisely, there is a $Y' \subseteq g(U_n)$ 
 >    such that $\Pr_x[g(x) \in Y'] \ge 1 − \eps(n)$ and that
->    for all $a \in Y'$, $\Pr_x[g(x) = a] \ge 2^{-k}$.
+>    for all $a \in Y'$, $\Pr_x[g(x) = a] \in 2^{-k(1\pm \beta)}$.
 
 Notice that compared to weak PEG, here for PEG, we require that the entropy gap to be min-entropy
 (instead of Shannon entropy) and that the entropy gap to be much more than constant bits.
@@ -530,7 +531,9 @@ It is formalized in the following and proved by Chernoff bound.
 > 
 > which is at least $(k\ell + \Omega(\ell / n))(1 - \beta) - 2^{-\Omega(\beta^2 \ell/ n)}$
 > because $\ln(1+x) \to x$ as $x \to 0$ by Taylor series.
-> Choosing $\beta(n) := 1/4n^2$ and $\ell(n) = n^9$, we have $\alpha \ge {0.5}$ for sufficiently large $n$.
+> Choosing $\beta(n) := 0.01/n^2$ and $\ell(n) = n^9$, 
+> we have the gap at least $(n\ell)^{8/10-o(1)}$ 
+> (and thus $\alpha = 0.8$, we can choose even smaller $\beta$ and larger $\ell$).
 > 
 > Notice that the entropy gap is roughly $\Omega(\ell / n) - 2\beta k \ell$, which incurs a huge $\ell$.
 > 
@@ -551,6 +554,9 @@ It is formalized in the following and proved by Chernoff bound.
 > We skip the statement and proof of the uniform hard-core lemma as well as 
 > the reduction,see [Holenstein'06, Barak'08, HRV'13, [BHK09](https://dl.acm.org/doi/pdf/10.5555/1496770.1496899)] for details.
 
+Discuss:
+If $g$ is a PEG, is $g$ also a OWF? 
+
 PRG from PEG
 ----------------------------
 
@@ -569,25 +575,36 @@ PRG from PEG
 > 
 > Then, $g$ is a PRG.
 
+The intuition is that:
+
+- Given that $g(x)$ has pseudo min-entropy $k+n^\alpha$, we transform $g(x)$ into 
+  close-to-uniform random bits using $h_2$, where we preserved almost all entropy
+  by Leftover Hash Lemma.
+- Observe that there are some remaining entropy in $x$ given $g(x)$
+  (because $k \le n - n^\alpha$ in PEG). 
+  We can obtain almost all of them using $h_1$ by Leftover Hash Lemma.
+
 {:.proof}
 > It suffices to show that 
 > 
-> 1. $\cD_0 := G'(U_n, U_{l_1}, U_{l_2})$ is satistically close to $\cD_1 := (h_1, U_{l_1}, h_2, h_2(g(U_n)))$, and
+> 1. $\cD_0 := G'(U_n, U_{l_1}, U_{l_2})$ is statistically close to $\cD_1 := (h_1, U_{l_1}, h_2, h_2(g(U_n)))$, and
 > 2. $\cD_1$ is computationally indistinguishable from $\cD_2:= (h_1, U_{l_1}, h_2, h_2(Y))$, 
 >    where $Y$ is indistinguishable from $g(U_n)$ and $H_\infty(Y) \ge k + n^\alpha$.
 > 3. $\cD_2$ is statistically close to $\cD_3 := (h_1, U_{l_1}, h_2, U_{l_2})$.
 > 
 > For 1, observe that 
-> $\cD_0$ is $2^{-d/2}$-close to $\cD_1$ by Leftover Hash Lemma
-> when $l_1 \le n-k-d$ because $x$ has min-entropy at least $n-k$ given $g(x)$\*
-> (the set $g^{-1}(g(x))$ is $2^{n-k}$ by the min-entropy of $g(x)$).
+> $\cD_0$ is $\eps_1$-close to $\cD_1$ by Leftover Hash Lemma when $l_1 \le n-k-d$.
+> It is because that except for a negligible fraction $\eps(n)$ of $x$, 
+> the min-entropy of $g(x)$ is at most $k$, and thus the set $g^{-1}(g(x))$ is at least $2^{n-k}$.\*
+> Including the negligible fraction, the statistical difference is at most
+> $\eps_1 := 2^{-d/2} + \eps(n)$.
 > 
 > For 2, it follows by standard reduction (computational indistinguishability is closed under efficient operations).
 > 
-> For 3, observe that $k+n^\alpha \le n$ by $G'$ is PEG.
-> by Leftover Hash Lemma, 
+> For 3, observe that $k+n^\alpha \le H_\infty(Y) \le n$ by $G'$ is PEG.
+> By Leftover Hash Lemma, 
 > $\cD_2$ is $2^{-d/2}$-close to $\cD_3$
-> when $l_2 \le k+n^\alpha - d$ because $Y$ has min-entropy.
+> when $l_2 \le k+n^\alpha - d$.
 > 
 > We choose $d := n^\alpha / 4$ so that $2^{-d/2}$ in the above is negligible.
 > The input size of $G'$ is $n + 2n + 2n$, while the output size is
@@ -604,8 +621,9 @@ PRG from PEG
 > An simple fix is to observe and use the fact that except for a negligible fraction,
 > $g(x)$ happens w.p. $2^{-k(1\pm \beta)}$ for a small fraction $\beta$, 
 > which we has derived in the earlier PEG construction.
-> That gives min-entropy $n-k(1+\beta) = n-k-n^{\beta'}$ for some constant $\beta' \lt 1$,
-> and then the output length will go through with proper $\beta$.
+> That gives min-entropy $n-k(1+\beta) \ge n-k-0.01n^{8/10}$,
+> such that the constants are chosen to be dominated by $n^\alpha$,
+> and thus the output length will go through.
 
 Finally, it remains to show that we can construct PRG from PEG
 *without knowing* the min-entropy $k$.
