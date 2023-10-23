@@ -26,7 +26,7 @@ idea to the public key setting. Anyone who knows the public key
 of Alice can verify a signature issued by Alice, and only those
 who know the secret key can issue signatures. [Ps, p133]
 
-Message Authentication Codes
+Message Authentication Codes (MAC)
 -------------------------
 
 #### **Definition:** MAC
@@ -62,3 +62,36 @@ Message Authentication Codes
 > \end{array}
 > \right] \le \eps(n)
 > $$
+
+#### **Construction:** MAC
+
+{:.defn}
+> Let $F = \set{ f_s}$ be a family of pseudorandom functions such that 
+> $f_s : \bit^{|s|} \to \bit^{|s|}$.
+> 
+> - $\Gen(1^n): k \gets \bit^n$.
+> - $\Tag_k(m)$: Output $f_k(m)$.
+> - $\Ver_k(m, \sigma)$: Ouptut “accept” if and only if $f_k(m) = \sigma$.
+
+#### **Theorem:**
+
+{:.theorem}
+> If there exists a pseudorandom function, then the above scheme is a 
+> Message Authentication Code over the message space $\bit^n$.
+
+{:.proof-title}
+> Proof Sketch:
+> 
+> The correctness is direct, and the security is argued below.
+> 
+> Consider a hybrid scheme and the corresponding hybrid experiment such that
+> a random function $RF$ is used instead of the PRF $f_k$.
+> The hybrid scheme is indistinguishable from the real construction
+> by the oracle indistinguishability of PRF and then by a standard reduction
+> (for any NUPPT adversary).
+> Next, in the hybrid experiment, we claim that any adversary 
+> can only win with probability at most $2^{-n}$:
+> if the adversary queries $m$, it is rejected;
+> otherwise, the adversary can only output $\sigma = RF(m)$ w.p. $2^{-n}$
+> (for even unbounded adversaries).
+
