@@ -93,14 +93,12 @@ We will follow the course of Rafael Pass in the first half, and then move on to 
 7.  Pseudo-Random Generators (PRG), indistinguishability, Pseudo-Random Functions (PRF)
 8.  CPA security. Private-key encryption.
 9.  Hard-core predicates. PRG from hard-core bits.
-10.  Public-key encryption. Trapdoor permutations.
-11.  Zero-Knowledge proofs.  
+10. Message Authentication Codes (MAC).      
+11. Signature. Identification.
     \* Oct  
-    
-12.  Collision resistant hash functions. Birthday attack.
-13.  Message Authentication Codes (MAC).  
-    
-14.  Signature. Identification.
+12. Commitment. Zero-Knowledge proofs.  
+13.  Public-key encryption. Trapdoor permutations.
+14.  Collision resistant hash functions. Birthday attack.
 15.  Oblivious algorithms. Oblivious RAM.
 16.  Garbled circuits.  
     \* Nov  
