@@ -565,7 +565,7 @@ PRG from PEG
 {:.theorem}
 > Suppose $g: \bit^n \to \bit^n$ is a PEG such that $H_\infty(g(U_n)) = k$ is known,
 > where $k \le n$.
-> Let $h_1: \bit^n \to \bit^{l_1}, h_2 \bit^n \to \bit^{l_2}$ be pairwise independent hash functions
+> Let $h_1: \bit^n \to \bit^{l_1}, h_2: \bit^n \to \bit^{l_2}$ be pairwise independent hash functions
 > sampled uniformly at random from $\cH_1, \cH_2$, where $l_1, l_2$ are chosen properly later.
 > Let $G'$ to be the function
 > 
