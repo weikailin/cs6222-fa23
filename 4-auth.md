@@ -5,6 +5,13 @@ nav_order: 4
 nav_exclude: false
 ---
 
+$
+\newcommand{\Tag}{\mathsf{Tag}}
+\newcommand{\Ver}{\mathsf{Ver}}
+\newcommand{\taccept}{\text{accept}}
+$
+{: .d-none}
+
 Authentication
 ================
 
@@ -25,18 +32,18 @@ Message Authentication Codes
 #### **Definition:** MAC
 
 {:.defn}
-> $(Gen, Tag, Ver)$ is a message authentication code (MAC) over 
+> $(\Gen, \Tag, \Ver)$ is a message authentication code (MAC) over 
 > the message space $\set{\cM_n}_n$ if the following syntax, correctness, and security hold:
 > 
-> - $Gen$ is a PPT algorithm that returns a key $k \gets Gen(1^n)$.
-> - $Tag$ is a PPT algorithm that on input key $k$ and message $m$ outputs a tag $\sigma \gets Tag_k(m)$.
-> - $Ver$ is a deterministic polynomial-time algorithm that on input $k, m$ and $\sigma$ 
+> - $\Gen$ is a PPT algorithm that returns a key $k \gets \Gen(1^n)$.
+> - $\Tag$ is a PPT algorithm that on input key $k$ and message $m$ outputs a tag $\sigma \gets \Tag_k(m)$.
+> - $\Ver$ is a deterministic polynomial-time algorithm that on input $k, m$ and $\sigma$ 
 >   outputs “accept” or “reject”.
 > 
 > Correctness: For all $n \in\N$, for all $m \in \cM_n$,
 > 
 > $$
-> \Pr[k \gets Gen(1^n) : Ver_k(m, Tag_k(m)) = \text{accept}] = 1.
+> \Pr[k \gets \Gen(1^n) : \Ver_k(m, \Tag_k(m)) = \taccept] = 1.
 > $$
 > 
 > Security: for all NUPPT adversaries $A$, there exists a negligible function $\eps(n)$
@@ -45,13 +52,13 @@ Message Authentication Codes
 > $$
 > \Pr\left[
 > \begin{array}{l}
-> k \gets Gen(1^n);\\
-> (m, \sigma) \gets A^{Tag_k(\cdot)}(1^n)
+> k \gets \Gen(1^n);\\
+> (m, \sigma) \gets A^{\Tag_k(\cdot)}(1^n)
 > \end{array}
 >  ~:~
 > \begin{array}{l}
 > A \text{ did not not query } m \text{, and }\\ 
-> Ver_k(m, \sigma) = \taccept
+> \Ver_k(m, \sigma) = \taccept
 > \end{array}
 > \right] \le \eps(n)
 > $$
