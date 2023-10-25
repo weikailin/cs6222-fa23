@@ -66,9 +66,13 @@ Message Authentication Codes (MAC)
 
 Discuss:
 
-- The adversary $A$ is allowed to oracle query $\Tag_k$. Is that too strong as $A$ gets too much info?
+- The adversary $A$ is allowed to oracle query $\Tag_k$. Is that too strong as $A$ gets too much info? 
+  What if we totally remove the oracle query?
+  What if the adversary gets some $(x, \Tag_k(x))$ pairs but only for challenger-chosen $x$'s?
 - The adversary $A$ aims to forge a tag for *arbitrary message* $m$. Is that too strong since useful messages are not arbitrary?
-- Can this definition defend against an adversary that *replay* a (message, tag) pair? Replay can be a devastating attack in many applications, such as financial transactions.
+- Can we change the definition to that $A$ wins only if it outputs a good key?
+- Can this definition defined against an adversary that *replay* a (message, tag) pair? 
+  Replay can be a devastating attack in many applications, such as financial transactions.
 - If we additionally give the adversary oracle access to verification $\Ver_k$, is the definition stronger?
 - Does the existence of MAC imply the existence of OWF? If so, what's the construction?
 
@@ -178,6 +182,8 @@ Hence, it is clear that DS implies MAC, and then it implies OWF.
 
 Lamport’s Signature Scheme
 -------------------------
+
+Refs: [Lamport'79](https://lamport.azurewebsites.net/pubs/dig-sig.pdf), [Goldwasser@Berkeley](https://inst.eecs.berkeley.edu/~cs276/fa20/slides/lec12.pdf)
 
 #### **Definition:** One-Time Digital Signatures
 
