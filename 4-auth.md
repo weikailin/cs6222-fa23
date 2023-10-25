@@ -212,6 +212,9 @@ Lamport’s Signature Scheme
 {: .theorem}
 > If $f$ is a one-way function, then the above construction is a secure one-time digital signature
 > (for $n$-bit messages).
+> 
+> As a corollary, the construction extends to messages of $\ell$ bits such that
+> $\ell := \ell(n)$ is a polynomial.
 
 **Note**{:.label}
 Many other public-key cryptographic schemes (such as public-key encryption)
