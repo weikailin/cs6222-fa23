@@ -103,3 +103,21 @@ Discuss:
 > otherwise, the adversary can only output $\sigma = RF(m)$ w.p. $2^{-n}$
 > (for even unbounded adversaries).
 
+#### From fixed-length to arbitrary length
+
+The above definition and construction consider MAC for messages in space $\cM_n$ so that
+the length is fixed.
+Of course, to handle arbitrarily long messages,
+we can instantiate the PRF in the construction with a PRF scheme of arbitrary length.
+However, existing
+practical pseudorandom functions (i.e., block ciphers) take short, ﬁxed-length inputs.
+It is necessary in practice to handle some subtleties, and this is called "domain extension" in general.
+
+1. Split a long message into a sequence of short "blocks" and then $\Tag$ each.
+2. Include a sequence number into each block (to prevent reordering attack).
+3. Append to every block the total length (to prevent truncation attack).
+
+There are other approaches, such as CBC-MAC (which is *only secure when* 
+the message length is "ﬁxed and agreed upon in advance", see [KL, Exercise 4.13]).
+We skip the details of the constructs.
+
