@@ -104,7 +104,7 @@ Discuss:
 > (for any NUPPT adversary).
 > Next, in the hybrid experiment, we claim that any adversary 
 > can only win with probability at most $2^{-n}$:
-> if the adversary queries $m$, it is rejected;
+> if the adversary queries $m$, it is always rejected;
 > otherwise, the adversary can only output $\sigma = RF(m)$ w.p. $2^{-n}$
 > (for even unbounded adversaries).
 
