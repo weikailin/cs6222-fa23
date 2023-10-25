@@ -63,6 +63,14 @@ Message Authentication Codes (MAC)
 > \right] \le \eps(n)
 > $$
 
+Discuss:
+
+- The adversary $A$ is allowed to oracle query $\Tag_k$. Is that too strong as $A$ gets too much info?
+- The adversary $A$ aims to forge a tag for *arbitrary message* $m$. Is that too strong since useful messages are not arbitrary?
+- Can this definition defend against an adversary that *replay* a (message, tag) pair? Replay can be a devastating attack in many applications, such as financial transactions.
+- If we additionally give the adversary oracle access to verification $\Ver_k$, is the definition stronger?
+- Does the existence of MAC imply the existence of OWF? If so, what's the construction?
+
 #### **Construction:** MAC
 
 {:.defn}
