@@ -207,6 +207,12 @@ Lamport’s Signature Scheme
 > 1. Output $\taccept$ iff for all $i \in [n]$, it holds that
 >    $f(x_{m_i}^i) = y_{m_i}^i$, where $x_{m_i}^i$ comes from $\sigma$ and $y_{m_i}^i$ comes from $\pk$.
 
+#### **Theorem:**
+
+{: .theorem}
+> If $f$ is a one-way function, then the above construction is a secure one-time digital signature
+> (for $n$-bit messages).
+
 **Note**{:.label}
 Many other public-key cryptographic schemes (such as public-key encryption)
 relied on stronger assumptions (such as PKE from RSA assumption), 
