@@ -196,7 +196,7 @@ Lamport’s Signature Scheme
 > 
 > 1. Sample strings $x_b^i \gets \bit^n$ for $i \in [n], b \in \bit$.
 > 2. Compute $y_b^i = f(x_b^i)$ for all $i, b$
-> 3. Output $\pk := (y_b^i)_{i,b}$ and $\sk := (x_b^i)_{i,b}$.
+> 3. Output $\pk := (y\_b^i)\_{i,b}$ and $\sk := (x\_b^i)\_{i,b}$.
 > 
 > $\Sign_\sk(m)$:
 > 
