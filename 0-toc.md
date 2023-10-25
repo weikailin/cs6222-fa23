@@ -27,6 +27,6 @@ Table of Lecture Notes
 | Oct 16    | [Weak pseudo-entropy generator](3-1-prg-const.md#weak-pseudo-entropy-generator-peg)    | [Barak@Princeton](https://www.cs.princeton.edu/courses/archive/spr08/cos598D/scribe3.pdf) |
 | Oct 18    | [Pseudo-entropy generator](3-1-prg-const.md#peg-from-weak-peg)    | [Barak@Princeton] |
 | Oct 23    | [From PEG to PRG](3-1-prg-const.md#prg-from-peg)    | [Barak@Princeton] |
-| Oct 25    | [Message Authentication]    | [Ps 5.1, 5.2] [KL 4.1-4.3] |
+| Oct 25    | [Message Authentication](4-auth.md)    | [Ps 5.1, 5.2] [KL 4.1-4.3] |
 
 
