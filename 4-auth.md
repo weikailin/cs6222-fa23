@@ -8,6 +8,7 @@ nav_exclude: false
 $
 \newcommand{\Tag}{\mathsf{Tag}}
 \newcommand{\Ver}{\mathsf{Ver}}
+\newcommand{\Sign}{\mathsf{Sign}}
 \newcommand{\taccept}{\text{accept}}
 $
 {: .d-none}

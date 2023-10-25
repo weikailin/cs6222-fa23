@@ -48,6 +48,8 @@ MathJax = {
       cY: "\\mathcal{Y}",
       cZ: "\\mathcal{Z}",
       Gen: "\\mathsf{Gen}",
+      pk: "\\mathit{pk}",
+      sk: "\\mathit{sk}",
     },
   },
   autoload: {
