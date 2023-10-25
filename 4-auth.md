@@ -157,12 +157,12 @@ Digital Signature Schemes
 > Security:
 > For all NUPPT adversaries $A$, there exists a negligible function $\eps(n)$ such that
 > $\forall n \in \N$,
-
+> 
 > $$
 > \Pr\left[
 > \begin{array}{l}
 > \pk,\sk \gets \Gen(1^n);\\
-> (m, \sigma) \gets A^{\Sign_\pk(\cdot)}(1^n)
+> (m, \sigma) \gets A^{\Sign_\sk(\cdot)}(1^n, \pk)
 > \end{array}
 >  ~:~
 > \begin{array}{l}
@@ -171,4 +171,8 @@ Digital Signature Schemes
 > \end{array}
 > \right] \le \eps(n)
 > $$
+
+Note that the definition is a public-key version of MAC. 
+Also, since the verification uses only public key, $A$ can perform verification without oracle queries.
+
 

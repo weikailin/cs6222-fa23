@@ -69,6 +69,10 @@ that is, to move it up and prior to any for loop.
 This is necessary to ensure all $x_i$'s are correct w.h.p.,
 and we use union bound anyways.
 
+### [Ps, Definition 136.2]
+
+$A$ shall be given $pk$ as input (in addition to $1^n$).
+
 Others
 -------
 Related courses:
