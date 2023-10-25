@@ -176,3 +176,39 @@ Note that the definition is a public-key version of MAC.
 Also, since the verification uses only public key, $A$ can perform verification without oracle queries.
 
 
+Lamport’s Signature Scheme
+-------------------------
+
+#### **Definition:** One-Time Digital Signatures
+
+{:.defn}
+> $(\Gen, \Sign, \Ver)$ is a one-time digital signature scheme 
+> the definition of DS is satisfied under the constraint that the adversary $A$ 
+> is only allowed to query the signing oracle *once* (in $A^{\Sign_\sk(\cdot)}$).
+
+#### **Construct:** Lamport's Digital Signature
+
+{:.defn}
+> Let $f: \bit^\ast \to \bit^\ast$ be a OWF.
+> Given $n \in \N$, $(\Gen, \Sign, \Ver)$ is constructed as follows for $\cM_n := \bit^n$.
+> 
+> $\Gen(1^n)$:
+> 
+> 1. Sample strings $x_b^i \gets \bit^n$ for $i \in [n], b \in \bit$.
+> 2. Compute $y_b^i = f(x_b^i)$ for all $i, b$
+> 3. Output $\pk := (y_b^i)_{i,b}$ and $\sk := (x_b^i)_{i,b}$.
+> 
+> $\Sign_\sk(m)$:
+> 
+> 1. Output $\sigma := (x_{m_i}^i)_{i\in[n]}$, where $m_i$ denotes the $i$-th bit of $m$.
+> 
+> $\Ver_\pk(\sigma)$:
+> 
+> 1. Output $\taccept$ iff for all $i \in [n]$, it holds that
+>    $f(x_{m_i}^i) = y_{m_i}^i$, where $x_{m_i}^i$ comes from $\sigma$ and $y_{m_i}^i$ comes from $\pk$.
+
+**Note**{:.label}
+Many other public-key cryptographic schemes (such as public-key encryption)
+relied on stronger assumptions (such as PKE from RSA assumption), 
+and we do not know any construction from OWF.
+Digital signature is a big surprise since we get it from OWF.
