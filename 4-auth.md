@@ -322,3 +322,6 @@ and then we can use $f_k(x)$ be the randomness needed by node $x$
 Key $k$ is added to be part of the secret key, 
 and signer can always generate the identical $(\pk_x, \sk_x)$ at node $x$.
 
+Discuss:
+
+- If the number of messages is not given in advance, how to build a DS?
