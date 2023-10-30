@@ -175,7 +175,7 @@ Digital Signature Schemes
 > \end{array}
 > \right] \le \eps(n)
 > $$
-
+$
 Note that the definition is a public-key version of MAC. 
 Also, since the verification uses only public key, $A$ can perform verification without oracle queries.
 Hence, it is clear that DS implies MAC, and then it implies OWF.
@@ -183,12 +183,12 @@ Hence, it is clear that DS implies MAC, and then it implies OWF.
 Lamport’s Signature Scheme
 -------------------------
 
-Refs: [Lamport'79](https://lamport.azurewebsites.net/pubs/dig-sig.pdf), [Goldwasser@Berkeley](https://inst.eecs.berkeley.edu/~cs276/fa20/slides/lec12.pdf)
+Refs: [KL 14.4], [Lamport'79](https://lamport.azurewebsites.net/pubs/dig-sig.pdf), [Goldwasser@Berkeley](https://inst.eecs.berkeley.edu/~cs276/fa20/slides/lec12.pdf)
 
 #### **Definition:** One-Time Digital Signatures
 
 {:.defn}
-> $(\Gen, \Sign, \Ver)$ is a one-time digital signature scheme 
+> $(\Gen, \Sign, \Ver)$ is a *one-time* digital signature scheme 
 > the definition of DS is satisfied under the constraint that the adversary $A$ 
 > is only allowed to query the signing oracle *once* (in $A^{\Sign_\sk(\cdot)}$).
 
@@ -216,8 +216,8 @@ Refs: [Lamport'79](https://lamport.azurewebsites.net/pubs/dig-sig.pdf), [Goldwas
 #### **Theorem:**
 
 {: .theorem}
-> If $f$ is a one-way function, then the above construction is a secure one-time digital signature
-> (for $n$-bit messages).
+> If $f$ is a one-way function, then [Lamport's Signature](#lamports-signature-scheme) is a secure one-time digital signature
+> (for $n$-bit messages).\$ $$
 > 
 > As a corollary, the construction extends to messages of $\ell$ bits such that
 > $\ell := \ell(n)$ is a polynomial.
@@ -227,3 +227,14 @@ Many other public-key cryptographic schemes (such as public-key encryption)
 relied on stronger assumptions (such as PKE from RSA assumption), 
 and we do not know any construction from OWF.
 Digital signature is a big surprise since we get it from OWF.
+
+{:.proof-title}
+> Proof sketch.
+> 
+> We want to prove by contradiction: 
+> if there exists $\cA$ that makes one-time query $m'$ and 
+> then forges the message and signature $(m, \sigma)$ with $m \neq m'$,
+> then we want to construct another adversary $\cB$ that inverts $f$.
+> The intuition is that given $m \neq m'$, 
+> 
+> Let $m$ be the (one-time) query made by 
