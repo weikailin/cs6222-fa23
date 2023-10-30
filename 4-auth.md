@@ -280,3 +280,29 @@ Digital signature is a big surprise since we get it from OWF.
 > Notice that $A$ can not know $b^\ast$ nor $i^\ast$ 
 > because all entries in $\pk$ are identically distributed.
 > Hence, $\Pr[m'\_{i^\ast} \neq b^\ast] = 1/2$, and $\Pr[m\_{i^\ast} \neq m\_{i^\ast}] \geq 1/n$.
+
+Tree-based Signatures
+-------------------------
+
+Ref: [KL 14.4.2, 14.4.3]
+
+How to extend one-time signature to sign many messages?
+When signing a message, we can *additionally generate the next pair of $(\pk_1,\sk_1)$*
+and then sign and send the next $\pk_1$ with the current message, 
+and so on for the next messages.
+The verifier needs to verify and to keep the next $\pk_1$.
+That is, both the signer and verifier need to keep states, 
+or the signing / verification time is linear in the number of signed messages.
+
+To improve it, we use tree-based approach.
+That is, for each pair $(\pk, \sk)$, we sign *two* public keys $\pk_0, \pk_1$,
+and then each $\pk_b$ (together with the corresponding $\sk_b$) can further sign two keys $\pk_{b0}, \pk_{b1}$,
+and so on.
+We build a tree of $2^n$ leaves so that we can sign up to $2^n$ messages,
+and the signature consists of $n$ one-time signatures:
+
+$$
+\sigma := (\pk, \sigma_0, (\pk_0, \pk_1), \sigma_1, (\pk_{00},\pk_{01}), ..., \sigma_{n-1}, (\pk_{0^n},\pk_{00...01}), \Sign_{\sk_{00...0}}(m)),
+$$
+
+where $\sigma_i \gets \Sign_{\sk_{0^i}}(\pk_{0^i 0},\pk_{0^i 1})$.
