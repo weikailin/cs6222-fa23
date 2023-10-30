@@ -139,6 +139,8 @@ Digital Signature Schemes
 > 
 > -- [Ps, Section 5.3]
 
+Ref: [KL 13.1, 13.2, 13.6]
+
 #### **Definition:** Digital Signatures
 
 {:.defn}
@@ -176,9 +178,16 @@ Digital Signature Schemes
 > \right] \le \eps(n)
 > $$
 
-Note that the definition is a public-key version of MAC. 
-Also, since the verification uses only public key, $$A$$ can perform verification without oracle queries.
-Hence, it is clear that DS implies MAC, and then it implies OWF.
+Discuss:
+
+- $\pk$ must be sent to the verifier through an athenticated way (by definition in the above).
+  If we have that authenticated way, why do we need DS then?
+- Would it be meaningful if $A$ gets no oracle access to $\Sign_\sk$, since $A$ is given $\pk$ as input?
+- Would it be meaningful if $A$ gets oracle access to $\Sign_\sk$ but *only once*?
+- The definition is a public-key version of MAC.
+- Since the verification uses only public key, $$A$$ can perform verification without oracle queries.
+- Hence, it is clear that DS implies MAC, and then it implies OWF.
+- Can we obtain a digital signature from (public-key) encryption?
 
 Lamport’s Signature Scheme
 -------------------------
