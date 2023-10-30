@@ -217,7 +217,7 @@ Refs: [KL 14.4], [Lamport'79](https://lamport.azurewebsites.net/pubs/dig-sig.pdf
 
 {: .theorem}
 > If $$f$$ is a one-way function, then [Lamport's Signature](#lamports-signature-scheme) is a secure one-time digital signature
-> (for $$n$$-bit messages).\$ $$
+> (for $$n$$-bit messages).
 > 
 > As a corollary, the construction extends to messages of $$\ell$$ bits such that
 > $$\ell := \ell(n)$$ is a polynomial.
@@ -229,12 +229,24 @@ and we do not know any construction from OWF.
 Digital signature is a big surprise since we get it from OWF.
 
 {:.proof-title}
-> Proof sketch.
-> 
-> We want to prove by contradiction: 
-> if there exists $$\cA$$ that makes one-time query $$m'$$ and 
-> then forges the message and signature $$(m, \sigma)$$ with $$m \neq m'$$,
-> then we want to construct another adversary $$\cB$$ that inverts $$f$$.
-> The intuition is that given $$m \neq m'$$, 
-> 
-> Let $$m$$ be the (one-time) query made by 
+<div>
+Proof sketch.
+
+We want to prove by contradiction: 
+if there exists $$A$$ that makes one-time query $$m'$$ and 
+then forges the message and signature $$(m, \sigma)$$ with $$m \neq m'$$,
+then we want to construct another adversary $$\cB$$ that inverts $$f$$.
+The intuition is that given $$m \neq m'$$, there exists a bit $m_i \neq m'_i$ for some $i$,
+and then in order to pass the verification of $(m, \sigma)$, 
+$A$ must be able to find the pre-image of the $i$-th entry of $\pk$, which is inverting $f$.
+
+The tricky step is that in the reduction, we need to give $\pk$ to $A$ up front.
+Since we have no idea about $i$ at that step, we are going to guess it.
+
+More formally, assume for contradiction, there exists NUPPT adversary $A$ and polynomial $p$
+such that for infinitely many $n \in \N$, 
+
+$$
+\Pr[]
+$$
+</div>
