@@ -10,6 +10,7 @@ $$
 \newcommand{\Ver}{\mathsf{Ver}}
 \newcommand{\Sign}{\mathsf{Sign}}
 \newcommand{\taccept}{\text{accept}}
+\newcommand{\twin}{\text{ win}}
 $$
 {: .d-none}
 
@@ -270,12 +271,12 @@ Digital signature is a big surprise since we get it from OWF.
 >> 2. Sample $b^\ast \gets \bit, i^\ast \gets [n]$ uniformly at random.
 >> 3. Modify $\pk$ by setting $y_{b^\ast}^{i^\ast} \gets z$.
 >> 4. Run $A^{\Sign_\sk(\cdot)}(\pk)$: 
->>    if $A$ queries $m'$ such that $m'_{i^\ast} = b^\ast$, then output $\bot$ ("fail" symbol);
->>    otherwise, respond to $A$ the signature as per $\Sign_\sk$.
+>>    if $A$ queries $m'$ such that $m'\_{i^\ast} = b^\ast$, then output $\bot$ ("fail" symbol);
+>>    otherwise, respond to $A$ the signature as per $\Sign\_\sk$.
 >>    Let the result be $(m, \sigma)$.
->> 5. If $m_{i^\ast} \neq m_{i^\ast}$, then output $\sigma$ (as a candidate pre-image of $z$);
+>> 5. If $m_{i^\ast} \neq m'_{i^\ast}$, then output $\sigma$ (as a candidate pre-image of $z$);
 >>    output $\bot$ otherwise.
 > 
 > Notice that $A$ can not know $b^\ast$ nor $i^\ast$ 
 > because all entries in $\pk$ are identically distributed.
-> Hence, $\Pr[m'_{i^\ast} \neq b^\ast] = 1/2$, and $\Pr[m_{i^\ast} \neq m_{i^\ast}] \geq 1/n$.
+> Hence, $\Pr[m'\_{i^\ast} \neq b^\ast] = 1/2$, and $\Pr[m\_{i^\ast} \neq m\_{i^\ast}] \geq 1/n$.
