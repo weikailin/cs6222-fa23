@@ -229,24 +229,44 @@ and we do not know any construction from OWF.
 Digital signature is a big surprise since we get it from OWF.
 
 {:.proof-title}
-<div>
-Proof sketch.
-
-We want to prove by contradiction: 
-if there exists $$A$$ that makes one-time query $$m'$$ and 
-then forges the message and signature $$(m, \sigma)$$ with $$m \neq m'$$,
-then we want to construct another adversary $$\cB$$ that inverts $$f$$.
-The intuition is that given $$m \neq m'$$, there exists a bit $m_i \neq m'_i$ for some $i$,
-and then in order to pass the verification of $(m, \sigma)$, 
-$A$ must be able to find the pre-image of the $i$-th entry of $\pk$, which is inverting $f$.
-
-The tricky step is that in the reduction, we need to give $\pk$ to $A$ up front.
-Since we have no idea about $i$ at that step, we are going to guess it.
-
-More formally, assume for contradiction, there exists NUPPT adversary $A$ and polynomial $p$
-such that for infinitely many $n \in \N$, 
-
-$$
-\Pr[]
-$$
-</div>
+> Proof sketch.
+> 
+> We want to prove by contradiction: 
+> if there exists $$A$$ that makes one-time query $$m'$$ and 
+> then forges the message and signature $$(m, \sigma)$$ with $$m \neq m'$$,
+> then we want to construct another adversary $$\cB$$ that inverts $$f$$.
+> The intuition is that given $$m \neq m'$$, there exists a bit $m_i \neq m'_i$ for some $i$,
+> and then in order to pass the verification of $(m, \sigma)$, 
+> $A$ must be able to find the pre-image of the $i$-th entry of $\pk$, which is inverting $f$.
+> 
+> The tricky step is that in the reduction, we need to give $\pk$ to $A$ up front.
+> Since we have no idea about $i$ at that step, we are going to guess it.
+> 
+> More formally, assume for contradiction, there exists NUPPT adversary $A$ and polynomial $p$
+> such that for infinitely many $n \in \N$, 
+> 
+> $$
+> \Pr[A \twin] \ge 1/p(n),
+> $$
+> 
+> where $A \twin$ denotes the event that $m \neq m'$ and $\Ver_\pk(m, \sigma) =$ accept in the security game.
+> We want to construct $B$ that inverts $f$.
+> 
+> Let $z \gets f(x)$ and $x \gets \bit^n$. $B$ is constructed as below.
+> 
+> {:.defn-title}
+>> Algorithm $B(1^n, z)$:
+>> 
+>> 1. Sample $\pk := (y\_b^i)\_{i,b}$ and $\sk := (x\_b^i)\_{i,b}$ as per Lamport's key generation.
+>> 2. Sample $b^\ast \gets \bit, i^\ast \gets [n]$ uniformly at random.
+>> 3. Modify $\pk$ by setting $y_{b^\ast}^{i^\ast} \gets z$.
+>> 4. Run $A^{\Sign_\sk(\cdot)}(\pk)$: 
+>>    if $A$ queries $m'$ such that $m'_{i^\ast} = b^\ast$, then output $\bot$ ("fail" symbol);
+>>    otherwise, respond to $A$ the signature as per $\Sign_\sk$.
+>>    Let the result be $(m, \sigma)$.
+>> 5. If $m_{i^\ast} \neq m_{i^\ast}$, then output $\sigma$ (as a candidate pre-image of $z$);
+>>    output $\bot$ otherwise.
+> 
+> Notice that $A$ can not know $b^\ast$ nor $i^\ast$ 
+> because all entries in $\pk$ are identically distributed.
+> Hence, $\Pr[m'_{i^\ast} \neq b^\ast] = 1/2$, and $\Pr[m_{i^\ast} \neq m_{i^\ast}] \geq 1/n$.
