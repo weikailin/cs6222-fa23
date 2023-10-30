@@ -141,6 +141,3 @@ this is a note, block-level.
 > Proof of Theorem:
 > 
 > (customized title)
-
-([^\\\$])\$([^\$])
-\1\$\$\2
