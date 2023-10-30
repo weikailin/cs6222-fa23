@@ -299,10 +299,26 @@ That is, for each pair $(\pk, \sk)$, we sign *two* public keys $\pk_0, \pk_1$,
 and then each $\pk_b$ (together with the corresponding $\sk_b$) can further sign two keys $\pk_{b0}, \pk_{b1}$,
 and so on.
 We build a tree of $2^n$ leaves so that we can sign up to $2^n$ messages,
-and the signature consists of $n$ one-time signatures:
+and the first signature consists of $n$ one-time signatures:
 
 $$
 \sigma := (\pk, \sigma_0, (\pk_0, \pk_1), \sigma_1, (\pk_{00},\pk_{01}), ..., \sigma_{n-1}, (\pk_{0^n},\pk_{00...01}), \Sign_{\sk_{00...0}}(m)),
 $$
 
 where $\sigma_i \gets \Sign_{\sk_{0^i}}(\pk_{0^i 0},\pk_{0^i 1})$.
+The second, thrid, and forth signatures and so on are moving the path from
+$000...00$ to $000...01$ and then to $000...10$ and so on.
+Because all the $(\pk_x, \sk_x)$ pairs are one-time, the signer keeps a state 
+that counts the number of messages signed so far and all the $(\pk_x, \sk_x)$ pairs generated so far
+so that the next message is signed consistently.
+The verifier is stateless and keeps only $\pk$.
+
+The above scheme can be further improved to achieve a *stateless signer* 
+by using a PRF to generate the randomess needed by each tree node.
+That is, let $x$ be a string of less then $n$ bits that indicates the tree node,
+and let $f_k$ be a PRF with key $k$ sampled one-time up front,
+and then we can use $f_k(x)$ be the randomness needed by node $x$
+(since we need only two $\Gen$ and one $\Sign$ at each tree node).
+Key $k$ is added to be part of the secret key, 
+and signer can always generate the identical $(\pk_x, \sk_x)$ at node $x$.
+
