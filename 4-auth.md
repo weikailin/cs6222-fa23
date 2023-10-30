@@ -175,7 +175,7 @@ Digital Signature Schemes
 > \end{array}
 > \right] \le \eps(n)
 > $$
-$$
+
 Note that the definition is a public-key version of MAC. 
 Also, since the verification uses only public key, $$A$$ can perform verification without oracle queries.
 Hence, it is clear that DS implies MAC, and then it implies OWF.
