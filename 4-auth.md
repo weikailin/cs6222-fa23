@@ -325,3 +325,17 @@ and signer can always generate the identical $(\pk_x, \sk_x)$ at node $x$.
 Discuss:
 
 - If the number of messages is not given in advance, how to build a DS?
+
+**Notice**{:.label .label-blue}
+If we plug Lamport's signature into the above composition, then
+the length of the signature will *grow exponentially* because
+the public key is *much longer* than the message (and we sign the $\pk$'s).
+An easier "fix" is to shrink the message to a shorter "hash" and then sign the hash.
+That is, the signer S and verifier V agree on a keyed hash function $h_k$,
+S computes the (shorter) hash $h_k(m)$ from message $m$ so that S can sign the hash and V can verify.
+Of course, we need a secure hash function so that any adversary given $k$ can not 
+forge another $m' \neg m$ but $h_k(m') = h_k(m)$.
+This property is called *targeted collision resistant hash functions* or *universal one-way **hash** functions*.
+Such hash functions can be constructed from one-way functions [Section 6.4.3, FoC, Vol 2, Goldreich], 
+[Naor and Yung, Universal One-Way Hash Functions and their Cryptographic Application, STOC 1989],
+[Rompel, One-Way Functions Are Necessary and Sufficient for Secure Signatures, STOC 1990].
