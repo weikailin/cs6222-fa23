@@ -334,7 +334,7 @@ An easier "fix" is to shrink the message to a shorter "hash" and then sign the h
 That is, the signer S and verifier V agree on a keyed hash function $h_k$,
 S computes the (shorter) hash $h_k(m)$ from message $m$ so that S can sign the hash and V can verify.
 Of course, we need a secure hash function so that any adversary given $k$ can not 
-forge another $m' \neg m$ but $h_k(m') = h_k(m)$.
+forge another $m' \neq m$ but $h_k(m') = h_k(m)$.
 This property is called *targeted collision resistant hash functions* or *universal one-way **hash** functions* (UOWHF).
 Such hash functions can be constructed from one-way functions.
 We omit the proof here because UOWHF is implied by collision-resistant hash functions (CRHF),
