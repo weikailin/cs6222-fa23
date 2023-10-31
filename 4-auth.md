@@ -339,6 +339,10 @@ This property is called *targeted collision resistant hash functions* or *univer
 Such hash functions can be constructed from one-way functions.
 We omit the proof here because UOWHF is implied by collision-resistant hash functions (CRHF),
 which is also a standard abstract assumption.
-[Section 6.4.3, FoC, Vol 2, Goldreich], 
-[Naor and Yung, Universal One-Way Hash Functions and their Cryptographic Application, STOC 1989],
-[Rompel, One-Way Functions Are Necessary and Sufficient for Secure Signatures, STOC 1990].
+Historically, [Naor and Yung](https://dl.acm.org/doi/10.1145/73007.73011 "Universal One-Way Hash Functions and their Cryptographic Application, STOC 1989") formalized UOWHF and constructed it from one-way permutations,
+and then [Rompel](https://dl.acm.org/doi/10.1145/100216.100269 "One-Way Functions Are Necessary and Sufficient for Secure Signatures, STOC 1990") constructed UOWHF from any OWF.
+[Goldreich, FoC, Vol 2, Section 6.4.3] shows the result of Naor and Yung, 
+and Rompel's result is later proved formally by [Katz and Koo](https://eprint.iacr.org/2005/328 "On Constructing Universal One-Way Hash Functions from Arbitrary One-Way Functions").
+Similar to PRG, it is still active research, e.g., 
+[Mao, Nazor, and Zhang](https://eprint.iacr.org/2022/431 "Non-Adaptive Universal One-Way Hash Functions from Arbitrary One-Way Functions, Eurocrypt 2023")
+improved the construction to be *non-adaptive* (ie parallel) calls to OWF.
