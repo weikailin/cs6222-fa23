@@ -30,6 +30,7 @@ MathJax = {
       bit: "\\set{0,1}",
       bits: "\\bit^\\ast",
       N: "\\mathbb{N}",
+      Z: "\\mathbb{Z}",
       eps: "\\epsilon",
       poly: "\\mathrm{poly}",
       Supp: "\\mathrm{Supp}",
