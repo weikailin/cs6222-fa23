@@ -369,6 +369,10 @@ Collision-Resistant Hash Functions
 >   \Pr[i \gets \Gen(1^n); (x, x') \gets A(1^n, i) ~:~ h_i(x) = h_i(x') \wedge x \neq x'] \le \eps(n).
 >   $$
 
+**Note**{:.label}
+Key $k$ is necessary to defend against non-uniform adversaries, 
+which is unlike practical unkeyed hash functions such as SHA.
+
 #### **Definition:** Universal One-Way Hash Functions
 
 {:.defn}
