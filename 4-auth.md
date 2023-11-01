@@ -346,3 +346,7 @@ and Rompel's result is later proved formally by [Katz and Koo](https://eprint.ia
 Similar to PRG, it is still active research, e.g., 
 [Mao, Nazor, and Zhang](https://eprint.iacr.org/2022/431 "Non-Adaptive Universal One-Way Hash Functions from Arbitrary One-Way Functions, Eurocrypt 2023")
 improved the construction to be *non-adaptive* (ie parallel) calls to OWF.
+<!-- 
+"Winternitz one-time signature" is another approach, and it can be based on PRF (and thus OWF)
+see [Zhang, Cui, and Yu](https://eprint.iacr.org/2023/850.pdf "Revisiting the Constant-Sum Winternitz One-Time Signature with Applications to SPHINCS+ and XMSS, Crypto 2023").
+ -->
