@@ -373,7 +373,7 @@ Collision-Resistant Hash Functions
 
 {:.defn}
 > A set of functions 
-> $H = \set{h_k : \bit^{d(n)} \to \bit^{r(n)}, n = |k|}_{k \in \bit*}$ is 
+> $H = \set{h_k : \bit^{d(n)} \to \bit^{r(n)}, n = |k|}_{k \in \bit^\ast}$ is 
 > a family of *universal one-way hash functions (UOWHF)* if:
 > 
 > - (compression) $r(n) \lt d(n)$.
