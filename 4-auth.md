@@ -383,7 +383,7 @@ Collision-Resistant Hash Functions
 >   
 >   1. $(x, state) \gets A(1^n)$
 >   2. $k \gets \bit^n$
->   3. $x' \gets A(1^n, k)$
+>   3. $x' \gets A(1^n, k, state)$
 >   4. $A$ wins if $x' \neq x$ and $f_k(x') = f_k(x)$
 
 A CRHF is a UOWHF and also a OWF, and we can construct UOWHF from OWF.
