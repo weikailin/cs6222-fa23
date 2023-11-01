@@ -337,8 +337,7 @@ Of course, we need a secure hash function so that any adversary given $k$ can no
 forge another $m' \neq m$ but $h_k(m') = h_k(m)$.
 This property is called *targeted collision resistant hash functions* or *universal one-way **hash** functions* (UOWHF).
 Such hash functions can be constructed from one-way functions.
-We omit the proof here because UOWHF is implied by collision-resistant hash functions (CRHF),
-which is also a standard abstract assumption.
+We omit the proof here and give CRHF below since UOWHF is implied by CRHF.
 Historically, [Naor and Yung](https://dl.acm.org/doi/10.1145/73007.73011 "Universal One-Way Hash Functions and their Cryptographic Application, STOC 1989") formalized UOWHF and constructed it from one-way permutations,
 and then [Rompel](https://dl.acm.org/doi/10.1145/100216.100269 "One-Way Functions Are Necessary and Sufficient for Secure Signatures, STOC 1990") constructed UOWHF from any OWF.
 [Goldreich, FoC, Vol 2, Section 6.4.3] shows the result of Naor and Yung, 
@@ -350,3 +349,132 @@ improved the construction to be *non-adaptive* (ie parallel) calls to OWF.
 "Winternitz one-time signature" is another approach, and it can be based on PRF (and thus OWF)
 see [Zhang, Cui, and Yu](https://eprint.iacr.org/2023/850.pdf "Revisiting the Constant-Sum Winternitz One-Time Signature with Applications to SPHINCS+ and XMSS, Crypto 2023").
  -->
+
+Collision-Resistant Hash Functions
+-------------------------
+
+#### **Definition:** Collision-Resistant Hash Functions
+
+{:.defn}
+> A set of functions $H = \set{h_i : D_i \to R_i}_{i\in I}$ and algorithm $\Gen$ is 
+> a family of *collision-resistant hash functions (CRHF)* if:
+> 
+> - (ease of sampling) $i\gets \Gen(1^n)$ runs in PPT, $i \in I$.
+> - (compression) $|R_i| \lt |D_i|$.
+> - (ease of evaluation) Given $i \in I$ and $x \in R_i$, the computation of $h_i(x)$ can be done in PPT.
+> - (collision resistance) for all NUPPT $A$, there exists a negligible $\eps$ such that $\forall n \in \N$, 
+>   
+>   $$
+>   \Pr[i \gets \Gen(1^n); (x, x') \gets A(1^n, i) ~:~ h_i(x) = h_i(x') \wedge x \neq x'] \le \eps(n).
+>   $$
+
+#### **Definition:** Universal One-Way Hash Functions
+
+{:.defn}
+> A set of functions $H = \set{h_k : \bit^{d(n)} \to \bit^{r(n)}, n = |k|}_{k \in \bit*}$ is 
+> a family of *universal one-way hash functions (UOWHF)* if:
+> 
+> - (compression) $r(n) \lt d(n)$.
+> - (ease of evaluation) Given $k \in \bit^n$ and $x \in \bit^{r(n)}$, the computation of $h_k(x)$ can be done in PPT in $n$.
+> - (collision resistance) for all NUPPT $A$, there exists a negligible $\eps$ such that $\forall n \in \N$,
+>   $A$ wins the following game w.p. $\le \eps(n)$:
+>   
+>   1. $(x, state) \gets A(1^n)$
+>   2. $k \gets \bit^n$
+>   3. $x' \gets A(1^n, k)$
+>   4. $A$ wins if $x' \neq x$ and $f_k(x') = f_k(x)$
+
+A CRHF is a UOWHF and also a OWF, and we can construct UOWHF from OWF.
+However, it is long open whether we can get CRHF from OWF.
+Instead, CRHF is contructed from various concrete assumptions, 
+and CRHF is also constructed from "trapdoor permutations", 
+which is yet another primitive that we do not know how to obtain from OWF.
+We will use *discrete logarithm* assumption below.
+
+#### **Definition:** Generator of a Group
+
+{:.defn}
+> A element $g$ of a multiplicative group $G$ is a generator 
+> if the set $\set{g, g^2, g^3, ...} = G$.
+> We denote the set of all generators of a group $G$ by $\Gen(G)$.
+
+
+#### **Assumption:** Discrete Log
+
+{:.defn}
+> If $G_q$ is a group of prime order $q$, then for every adversary $A$, there exists a negligible function $\eps$ such that
+> 
+> $$
+> \Pr [ q \gets \Pi_n; g \gets \Gen(G_q) ; x \gets \Z_q : A(q, g, g^x) = x ] \lt \eps(n).
+> $$
+
+In the above definition, the group $G_q$ is not instantiated.
+Hence the hardness of the DL problem depends on $G_q$, and indeed for some groups such as $(\Z_q, +)$ it is trivial.
+In crypto, it is believed that DL is hard on the subgroup $G_q$ of $\Z^\ast_p$ for prime $p$.
+Notice that the order of $\Z^\ast_p$ is even $p-1$, not prime order (and thus DL may be easy).
+Therefore, we sample a prime of the form $p = 2q + 1$:
+first sample prime $q$ and then let $p = 2q + 1$ if $2q + 1$ is also prime,
+otherwise repeatedly sample another $q$.
+Such primes are known as Sophie Germain primes or safe primes.
+
+> Unfortunately,
+> even though this procedure always terminates in practice, its
+> basic theoretical properties are unknown. It is unknown even (a)
+> whether there are an infinite number of Sophie Germain primes,
+> (b) and even so, whether this simple procedure for finding them
+> continues to quickly succeed as the size of $q$ increases.
+> -- [Ps, Section 2.8.1]
+
+### Sampling prime-order group and the generator
+
+#### **Theorem:**
+
+{:.theorem}
+> Let $p = 2q + 1$ with $p,q$ prime. Then
+> 
+> $$
+> G := \set{ h^2 \mod p : h \in \Z^\ast_p} 
+> 
+> is a subgroup of $\Z^\ast_p$ of order $q$.
+
+{:.proof}
+> It is direct that $G$ is a subgroup.
+> It remains to prove the order, and it suffices to show that $f(h) = h^2 \mod p$ is 2-to-one
+> (because $|G| = |f(\Z^\ast_p)| = (p-1)/2 = q$).
+> Let $g$ be a generator of $\Z^\ast_p$ (proof omitted: the existence of generator of $\Z^\ast_p$)
+> Let $h \in \Z^\ast_p$ such that $h = g^t$ for some $t \le p-1$.
+> Consider any $h_2$ such that $h_2^2  =h^2 \mod p$ where $h_2 = g^{t_2}$.
+> We have $g^{2t_2} = g^{2t}$, and $2(t_2 - t) = 0 \mod (p-1)$.
+> Thus by $p-1 = 2q$, either $t_2 = t$ or $t2 - t = 0 \mod q$.
+> 
+> This proof extends to $h^r$ for all even integer $r \ge 2$.
+> Moreover, it also shows that sampling from $G$ uniformly at random is efficient:
+> just sample $h$ and compute $h^2 \mod p$.
+
+#### **Construction:** CRHF from DL
+
+{:.defn}
+> $\Gen(1^n)$: output $(p,q,g,y)$, where
+> 
+> - $p,q$ are $n$-bit primes that $p=2q+1$, 
+> - $g$ is the generator of $G_q$, 
+> - $y \gets G_q$, and
+> - $G_q$ is order $q$ subgroup of $\Z^\ast_p$.
+> 
+> $h_{p,q,g,y}(x, b)$: Output $y^b g^x \mod p$, where
+> 
+> - $x$ is $n$-bit, $b$ is 1-bit
+
+
+#### **Theorem:**
+
+{:.theorem}
+> Under the Discrete Logarithm assumption, the above construction is a collision-resistant hash function 
+> that compresses by 1 bit.
+
+{:.proof-title}
+
+> Proof sketch:
+> 
+> It is 
+
