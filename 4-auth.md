@@ -360,7 +360,8 @@ Collision-Resistant Hash Functions
 > a family of *collision-resistant hash functions (CRHF)* if:
 > 
 > - (ease of sampling) $i\gets \Gen(1^n)$ runs in PPT, $i \in I$.
-> - (compression) $|R_i| \lt |D_i|$.
+> - (compression) 
+>   $|R_i| \lt |D_i|$.
 > - (ease of evaluation) Given $i \in I$ and $x \in R_i$, the computation of $h_i(x)$ can be done in PPT.
 > - (collision resistance) for all NUPPT $A$, there exists a negligible $\eps$ such that $\forall n \in \N$, 
 >   
@@ -371,7 +372,8 @@ Collision-Resistant Hash Functions
 #### **Definition:** Universal One-Way Hash Functions
 
 {:.defn}
-> A set of functions $H = \set{h_k : \bit^{d(n)} \to \bit^{r(n)}, n = |k|}_{k \in \bit*}$ is 
+> A set of functions 
+> $H = \set{h_k : \bit^{d(n)} \to \bit^{r(n)}, n = |k|}_{k \in \bit*}$ is 
 > a family of *universal one-way hash functions (UOWHF)* if:
 > 
 > - (compression) $r(n) \lt d(n)$.
@@ -476,5 +478,29 @@ Such primes are known as Sophie Germain primes or safe primes.
 
 > Proof sketch:
 > 
-> It is 
+> It is efficient, and the compression follows by $n+1$ to $n$ bits mapping
+> (strictly speaking, that is $2p$ to $p$ as $x \in [p]$).
+> To prove collision resistance, firstly consider the case $h(x,b) = h(x', b)$ but $x \neq x'$.
+> Then, we have
+> 
+> $$
+> g^{x} = g^{x'} \mod p
+> $$
+> 
+> which means that $x = x'$. Hence, it must be $x \neq x', b \neq b'$ but $h(x,b) = h(x',b')$.
+> Given $b \neq b'$, suppose $b=1, b' = 0$ (this is without loss of generality as $b=0$ otherwise).
+> Then,
+> 
+> $$
+> y^1 g^x = y^0 g^{x'} \mod p
+> $$
+> 
+> which implies that
+> 
+> $$
+> y = g^{x'-x} \mod p.
+> $$
+> 
+> Thus, we can compute the DL of $y$ using any adversary $A$ 
+> that on input $y$ outputs a collision $(x,b) \neq (x',b')$.
 
