@@ -435,7 +435,8 @@ Such primes are known as Sophie Germain primes or safe primes.
 > Let $p = 2q + 1$ with $p,q$ prime. Then
 > 
 > $$
-> G := \set{ h^2 \mod p : h \in \Z^\ast_p} 
+> G := \set{ h^2 \mod p : h \in \Z^\ast_p}
+> $$
 > 
 > is a subgroup of $\Z^\ast_p$ of order $q$.
 
@@ -504,3 +505,5 @@ Such primes are known as Sophie Germain primes or safe primes.
 > Thus, we can compute the DL of $y$ using any adversary $A$ 
 > that on input $y$ outputs a collision $(x,b) \neq (x',b')$.
 
+Note: the above construction is based on the DL assumption w.r.t. the prime order group $G_q$.
+We can analogously construct CRHF from group $\Z^\ast_p$ based on the DL assumption w.r.t. $\Z^\ast_p$.
