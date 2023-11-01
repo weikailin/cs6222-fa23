@@ -433,6 +433,11 @@ Such primes are known as Sophie Germain primes or safe primes.
 > continues to quickly succeed as the size of $q$ increases.
 > -- [Ps, Section 2.8.1]
 
+Also notice that DL is a one-to-one mapping, 
+and the domain and range are the same in cardinality.
+However, the representations of elements (in bits) can be quite different,
+and thus it is not exactly a one-way *permutation* (strictly speaking).
+
 ### Sampling prime-order group and the generator
 
 #### **Theorem:**
