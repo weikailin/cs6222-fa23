@@ -13,7 +13,7 @@ What is knowledge?
 
 - Alice sends to Bob the string $0^n$
 - Alice sends to Bob the string $s = 3.14159...$, $n$ bits
-- Alice sends to Bob the encryption of $s$
+- Alice sends to Bob the encryption of $s$ without a key
 
 Shannon's information theory is relevant, but here we consider 
 "knowledge" (instead of information) in the context of *computational aspects*. 
