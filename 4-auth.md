@@ -353,6 +353,8 @@ see [Zhang, Cui, and Yu](https://eprint.iacr.org/2023/850.pdf "Revisiting the Co
 Collision-Resistant Hash Functions
 -------------------------
 
+Ref: [Ps 5.5] [KL 9.3]
+
 #### **Definition:** Collision-Resistant Hash Functions
 
 {:.defn}
