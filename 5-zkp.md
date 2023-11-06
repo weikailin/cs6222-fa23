@@ -147,7 +147,8 @@ using its own input.
 > - $\set{\view_V [P(x, w) \leftrightarrow V(x, z)]}_n$
 > - $\set{S(x, z)}_n$
 > 
-> where $n := |x|$ is the problem size.
+> where 
+> $n := |x|$ is the problem size.
 
 Note: the auxiliary info $z$ denotes any *a-priori* information that is given to $V$;
 that is, if $V$ knew $w$, then $S$ needs $w$ as well to simulate the view.
@@ -171,7 +172,8 @@ Notice that the quantifier of $S$ differs below.
 > - $\set{\view_{V^\ast} [P(x, w) \leftrightarrow V(x, z)]}_n$
 > - $\set{S(x, z)}_n$
 > 
-> where $n := |x|$ is the problem size.
+> where 
+> $n := |x|$ is the problem size.
 
 > Note that here only consider PPT adversaries $V^\ast$ (as opposed to *non-uniform* PPT adversaries). 
 > This only makes our definition stronger: $V^\ast$ can anyway receive any non-uniform “advice” as its
@@ -184,6 +186,34 @@ Notice that the quantifier of $S$ differs below.
 
 Alternatively, we can directly replace $\view_{V^\ast}$ with $\out_{V^\ast}$.
 (The proof is left as an exercise)
+
+We will propose a ZKP for the NP-complete language, graph 3-coloring.
+The protocol will use *commitments* that can be thought as a physical locked box:
+$P$ gives it to $V$, then $P$ can not change the content while $V$ knows nothing about the content,
+and then $P$ can open it later to $V$.
+
+#### **Definition**: Commitment
+
+{:.defn}
+> A polynomial-time machine $\Com$ is called a commitment scheme if there exists 
+> some polynomial $\ell(\cdot)$ such that the following two properties hold:
+> 
+> 1. (Binding): For all $n \in \N$ and all $v_0, v_1 \in \bit^n$, $r_0, r_1 \in \bit^{\ell(n)}$ 
+>    it holds that $\Com(v_0, r_0) \neq \Com(v_1, r_1)$.
+> 2. (Hiding): For every $v_0, v_1 \in \bit^n$, the following distributions are computationally indistinguishable:
+>    
+>    - $\set{r \gets \bit^{\ell(n)} : \Com(v_0, r)}$
+>    - $\set{r \gets \bit^{\ell(n)} : \Com(v_1, r)}$
+
+#### **Theorem:**
+
+{:.theorem}
+> If one-way permutations exist, then commitment schemes exist.
+
+{:.proof}
+> Let $f$ be a OWP and $h$ be its hard-core predicate.
+> Let $\Com(b , r) := (f(r), b \oplus h(r))$.
+> 
 
 #### **Protocol:** ZKP for Graph 3-Coloring
 
@@ -198,5 +228,5 @@ Alternatively, we can directly replace $\view_{V^\ast}$ with $\out_{V^\ast}$.
 > | $P ~\to ~ V$ |   $P$ opens commitments $c'_i$ and $c'_j$.  |
 > | $\quad\quad~ V$ | $V$ rejects the proof if and only if $c'_i \neq c'_j$ (continue o.w.)  |
 > | $P, V$ |   Repeat the procedure $n \vert E \vert$ times.  |
-> 
-> 
+
+
