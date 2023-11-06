@@ -252,7 +252,7 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > It follows that all $n|E|$ repetition passes w.p.
 > 
 > $$
-> (1 - \frac{1}{|E|})^{n |E|} \le e^{-\Omega(n)}.
+> (1 - \frac{1}{|E|})^{n |E|} \le e^{-n}.
 > $$
 > 
 > To prove ZK, the intuition is that $P$ reveals only the colors of two random vertices,
