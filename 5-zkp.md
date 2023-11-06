@@ -8,6 +8,7 @@ nav_exclude: false
 $$
 \newcommand{\Enc}{\mathsf{Enc}}
 \newcommand{\Dec}{\mathsf{Dec}}
+\newcommand{\Com}{\mathsf{Com}}
 \newcommand{\out}{\mathsf{out}}
 \newcommand{\view}{\mathsf{view}}
 $$
