@@ -206,6 +206,12 @@ and then $P$ can open it later to $V$.
 >    - $\set{r \gets \bit^{\ell(n)} : \Com(v_0, r)}$
 >    - $\set{r \gets \bit^{\ell(n)} : \Com(v_1, r)}$
 
+Notice: 
+in the definition, the binding is *perfect*, which means that no adversary can 
+open $\Com(v,r)$ to $v' \neq v$ by providing any $r'$ (even the adversary is unbounded).
+In contrast, the hiding is only *computational* 
+where an exponential time adversary may find $v$ given only $\Com(v,r)$.
+
 #### **Theorem:**
 
 {:.theorem}
@@ -229,7 +235,39 @@ and then $P$ can open it later to $V$.
 > | $P ~\to ~ V$ |   Let $\pi$ be a random permutation over $\set{1, 2, 3}$. For each $i \in [1, n]$, $P$ sends a commitment to the color $c'_i := \pi(c_i)$ |
 > | $P~\gets ~V$ |   $V$ sends a randomly chosen edge $(i, j) \in E$  |
 > | $P ~\to ~ V$ |   $P$ opens commitments $c'_i$ and $c'_j$.  |
-> | $\quad\quad~ V$ | $V$ rejects the proof if and only if $c'_i \neq c'_j$ (continue o.w.)  |
+> | $\quad\quad~ V$ | $V$ rejects the proof if and only if $c'_i = c'_j$ (continue o.w.)  |
 > | $P, V$ |   Repeat the procedure $n \vert E \vert$ times.  |
 
+#### **Theorem:**
 
+> Assume $\Com$ is a secure commitment scheme.
+> The above protocol is a zero-knowledge protocol for the language of 3-colorable graphs.
+
+{:.proof}
+> The completeness is direct.
+> The soundness follows by the binding property as below.
+> If $G$ is not 3-colorable, then there exists $(i,j)$ such that $c_i = c_j$,
+> and then by binding, any adversarial $P^\ast$ must open $c'_i$ and $c'_j$ to the same $c_i = c_j$
+> when $V$ chose $(i,j)$, which happens w.p. $1/|E|$.
+> It follows that all $n|E|$ repetition passes w.p.
+> 
+> $$
+> (1 - \frac{1}{|E|})^{n |E|} \le e^{-\Omega(n)}.
+> $$
+> 
+> To prove ZK, the intuition is that $P$ reveals only the colors of two random vertices,
+> and that the hiding of $\Com$ guarantees that other vertices are hidden.
+> Formally, we construct the following simulator.
+> 
+> {:.defn-title}
+>> Simulator for graph 3-coloring, $S(G, z)$: 
+>> 
+>> 1. Pick a random edge $(s, t) \in E$ and pick random colors $c'_s, c'_t \in \set{1, 2, 3}, c'_s \neq c'_t$. 
+>>    Let $c'_k = 1$ for all other $k \in [n] \setminus \set{s,t}$.
+>> 2. Commit to $c'_i$ for all $i$ and send them to $V(G, z)$. Let $(i,j)$ be the message of $V$.
+>> 3. If $(i,j) = (s,t)$ then open $c'_s, c'_t$ and output the view of $V$.
+>>    Otherwise, restart the process from picking random $(s,t)$ again, but for at most $n|E|$ times.
+>> 4. If the simulation has not been successful
+>>    after $n|E|$ repetitions, output fail.
+> 
+> 
