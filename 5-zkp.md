@@ -185,4 +185,15 @@ Notice that the quantifier of $S$ differs below.
 Alternatively, we can directly replace $\view_{V^\ast}$ with $\out_{V^\ast}$.
 (The proof is left as an exercise)
 
+#### **Protocol:** ZKP for Graph 3-Coloring
 
+{:.defn}
+> Common input: G = (V, E) where |V| = n, |E| = m
+> 
+> Prover input: Witness w = (c0, c1, . . . , cm)
+> 
+> | P ~\to ~ V |   Let π be a random permutation over {1, 2, 3}. For each i ∈ [1, n], the prover sends a commit- ment to the color π(ci) = c′ |
+> | P~\gets ~V |   The verifier sends a randomly chosen edge (i, j) ∈ E  |
+> | P ~\to ~ V |   The prover opens commitments c′ i and c′ j.  |
+> | \quad\quad~ V |   V accepts the proof if and only if c′ i 6 = c′ j  |
+> | P, V |   Repeat the procedure n|E| times.  |
