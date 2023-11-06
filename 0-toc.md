@@ -30,3 +30,4 @@ Table of Lecture Notes
 | Oct 25    | [Message Authentication](4-auth.md)    | [Ps 5.1, 5.2] [KL 4.1-4.3] |
 | Oct 30    | [Digital Signatures](4-auth.md#digital-signature-schemes)    | [Ps 5.3] [KL 13.1, 13.2, 13.6, 14.4], [Lamport'79](https://lamport.azurewebsites.net/pubs/dig-sig.pdf), [Goldwasser@Berkeley](https://inst.eecs.berkeley.edu/~cs276/fa20/slides/lec12.pdf) |
 | Nov 1     | [Collision-resistant hash, discrete log](4-auth.md#collision-resistant-hash-functions)    | [Ps 5.5] [KL 9.3] |
+| Nov 6     | [Zero-knowledge proofs, commitments](5-zkp.md)    | [Ps 4.1-4.6] |

@@ -73,6 +73,9 @@ and we use union bound anyways.
 
 $A$ shall be given $pk$ as input (in addition to $1^n$).
 
+### [Ps, Protocol 127.5]
+"V accepts the proof if ... $\neq$": rejects if $=$.
+
 Others
 -------
 Related courses:

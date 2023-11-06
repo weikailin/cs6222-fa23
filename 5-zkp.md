@@ -270,4 +270,7 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 >> 4. If the simulation has not been successful
 >>    after $n|E|$ repetitions, output fail.
 > 
+> To argue why $S$ outputs an indistinguishable view, consider hybrid simulators:
 > 
+> - $S'$: it additionally takes input the witness $w$, it picks $(s,t)$ and restarts as per $S$, but it commits to honest coloring except for $(s,t)$.
+> - $S''$: it additionally takes input the witness $w$, it is similar to $S'$ but it commits to honest coloring.
