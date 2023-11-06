@@ -240,6 +240,7 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 
 #### **Theorem:**
 
+{:.theorem}
 > Assume $\Com$ is a secure commitment scheme.
 > The above protocol is a zero-knowledge protocol for the language of 3-colorable graphs.
 
