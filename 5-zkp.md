@@ -5,6 +5,14 @@ nav_order: 5
 nav_exclude: false
 ---
 
+$$
+\newcommand{\Enc}{\mathsf{Enc}}
+\newcommand{\Dec}{\mathsf{Dec}}
+\newcommand{\out}{\mathsf{out}}
+\newcommand{\view}{\mathsf{view}}
+$$
+{: .d-none}
+
 Zero Knowledge Proofs
 =====================
 
@@ -92,11 +100,11 @@ The view of $B$ is denoted as $\view_B[A(x_a, z_a) \leftrightarrow B(x_b, z_b)]$
 > A pair of ITMS $(P, V)$ is an *interactive proof system* for a language $L$ 
 > if $V$ is a PPT machine and the follwing properties hold. 
 > 
-> 1. (Completeness) For every $x \in L$, there exists a witness string $y \in \bit^\ast$ 
+> 1. (Completeness) For every $x \in L$, there exists a witness string $w \in \bit^\ast$ 
 >    such that for every auxiliary string $z$:
 > 
 >    $$
->    \Pr \left[\out_V [P(x, y) \leftrightarrow V(x, z)] = 1 \right] = 1
+>    \Pr \left[\out_V [P(x, w) \leftrightarrow V(x, z)] = 1 \right] = 1
 >    $$
 > 
 > 2. (Soundness) There exists some negligible function $\eps$ such that for all $x \notin L$ and 
@@ -111,7 +119,7 @@ That is, inefficient prover.
 
 Complexity:
 The class of languages having an interactive proofs is denoted $IP$.
-It is direct to see that $NP \subset IP$ as $V$ is PPT.
+It is direct to see that $NP \subset IP$ as $V$ is PPT (simply sending the witness $w$ to $V$).
 It is proved that $IP = PSPACE$.
 
 It is natural to consider IP in crypto setting 
@@ -119,5 +127,62 @@ because one party may want to achieve more than what's given by the completeness
 
 Zero-Knowledge Proofs
 ---------------------
+
+We first require the honest prover to be efficient, i.e., PPT ITM.
+For any $L \in NP$, the IP is simply sending the witness $w$ to $V$.
+
+In cryptography, we consider to *hide* the witness from an *adversarial* $V$.
+Following the intuition of zero-knowledge, $V$ shall be able to *simulate* its view
+using its own input.
+
+#### **Definition:** Honest Verifier Zero-Knowledge
+
+{:.defn}
+> Let $(P, V)$ be an efficient interactive proof for the language $L \in NP$ 
+> with witness relation $R_L$. 
+> $(P, V)$ is said to be *honest verifier* zero-knowledge if there exists a PPT simulator $S$ such that 
+> for every $x \in L, w \in R_L(x), z \in \bit^\ast$, 
+> the following distributions are computationally indistinguishable.
+> 
+> - $\set{\view_V [P(x, w) \leftrightarrow V(x, z)]}_n$
+> - $\set{S(x, z)}_n$
+> 
+> where $n := |x|$ is the problem size.
+
+Note: the auxiliary info $z$ denotes any *a-priori* information that is given to $V$;
+that is, if $V$ knew $w$, then $S$ needs $w$ as well to simulate the view.
+
+The above definition supposes the verifier follows the protocol (provided as the algorithm $V$).
+This is unsatisfactory, and we go for a stronger definition that considers *any*
+efficient adversary $A^\ast$.
+However, the view then depends on $A^\ast$, and we need the simulator that depends on $A^\ast$ as well.
+Notice that the quantifier of $S$ differs below.
+
+#### **Definition:** Zero-Knowledge
+
+{:.defn}
+> Let $(P, V)$ be an efficient interactive proof for the language $L \in NP$ 
+> with witness relation $R_L$. 
+> $(P, V)$ is said to be *zero-knowledge* if for every PPT adversary $V^\ast$,
+> there exists a PPT simulator $S$ such that 
+> for every $x \in L, w \in R_L(x), z \in \bit^\ast$, 
+> the following distributions are computationally indistinguishable.
+> 
+> - $\set{\view_{V^\ast} [P(x, w) \leftrightarrow V(x, z)]}_n$
+> - $\set{S(x, z)}_n$
+> 
+> where $n := |x|$ is the problem size.
+
+> Note that here only consider PPT adversaries $V^\ast$ (as opposed to *non-uniform* PPT adversaries). 
+> This only makes our definition stronger: $V^\ast$ can anyway receive any non-uniform “advice” as its
+> auxiliary input; in contrast, we can now require that the simulator $S$ is *only PPT* 
+> but is also given the auxiliary input of $V^\ast$. 
+> Thus, our definition says that even if $V^\ast$ is non-uniform, 
+> the simulator only needs to get the same non-uniform advice to produce its view.
+> 
+> [Ps, p122]
+
+Alternatively, we can directly replace $\view_{V^\ast}$ with $\out_{V^\ast}$.
+(The proof is left as an exercise)
 
 
