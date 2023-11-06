@@ -198,7 +198,7 @@ and then $P$ can open it later to $V$.
 > A polynomial-time machine $\Com$ is called a commitment scheme if there exists 
 > some polynomial $\ell(\cdot)$ such that the following two properties hold:
 > 
-> 1. (Binding): For all $n \in \N$ and all $v_0, v_1 \in \bit^n$, $r_0, r_1 \in \bit^{\ell(n)}$ 
+> 1. (Binding): For all $n \in \N$ and all $v_0 \neq v_1 \in \bit^n$, $r_0, r_1 \in \bit^{\ell(n)}$ 
 >    it holds that $\Com(v_0, r_0) \neq \Com(v_1, r_1)$.
 > 2. (Hiding): For every $v_0, v_1 \in \bit^n$, the following distributions are computationally indistinguishable:
 >    
@@ -213,7 +213,9 @@ and then $P$ can open it later to $V$.
 {:.proof}
 > Let $f$ be a OWP and $h$ be its hard-core predicate.
 > Let $\Com(b , r) := (f(r), b \oplus h(r))$.
-> 
+> Binding is direct from permutation.
+> Hiding is simple by the definition of hard-core predicate.
+
 
 #### **Protocol:** ZKP for Graph 3-Coloring
 
