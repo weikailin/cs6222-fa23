@@ -141,3 +141,13 @@ this is a note, block-level.
 > Proof of Theorem:
 > 
 > (customized title)
+
+Proposed system
+---------------
+
+Source: single dollar sign for inline math, double dollar sign for display math, minimal HTML and markdown escapes,
+theorem / proof / definition / algorithm boxes
+
+Editor: syntax coloring and folding for both markdown and latex
+
+Output: proper HTML w/ good math rendering
