@@ -249,7 +249,7 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > If $G$ is not 3-colorable, then there exists $(i,j)$ such that $c_i = c_j$,
 > and then by binding, any adversarial $P^\ast$ must open $c'_i$ and $c'_j$ to the same $c_i = c_j$
 > when $V$ chose $(i,j)$, which happens w.p. $1/|E|$.
-> It follows that all $n|E|$ repetition passes w.p.
+> By $(1 - 1/x)^x \le e^{-1}$, it follows that all $n|E|$ repetition passes w.p.
 > 
 > $$
 > (1 - \frac{1}{|E|})^{n |E|} \le e^{-n}.
