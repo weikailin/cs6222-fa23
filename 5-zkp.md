@@ -136,6 +136,8 @@ In cryptography, we consider to *hide* the witness from an *adversarial* $V$.
 Following the intuition of zero-knowledge, $V$ shall be able to *simulate* its view
 using its own input.
 
+### Definition
+
 #### **Definition:** Honest Verifier Zero-Knowledge
 
 {:.defn}
@@ -188,6 +190,8 @@ Notice that the quantifier of $S$ differs below.
 Alternatively, we can directly replace $\view_{V^\ast}$ with $\out_{V^\ast}$.
 (The proof is left as an exercise)
 
+### Commitment
+
 We will propose a ZKP for the NP-complete language, graph 3-coloring.
 The protocol will use *commitments* that can be thought as a physical locked box:
 $P$ gives it to $V$, then $P$ can not change the content while $V$ knows nothing about the content,
@@ -223,6 +227,7 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > Binding is direct from permutation.
 > Hiding is simple by the definition of hard-core predicate.
 
+### Graph 3-Coloring
 
 #### **Protocol:** ZKP for Graph 3-Coloring
 
@@ -318,5 +323,31 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > and if $c = \Com(\pi(w(v_k)))$ then $A$ runs $V^\ast$ identical to $S_{r,k-1}$.
 > Hence, the probability of distinguishing $c$ is at least $\ge 1/n^2|E|p(n)$, 
 > contradicting the binding of $\Com$.
+
+### Any Language in class NP
+
+Recall that since graph 3-coloring ($GC$) is NP-complete, 
+we can reduce from $GC$ to any language $L \in NP$.
+That is, there exists a deterministic polynomial time reduction $R$ such that 
+for any string $x$, $x \in L$ if and only if $x' = R(x) \in GC$;
+moreover, $w$ is a witness of $x \in L$ if and only if $w' = R(x, w)$ is a witness of $x' \in GC$.
+
+Hence we can construct ZK proof for any $L \in NP$ from $GC$.
+
+
+#### **Protocol:** ZKP for $L \in NP$.
+
+{:.defn}
+> Common input: $x$
+> 
+> Prover input: Witness $w$
+> 
+> | $P$ |   Let $G' := R(x)$, let $w' = R(x,w)$ |
+> | $\quad\qquad V$ | Let $G' := R(x)$  |
+> | $P \leftrightarrow ~ V$ |   Run the ZKP protocol $(P',V')$ of graph 3-coloring, i.e., $P'(G', w') \leftrightarrow V'(G')$
+> | $P~\gets ~V$ |   $V$ sends a randomly chosen edge $(i, j) \in E$  |
+> | $P ~\to ~ V$ |   $P$ opens commitments $c'_i$ and $c'_j$.  |
+> | $\quad\quad~ V$ | $V$ rejects the proof if and only if $c'_i = c'_j$ (continue o.w.)  |
+> | $P, V$ |   Repeat the procedure $n \vert E \vert$ times.  |
 
 
