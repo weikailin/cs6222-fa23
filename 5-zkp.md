@@ -357,4 +357,25 @@ Hence we can construct ZK proof for any $L \in NP$ from $GC$.
 > | $P ~\leftrightarrow ~ V$ |   Run the ZKP protocol $(P',V')$ of graph 3-coloring, i.e., $P'(G', w') \leftrightarrow V'(G')$
 > | $\quad\qquad V$ | $V$ rejects the proof if and only if $V'$ rejects  |
 
+Application: Identification with Repudiation
+------------------
+
+Consider that a Client log-in to a remote Server.
+On Server side, a simple way to identify C is to share the same key $k$ between C and S (and then MAC).
+However, shared key is undesirable in the case S could be compromised.
+
+A better way is to store the public key $pk$ on S and the secrete key $sk$ on C.
+To identify C, S asks C to sign a message and then verifies the signature.
+This is good, but later S can prove to anyone that C has logged in by showing the signature,
+which is undesirable.
+
+Using ZKP, C can prove the identity to S without letting S having the signature.
+Namely, given $pk$ and message $m$ from S, let $L$ be the language: 
+
+- $(a,b)$ such that $Ver_{\pk}(Sign_a(m ; b))$ output Accept.
+
+Clearly $L \in NP$ and C has the witness $(sk, r)$.
+Hence, C can convince S that she can sign $m$ but S learned nothing more than $(\pk,m)$.
+Notice that if S wants to show the trace of C, 
+C can deny because the view of S can totally be simulated by S itself.
 
