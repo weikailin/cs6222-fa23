@@ -309,7 +309,7 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > Then, we can construct an adversary $A$ that breaks the hiding of $\Com$:
 > 
 > 1. Sample $(r,k) \gets [R] \times [n]$
-> 2. Get from input a commitment $c$ such that either $c = \Com(1, \$)$ or $c = \Com(\pi(w(v_k)), \$)$
+> 2. Get from input a commitment $c$ such that either $c = \Com(1, ...)$ or $c = \Com(\pi(w(v_k)), ...)$
 > 3. Compute all other commitments according to the coloring of $S_{r,k}$
 > 4. Run $V^\ast$ as per $S_{r,k}$ using the computed commitments including $c$ to obtain the resulting $\view$ 
 > 5. Run $D$ to distinguish $\view$ and output the output of $D$
