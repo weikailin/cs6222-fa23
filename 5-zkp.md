@@ -269,9 +269,19 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 >> 3. If $(i,j) = (s,t)$ then open $c'_s, c'_t$ and output the view of $V$.
 >>    Otherwise, restart the process from picking random $(s,t)$ again, but for at most $n|E|$ times.
 >> 4. If the simulation has not been successful
->>    after $n|E|$ repetitions, output fail.
+>>    after $n|E|$ repetitions, output fail $\bot$.
 > 
 > To argue why $S$ outputs an indistinguishable view, consider hybrid simulators:
 > 
-> - $S'$: it additionally takes input the witness $w$, it picks $(s,t)$ and restarts as per $S$, but it commits to honest coloring except for $(s,t)$.
-> - $S''$: it additionally takes input the witness $w$, it is similar to $S'$ but it commits to honest coloring.
+> - $S'$: it additionally takes input the witness $w$ and commits to $\pi(w)$ as the real $P$, 
+>   but it picks $(s,t)$ and restarts as per $S$.
+> 
+> Conditioning on the output is not $\bot$, we have that
+> 
+> $$
+> \view_{V^\ast}\brackets{ P(G, w) \leftrightarrow V^\ast(G, z) }
+>   \equiv S'(G, w, z),
+> $$
+> 
+> where $\equiv$ denotes identical distribution.
+> 
