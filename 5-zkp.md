@@ -216,6 +216,13 @@ open $\Com(v,r)$ to $v' \neq v$ by providing any $r'$ (even the adversary is unb
 In contrast, the hiding is only *computational* 
 where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 
+Discuss:
+the hiding property is similar to encryption, where $\Com(v,r)$ might be thought as $\Enc_r(v)$.
+That could be a good intuition when we want to use hiding later in the security proof.
+However, binding is *not* a property from typical encryption schemes:
+for many encryption schemes, the same ciphertext $c$ can be decrypted 
+to different values when different decryption keys are used.
+
 #### **Theorem:**
 
 {:.theorem}
@@ -226,6 +233,8 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > Let $\Com(b , r) := (f(r), b \oplus h(r))$.
 > Binding is direct from permutation.
 > Hiding is simple by the definition of hard-core predicate.
+
+Note: there are also constructions of commitment from OWF.
 
 ### Graph 3-Coloring
 
@@ -253,8 +262,8 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > The completeness is direct.
 > The soundness follows by the binding property as below.
 > If $G$ is not 3-colorable, then there exists $(i,j)$ such that $c_i = c_j$,
-> and then by binding, any adversarial $P^\ast$ must open $c'_i$ and $c'_j$ to the same $c_i = c_j$
-> when $V^\ast$ chose $(i,j)$, which happens w.p. $1/|E|$.
+> and then by binding, any adversarial $P^\ast$ must open the commitments $c'_i$ and $c'_j$ to the same $c_i = c_j$
+> when $V^\ast$ chose $(i,j)$, which happens w.p. $\ge 1/|E|$.
 > By $(1 - 1/x)^x \le e^{-1}$, it follows that all $n|E|$ repetition passes w.p.
 > 
 > $$
