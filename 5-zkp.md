@@ -254,7 +254,7 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > The soundness follows by the binding property as below.
 > If $G$ is not 3-colorable, then there exists $(i,j)$ such that $c_i = c_j$,
 > and then by binding, any adversarial $P^\ast$ must open $c'_i$ and $c'_j$ to the same $c_i = c_j$
-> when $V$ chose $(i,j)$, which happens w.p. $1/|E|$.
+> when $V^\ast$ chose $(i,j)$, which happens w.p. $1/|E|$.
 > By $(1 - 1/x)^x \le e^{-1}$, it follows that all $n|E|$ repetition passes w.p.
 > 
 > $$
@@ -270,8 +270,8 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 >> 
 >> 1. Pick a random edge $(s, t) \in E$ and pick random colors $c'_s, c'_t \in \set{1, 2, 3}, c'_s \neq c'_t$. 
 >>    Let $c'_k = 1$ for all other $k \in [n] \setminus \set{s,t}$.
->> 2. Commit to $c'_i$ for all $i$ and send them to $V(G, z)$. Let $(i,j)$ be the message of $V$.
->> 3. If $(i,j) = (s,t)$ then open $c'_s, c'_t$ and output the view of $V$.
+>> 2. Commit to $c'_i$ for all $i$ and send them to $V^\ast(G, z)$. Let $(i,j)$ be the message of $V^\ast$.
+>> 3. If $(i,j) = (s,t)$ then open $c'_s, c'_t$ and output the view of $V^\ast$.
 >>    Otherwise, restart the process from picking random $(s,t)$ again, but for at most $n|E|$ times.
 >> 4. If the simulation has not been successful
 >>    after $n|E|$ repetitions, output fail $\bot$.
@@ -323,6 +323,16 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > and if $c = \Com(\pi(w(v_k)))$ then $A$ runs $V^\ast$ identical to $S_{r,k-1}$.
 > Hence, the probability of distinguishing $c$ is at least $\ge 1/n^2|E|p(n)$, 
 > contradicting the binding of $\Com$.
+> 
+
+**Notice**{:.label .label-blue}
+In the above $S$, we try to *guess* an edge $(s,t)$ before we commit to it,
+and then we just retry ("restart") when the guess is inconsistent with $(i,j)$ from $V^\ast$.
+The "restart" differs from the reductions in the previous sections of this course,
+but it is a generic technique in the security proof of ZKP.
+Due to such guess, the running time of $S$ could be longer and become *expected* PPT
+in the [Security Definition](#definition-zero-knowledge) 
+(i.e., we can relax $S$ to be "Las Vegas" PPT and greatly facilitate the construction of ZKP, [Ps, p121]).
 
 ### Any Language in class NP
 
@@ -344,10 +354,7 @@ Hence we can construct ZK proof for any $L \in NP$ from $GC$.
 > 
 > | $P$ |   Let $G' := R(x)$, let $w' = R(x,w)$ |
 > | $\quad\qquad V$ | Let $G' := R(x)$  |
-> | $P \leftrightarrow ~ V$ |   Run the ZKP protocol $(P',V')$ of graph 3-coloring, i.e., $P'(G', w') \leftrightarrow V'(G')$
-> | $P~\gets ~V$ |   $V$ sends a randomly chosen edge $(i, j) \in E$  |
-> | $P ~\to ~ V$ |   $P$ opens commitments $c'_i$ and $c'_j$.  |
-> | $\quad\quad~ V$ | $V$ rejects the proof if and only if $c'_i = c'_j$ (continue o.w.)  |
-> | $P, V$ |   Repeat the procedure $n \vert E \vert$ times.  |
+> | $P ~\leftrightarrow ~ V$ |   Run the ZKP protocol $(P',V')$ of graph 3-coloring, i.e., $P'(G', w') \leftrightarrow V'(G')$
+> | $\quad\qquad V$ | $V$ rejects the proof if and only if $V'$ rejects  |
 
 
