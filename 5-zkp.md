@@ -273,15 +273,50 @@ where an exponential time adversary may find $v$ given only $\Com(v,r)$.
 > 
 > To argue why $S$ outputs an indistinguishable view, consider hybrid simulators:
 > 
-> - $S'$: it additionally takes input the witness $w$ and commits to $\pi(w)$ as the real $P$, 
->   but it picks $(s,t)$ and restarts as per $S$.
+> - $S'$: it additionally takes input the witness $w$ and performs similar to $S$,
+>   but it commits to $\pi(w(v))$ for $v \in \set{s,t}$ and random $\pi$
+> - $P'$: it is similar to $P$ (which takes $w$), but it takes $z$ and picks $(s,t)$ 
+>   and restarts if the edge $(i,j)$ chosen by $V^\ast$ is not $(s,t)$ (as in $S$)
 > 
-> Conditioning on the output is not $\bot$, we have that
+> Conditioning on the output of $P'$ is not $\bot$, we have that
 > 
 > $$
 > \view_{V^\ast}\brackets{ P(G, w) \leftrightarrow V^\ast(G, z) }
->   \equiv S'(G, w, z),
+>   \equiv P'(G, w, z),
 > $$
 > 
 > where $\equiv$ denotes identical distribution.
+> Since the $\bot$ event happens w.p. $\le e^{-n}$, the two distributions are statistically close.
+> We also have that $S'(G,z,w) \equiv S(G,z)$, and it suffices to show that $S' \approx P'$. 
 > 
+> To see that $P'(G, z, w)$ and $S'(G, z, w)$ are computationally indistinguishable, 
+> we rely on the hiding of $\Com$ and a sequence of hybrids $S_0, S_1, ..., S_R$ where $R = n|E|$:
+> 
+> - In $S_r$, the first $r$ "restarts" follow $P'$ but then the remaining "restarts" follow $S'$.
+> 
+> Hence, we have $S_0 = S'$ and $S_R = P'$.
+> We define further define for each $r \in [R]$ the subsequence $S_{r,0}, ..., S_{r,n}$:
+> 
+> - In $S_{r,k}$, the commitments are identical to $S_r$ except for the $r$-th restart that
+>   the first $k$ commitments uses the coloring from $w$ but the remaining commitments uses $1$.
+> 
+> We have $S_{r,n} = S_r$ and $S_{r,0} = S_{r-1}$.
+> 
+> Now we are ready for the reduction.
+> Assume for contradiction, there exists NUPPT $D$, polynomial $p$ such that
+> for infinitely many $n\in\N$,
+> $D$ distinguishes between $S_0 = S'$ and $S_R = P'$ w.p. at least $1/p(n)$.
+> Then, we can construct an adversary $A$ that breaks the hiding of $\Com$:
+> 
+> 1. Sample $(r,k) \gets [R] \times [n]$
+> 2. Get from input a commitment $c$ such that either $c = \Com(1, \$)$ or $c = \Com(\pi(w(v_k)), \$)$
+> 3. Compute all other commitments according to the coloring of $S_{r,k}$
+> 4. Run $V^\ast$ as per $S_{r,k}$ using the computed commitments including $c$ to obtain the resulting $\view$ 
+> 5. Run $D$ to distinguish $\view$ and output the output of $D$
+> 
+> It suffices to observe that if $c = \Com(1)$ then $A$ runs $V^\ast$ identical to $S_{r,k}$,
+> and if $c = \Com(\pi(w(v_k)))$ then $A$ runs $V^\ast$ identical to $S_{r,k-1}$.
+> Hence, the probability of distinguishing $c$ is at least $\ge 1/n^2|E|p(n)$, 
+> contradicting the binding of $\Com$.
+
+
