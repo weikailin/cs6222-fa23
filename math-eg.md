@@ -142,7 +142,7 @@ this is a note, block-level.
 > 
 > (customized title)
 
-The block-level syntax applies to HTML tags p and blockquote in CSS rules
+The block-level syntax applies to HTML tags p and blockquote in (the auto generated) CSS rules
 but the texts in HTML tags is no longer parsed by Kramdown/markdown.
 
 {:.defn}
