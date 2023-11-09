@@ -163,6 +163,10 @@ still blockquote
 still blockquote
 </blockquote>
 
+- Unordered list, after 2nd page of printing
+- the bullets disappear in Firefox browser
+- including Nightly 121.0a1 (2023-11-04) (64-bit) and Firefox 119.0.1 (64-bit)
+- Chrome and Edge are good
 
 Proposed system
 ---------------
