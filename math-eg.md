@@ -144,7 +144,6 @@ this is a note, block-level.
 
 The block-level syntax applies to HTML tags p and blockquote in CSS rules
 but the texts in HTML tags is no longer parsed by Kramdown/markdown.
-It seems configurable, see [Kramdown](https://kramdown.gettalong.org/syntax.html#html-blocks).
 
 {:.defn}
 <p>
@@ -153,16 +152,16 @@ block-level par
 still par
 </p>
 
+It can be turned on by attribute "markdown = 1", see [Kramdown](https://kramdown.gettalong.org/syntax.html#html-blocks).
+
 {:.defn}
-<div markdown="1">
+<blockquote markdown="1">
+block-level blockquote
 
-block-level div
+still blockquote
 
-still div
-
-still div
-
-</div>
+still blockquote
+</blockquote>
 
 
 Proposed system
