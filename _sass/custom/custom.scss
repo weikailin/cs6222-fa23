@@ -59,7 +59,7 @@ summary {
 
 // WK's color theme
 .main-content {
-  color: black; /* override */
+  color: black; /* override text color */
   a {
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     border-bottom: dotted 1px;
@@ -92,10 +92,11 @@ a:hover {
   }
 }
 // WK's overrides
+#main-content,
 .proof, .theorem, .defn, .wknote{
   ul, ol{
     li::before {
-      color: black; /* override */
+      color: black; /* override bullets and numbering color */
     }
   } 
 }
