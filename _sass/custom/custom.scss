@@ -96,7 +96,7 @@ a:hover {
 .theorem, 
 .defn, 
 .wknote{
-  li::before {
+  ul li::before {
     color: red; /* Change the color */
   }
 }
