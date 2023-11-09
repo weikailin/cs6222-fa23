@@ -2,7 +2,6 @@
 layout: page
 title: test
 nav_exclude: true
-parse_block_html: true
 ---
 
 Math tests
@@ -160,13 +159,6 @@ It can be turned on by attribute "markdown = 1", see [Kramdown](https://kramdown
 block-level blockquote
 
 still blockquote
-
-still blockquote
-</blockquote>
-
-{:.defn}
-<blockquote>
-block-level blockquote, no "markdown"
 
 still blockquote
 </blockquote>
