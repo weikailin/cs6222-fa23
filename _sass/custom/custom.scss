@@ -92,12 +92,11 @@ a:hover {
   }
 }
 // WK's overrides
-.proof, 
-.theorem, 
-.defn, 
-.wknote{
-  ul li::before {
-    color: red; /* Change the color */
-  }
+.proof, .theorem, .defn, .wknote{
+  ul, ol{
+    li::before {
+      color: red; /* Change the color */
+    }
+  } 
 }
 
