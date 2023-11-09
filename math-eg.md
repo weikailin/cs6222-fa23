@@ -143,11 +143,11 @@ this is a note, block-level.
 > (customized title)
 
 {:.defn}
-<div class="hey">
-block-level div
+<p>
+block-level par
 
-still div
-</div>
+still par
+</p>
 
 
 Proposed system
