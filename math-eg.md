@@ -142,12 +142,22 @@ this is a note, block-level.
 > 
 > (customized title)
 
+The block-level syntax applies to HTML tags p and blockquote in CSS rules
+(notice that )
+
 {:.defn}
 <p>
 block-level par
 
 still par
 </p>
+
+{:.defn}
+<div>
+block-level div
+
+still div
+</div>
 
 
 Proposed system
