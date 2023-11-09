@@ -167,6 +167,7 @@ still blockquote
 - the bullets disappear in Firefox browser
 - including Nightly 121.0a1 (2023-11-04) (64-bit) and Firefox 119.0.1 (64-bit)
 - Chrome and Edge are good
+- ignore it (just print with other browsers)
 
 Proposed system
 ---------------
