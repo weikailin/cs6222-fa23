@@ -142,6 +142,14 @@ this is a note, block-level.
 > 
 > (customized title)
 
+{:.defn}
+<div class="hey">
+block-level div
+
+still div
+</div>
+
+
 Proposed system
 ---------------
 
@@ -151,9 +159,3 @@ theorem / proof / definition / algorithm boxes
 Editor: syntax coloring and folding for both markdown and latex
 
 Output: proper HTML w/ good math rendering
-
-<div class="hey">
-block
-
-p2
-</div>
