@@ -91,3 +91,9 @@ a:hover {
     color: #49bf9d;
   }
 }
+.proof .theorem .defn {
+  li::before {
+    color: red; /* Change the color */
+  }
+}
+

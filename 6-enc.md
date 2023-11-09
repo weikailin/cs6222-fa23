@@ -49,6 +49,6 @@ With this definitions, there are some immediate impossibility results:
 - Deterministic encryption is also impossible: the adversary can try to encrypt the same message and get the same ciphertext.
 - IND-CPA security is implied directly.
 
-
+Ref: [KL, 14.3]
 
 
