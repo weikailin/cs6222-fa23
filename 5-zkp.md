@@ -388,3 +388,21 @@ Hence, C can convince S that she can sign $m$ but S learned nothing more than $(
 Notice that if S wants to show the trace of C, 
 C can deny because the view of S can totally be simulated by S itself.
 
+Extended Material
+-----------------
+
+Non-Interactive Zero-Knowledge proofs, also known as NIZK,
+consider the setting that the prover sends only one message to the verifier (and no message is sent from verifier).
+It typically requires that the prover and verifier share a Common Reference String (CRS)
+that is constructed by a trusted third party.
+Observe that in the above ZKP of Graph 3-Coloring,
+the verifer's message is sampled uniformly and independent of the prover's message.
+Hence, Fiat and Shamir suggest to have *the prover* sample the message, 
+using CRS as a hash function so that the prover can not cheat;
+this is known as Fiat-Shamir heuristic, see [Wikipedia](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) for examples.
+
+Alternatively, Feige, Lapidot, Shamir introduced Hidden-Bits Model and
+achieved NIZK, [FLS 1999](https://inst.eecs.berkeley.edu/~cs276/fa20/notes/Multiple%20NIZK%20from%20general%20assumptions.pdf).
+It uses Hamiltonian Cycle as the NP-Complete language 
+(which looks more natural than 3-Coloring in the construction);
+see [Katz at Maryland](https://www.cs.umd.edu/~jkatz/gradcrypto2/NOTES/lecture13.pdf) and [Garg at Berkeley](https://people.eecs.berkeley.edu/~sanjamg/classes/cs276-fall14/scribe/lec11.pdf) for details.
