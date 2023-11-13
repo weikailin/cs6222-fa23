@@ -9,6 +9,8 @@ $$
 \newcommand{\Enc}{\mathsf{Enc}}
 \newcommand{\Dec}{\mathsf{Dec}}
 \newcommand{\LWE}{\mathsf{LWE}}
+\newcommand{\Add}{\mathsf{Add}}
+\newcommand{\Mul}{\mathsf{Mul}}
 \newcommand{\norm}[1]{\| #1 \|}
 $$
 {: .d-none}
