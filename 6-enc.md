@@ -9,7 +9,7 @@ $$
 \newcommand{\Enc}{\mathsf{Enc}}
 \newcommand{\Dec}{\mathsf{Dec}}
 \newcommand{\LWE}{\mathsf{LWE}}
-\newcommand{\norm}[1]{{\| #1 \|}}
+\newcommand{\norm}[1]{\| #1 \|}
 $$
 {: .d-none}
 
@@ -183,5 +183,41 @@ Hence, we can construct a *secret-key* encryption.
 > m' := (t - \vec{a}\cdot \vec{s} \mod 2)
 > $$
 
+The correctness is direct.
+The (secret-key) CPA security can be proved by a reduction $R$ such that
+when ever the adversary $A$ of the encryption asks for an encryption,
+$R$ takes the next row from its LWE input and adds $m$.
+The details are skipped here.
+
+Homomorphic Encryption
+--------------------------
+
+
+#### **Definition:** Public-key encryption.
+
+{: .defn}
+> A (public or secret key) encryption scheme $(\Gen,\Enc,\Dec)$ is said to be homomorphic
+> if the scheme provides efficient $(\Add, \Mul)$ operations that satisfies the syntax and correctness below.
+> 
+> - For any messages $m_0, m_1 \in \Z_2$,
+>   
+>   $$
+>   \Pr_k[(c_i \gets \Enc_k(m_i))_{i\in\bit}; \Dec_k(\Add(c_0, c_1)) = m_0+m_1] = 1
+>   $$
+>   
+> - For any messages $m_0, m_1 \in \Z_2$,
+>   
+>   $$
+>   \Pr_k[(c_i \gets \Enc_k(m_i))_{i\in\bit}; \Dec_k(\Mul(c_0, c_1)) = m_0 \cdot m_1] = 1
+>   $$
+>   
+> - For any messages $m_0, m_1 \in \Z_2$,
+>   
+>   $$
+>   \Pr_k[c_0 \gets \Enc_k(m_0); \Dec_k(\Mul(c_0, m_1)) = m_0 \cdot m_1] = 1
+>   $$
+>   
+> Here, the message space and the arithmetic operations $(+,\cdot)$ are in $\Z_2$, 
+> but one may define similarly for other algebra.
 
 
