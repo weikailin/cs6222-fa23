@@ -125,8 +125,6 @@ For our purpose, it is easier to use the *decision* variant of LWE, formalized n
 > 
 > where $m, q \in \N$ are functions of $n$, and $\psi$ is an efficiently samplable distribution over $\Z_q$.
 
-
-
 Discuss:
 
 - Again, the hardness depend on the parameters $m,q,\psi$. 
@@ -138,12 +136,17 @@ Discuss:
 
 An useful set of parameter:
 
-- $m(n) = \poly(n) \ge n^2$, the smaller the harder
+- $m(n) = \poly(n) \ge n^2$, the smaller the harder LWE
 - $q(n) = n^{\poly(n)}$ so that we can write an element in $\poly(n)$ bits
 - $\psi$ a distribution such that $\exists B = \poly(n)$, 
   $\psi$ outputs $|a| \le B$ except with negligible probability
-  (think $\psi$ as a uniform dist)
+  (think $\psi$ as a uniform dist);
+  the larger $B$ compared to $q$ the harder LWE
 
 Ref: [KL, 14.3]
+
+
+
+
 
 
