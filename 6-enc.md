@@ -8,6 +8,8 @@ nav_exclude: false
 $$
 \newcommand{\Enc}{\mathsf{Enc}}
 \newcommand{\Dec}{\mathsf{Dec}}
+\newcommand{\LWE}{\mathsf{LWE}}
+\newcommand{\norm}[1]{{\| #1 \|}}
 $$
 {: .d-none}
 
@@ -115,14 +117,32 @@ For our purpose, it is easier to use the *decision* variant of LWE, formalized n
 > there is a negligible function $\eps$ such that for all $n\in\N$,
 > 
 > $$
-> \Pr[A \gets \Z^{m\times n}\_q; \vec{s} \gets \psi^n ; \vec{e} \gets \psi^m : D(A, A \cdot \vec{s} + \vec{e}) = 1]
-> - \Pr[A \gets \Z^{m\times n})\_q ; \vec{t} \gets \Z^m\_q : D(A,\vec{t}) = 1] \le \eps(n),
+> \begin{align*}
+> \Pr[A \gets \Z^{m\times n}_q; \vec{s} \gets \psi^n ; \vec{e} \gets \psi^m : D(A, A \cdot \vec{s} + \vec{e}) = 1] \\
+> - \Pr[A \gets \Z^{m\times n})_q ; \vec{t} \gets \Z^m_q : D(A,\vec{t}) = 1] \le \eps(n),
+> \end{align*}
 > $$
 > 
 > where $m, q \in \N$ are functions of $n$, and $\psi$ is an efficiently samplable distribution over $\Z_q$.
 
 
 
+Discuss:
+
+- Again, the hardness depend on the parameters $m,q,\psi$. 
+  For example, when $\psi$ is uniform over $\Z_q$, the two distributions are identical (but useless).
+- Notice that the above definition also samples $\vec{s}$ from $\psi$.
+- The two distributions differ in entropy:
+  $(A,\vec{t})$ consists of $mn + m$ uniform elements from $\Z_q$, 
+  but $(A, A \cdot \vec{s} + \vec{e})$ is sampled from $mn$ uniform elements plus $(m+n)$ elements from $\psi$.
+
+An useful set of parameter:
+
+- $m(n) = \poly(n) \ge n^2$, the smaller the harder
+- $q(n) = n^{\poly(n)}$ so that we can write an element in $\poly(n)$ bits
+- $\psi$ a distribution such that $\exists B = \poly(n)$, 
+  $\psi$ outputs $|a| \le B$ except with negligible probability
+  (think $\psi$ as a uniform dist)
 
 Ref: [KL, 14.3]
 
