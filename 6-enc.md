@@ -145,8 +145,43 @@ An useful set of parameter:
 
 Ref: [KL, 14.3]
 
+An Encryption Based on LWE
+--------------------------
 
+If we have the following decisional $\LWE_{m,q,\psi}$:
 
+$$
+\set{A, A\cdot \vec{s} + \vec{e}} \approx \set{A, \vec{t}}
+$$
+
+Then, given $d \in \N$ such that $\gcd(d,q) = 1$, we also have
+
+$$
+\set{A, A\cdot \vec{s} + d\vec{e}} \approx \set{A, \vec{t}}
+$$
+
+by a simple reduction that multiply the former indisintinguishability by $d$
+(because $A$ and $\vec{t}$ are both uniform over $\Z_q$).
+Hence, we can construct a *secret-key* encryption.
+
+#### **Construction**: Secret Key Encryption from LWE
+
+{:.defn}
+> Parameters: $m, q \in \N$ as a function of $n$, $\psi$ a distribution over $\Z_q$.
+> 
+> $\Gen(1^n)$:
+> output $k := \vec{s} \gets \psi^n$
+> 
+> $\Enc_k(m)$:
+> for binary message $m\in\bit$, sample $\vec{a} \gets \Z_q^n$ and $e \gets \phi$,
+> output $c:=(\vec{a}, t = \vec{a} \cdot \vec{s} + 2e + m)$ (where the arithmetic is in $\Z_q$).
+> 
+> $\Dec_k(c)$:
+> output
+> 
+> $$
+> m' := (t - \vec{a}\cdot \vec{s} \mod 2)
+> $$
 
 
 
