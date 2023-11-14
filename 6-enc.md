@@ -223,3 +223,4 @@ Homomorphic Encryption
 > but one may define similarly for other algebra.
 
 
+[Ref: Rothblum, TCC 11 ]
