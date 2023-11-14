@@ -223,4 +223,4 @@ Homomorphic Encryption
 > but one may define similarly for other algebra.
 
 
-[Ref: Rothblum, TCC 11, [Barak@Prinecton](https://www.cs.princeton.edu/courses/archive/spring10/cos433/) ]
+[Ref: Rothblum, Homomorphic Encryption: From Private-Key to Public-Key, TCC 11. [Barak@Prinecton](https://www.cs.princeton.edu/courses/archive/spring10/cos433/)]
