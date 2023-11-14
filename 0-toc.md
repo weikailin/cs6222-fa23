@@ -32,3 +32,4 @@ Table of Lecture Notes
 | Nov 1     | [Collision-resistant hash, discrete log](4-auth.md#collision-resistant-hash-functions)    | [Ps 5.5] [KL 9.3] |
 | Nov 6     | [Zero-knowledge proofs, commitments](5-zkp.md)    | [Ps 4.1-4.6] |
 | Nov 8     | [ZKP for graph 3-coloring](5-zkp.md#graph-3-coloring)    | [Ps 4.7-4.9] |
+| Nov 13    | [Learning with errors, homomorphic encryption](5-zkp.md#graph-3-coloring)    | [KL 14.3] |
