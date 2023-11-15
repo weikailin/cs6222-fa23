@@ -406,8 +406,7 @@ the homomorphic multiplication can then
 2. In $f_{\vec a', b'}$, substitute $x_i x_j$ with $g_{c_{i,j}}(\vec y)$, which yields
    $f'_{\vec a', b'}(\vec y)$, a linear function of size $n+1$.
 
-
-
+The encryption of $s_{i}\cdot s_{j}$ are given as *public evaluation key* in such constructions.
 
 [Ref:
 BGV11, https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf
