@@ -362,14 +362,14 @@ and the decrytion is done by $b - \vec a^T \vec s$, where $\vec s$ is the decryp
 We can view the decryption as a function, 
 
 $$
-f_{\vec a, b}(x) := b - \vec a^T x,
+f_{\vec a, b}(\vec x) := b - \vec a^T \vec x,
 $$
 
 and the decryption is to compute $f_{\vec a, b}(\vec s)$.
 To obtain additive homomorphism, we are exactly performing
 
 $$
-f_{\vec a', b'}(x) := f_{\vec a_1, b_1}(x) + f_{\vec a_2, b_2}(x),
+f_{\vec a', b'}(\vec x) := f_{\vec a_1, b_1}(\vec x) + f_{\vec a_2, b_2}(\vec x),
 $$
 
 so that the decryption works as
@@ -381,6 +381,15 @@ $$
 For multiplication, we would like to perform similarly,
 
 $$
-f_{\vec a', b'}(x) := f_{\vec a_1, b_1}(x) \cdot f_{\vec a_2, b_2}(x).
+f_{\vec a', b'}(\vec x) := f_{\vec a_1, b_1}(\vec x) \cdot f_{\vec a_2, b_2}(\vec x).
 $$
+
+However, we begin with *linear* functions $f_{\vec a_1, b_1}$, but we end with 
+
+$$
+(b_1 - \vec a_1^T \vec x)\cdot(b_2 - \vec a_2^T \vec x)
+= b_1 b_2 - \sum_{i,j} a_{1,i} a_{2,j} x_i x_j,
+$$
+
+a quadratic (degree 2 of $\vec x$).
 
