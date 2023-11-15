@@ -404,11 +404,11 @@ the homomorphic multiplication can then
 
 1. Compute $f_{\vec a', b'}$ from $f_{\vec a_1, b_1}$ and $f_{\vec a_2, b_2}$
 2. In $f_{\vec a', b'}$, substitute $x_i x_j$ with $g_{c_{i,j}}(\vec y)$, which yields
-   $f'_{\vec a', b'}(\vec y)$, a linear function of size $n+1$.
+   $f_{\vec a'', b''}(\vec y)$, a linear function of size $n+1$.
 
 The encryption of $s_{i}\cdot s_{j}$ are given as *public evaluation key* in such constructions.
 
-[Ref:
-BGV11, https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf
-BV11, https://eprint.iacr.org/2011/344.pdf]
+Ref:
+[Brakerski and Vaikuntanathan, Efficient fully homomorphic encryption from (standard) LWE, FOCS 2011](https://eprint.iacr.org/2011/344.pdf),
+[Brakerski, Gentry, and Vaikuntanathan, (Leveled) fully homomorphic encryption without bootstrapping, ITCS 2012](https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf)
 
