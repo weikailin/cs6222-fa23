@@ -350,6 +350,37 @@ The security is sketched below.
 > Because the min-entropy of $u$ subject to any fixed $m$ and any fixed $F_R(u)$ is at least $\ell/2$,
 > and because $h_r(u) = r \odot u$ is a universal hash family,
 > $r \odot u$ is statistically close to a uniform bit (by statistical difference $2^{-\Omega(t)}$).
-> 
-> [Rothblum, TCC 2011, Homomorphic Encryption: From Private-Key to Public-Key](https://www.iacr.org/archive/tcc2011/65970216/65970216.pdf)
+
+[Ref: Rothblum, TCC 2011, Homomorphic Encryption: From Private-Key to Public-Key](https://www.iacr.org/archive/tcc2011/65970216/65970216.pdf)
+
+Homomorphic Multiplication
+-----------------------------------
+
+Consider the [encryption scheme for LWE](#construction-secret-key-encryption-from-lwe).
+The ciphertext has format $c = (\vec a, b)$,
+and the decrytion is done by $b - \vec a^T \vec s$, where $\vec s$ is the decryption key, and $\mod 2$ is skipped.
+We can view the decryption as a function, 
+
+$$
+f_{\vec a, b}(x) := b - \vec a^T x,
+$$
+
+and the decryption is to compute $f_{\vec a, b}(\vec s)$.
+To obtain additive homomorphism, we are exactly performing
+
+$$
+f_{\vec a', b'}(x) := f_{\vec a_1, b_1}(x) + f_{\vec a_2, b_2}(x),
+$$
+
+so that the decryption works as
+
+$$
+f_{\vec a', b'}(\vec s) = f_{\vec a_1, b_1}(\vec s) + f_{\vec a_2, b_2}(\vec s).
+$$
+
+For multiplication, we would like to perform similarly,
+
+$$
+f_{\vec a', b'}(x) := f_{\vec a_1, b_1}(x) \cdot f_{\vec a_2, b_2}(x).
+$$
 
