@@ -395,11 +395,12 @@ $$
 a quadratic function (degree 2 of $\vec x$). 
 Moreover, the ciphertext size goes from $n+1$ to ~$n^2$.
 This is far from ideal, and there are many techniques to resolve this.
-One is known as "relinearization", and the trick is to provide encryptions of
+One is known as "relinearization", and the trick is to provide the encryptions of
 
-- $s_{i}\cdot s_{j}$, $i,j\in[n]$, and $s_i$ is the $i$-th coordinate of $\vec s$.
+- $s_i$ for $i \in [n]$, where $s_i$ is the $i$-th coordinate of $\vec s$.
+- $s_{i}\cdot s_{j}$ for $i,j\in[n]$.
 
-Since the encryption of $s_{i}\cdot s_{j}$ is another linear function $g_{c_{i,j}}(\vec y)$, 
+Since the encryptions (of the above values $s_i\cdot s_j$) are another linear function $g_{c_{i,j}}(\vec y)$, 
 the homomorphic multiplication can then 
 
 1. Compute $f_{\vec a', b'}$ from $f_{\vec a_1, b_1}$ and $f_{\vec a_2, b_2}$
