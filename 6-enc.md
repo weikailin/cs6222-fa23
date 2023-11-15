@@ -195,25 +195,25 @@ Homomorphic Encryption
 --------------------------
 
 
-#### **Definition:** Public-key encryption.
+#### **Definition:** Homomorphic encryption.
 
 {: .defn}
 > A (public or secret key) encryption scheme $(\Gen,\Enc,\Dec)$ is said to be homomorphic
 > if the scheme provides efficient $(\Add, \Mul)$ operations that satisfies the syntax and correctness below.
 > 
-> - For any messages $m_0, m_1 \in \Z_2$,
+> - Addition: For any messages $m_0, m_1 \in \Z_2$,
 >   
 >   $$
 >   \Pr_k[(c_i \gets \Enc_k(m_i))_{i\in\bit}; \Dec_k(\Add(c_0, c_1)) = m_0+m_1] = 1
 >   $$
 >   
-> - For any messages $m_0, m_1 \in \Z_2$,
+> - Multiplication: For any messages $m_0, m_1 \in \Z_2$,
 >   
 >   $$
 >   \Pr_k[(c_i \gets \Enc_k(m_i))_{i\in\bit}; \Dec_k(\Mul(c_0, c_1)) = m_0 \cdot m_1] = 1
 >   $$
 >   
-> - For any messages $m_0, m_1 \in \Z_2$,
+> - Multiply by constant: For any messages $m_0, m_1 \in \Z_2$,
 >   
 >   $$
 >   \Pr_k[c_0 \gets \Enc_k(m_0); \Dec_k(\Mul(c_0, m_1)) = m_0 \cdot m_1] = 1
@@ -222,5 +222,76 @@ Homomorphic Encryption
 > Here, the message space and the arithmetic operations $(+,\cdot)$ are in $\Z_2$, 
 > but one may define similarly for other algebra.
 
-
 [Ref: Rothblum, Homomorphic Encryption: From Private-Key to Public-Key, TCC 11. [Barak@Prinecton](https://www.cs.princeton.edu/courses/archive/spring10/cos433/)]
+
+Discuss:
+
+- The homomorphic operations are requiring *correctness* (not security).
+- We sometimes relax the correctness to "except for negligible probability" due to technical construction
+- The above definition requires only for "single hop" homomorphic operation, 
+  which means that $\Add$ and $\Mul$ work for ciphertexts freshly encrypted by $\Enc$
+- We may define $t$-hop operations so that $\Add$ or $\Mul$ work also for ciphertexts
+  that is output by $(t-1)$-hop $\Add$ or $\Mul$
+- Ideally, we want unlimited-hop operations. 
+  Since $(+,\cdot)$ in $Z_2$ implement logical (XOR, AND), 
+  that enables *any* boolean-circuit computation on ciphertexts.
+  This is called *Fully Homomorphic Encryption, FHE*.
+- Less ideally, if a scheme achieves unlimited-hop $\Add$ and multiply by constant,
+  it is called *additive* homomorphic encryption (or linear homomorphic), which is still useful.
+- It is trivial and cheating to output $(\text{add}, c_0, c_1)$ as the output of $\Add$ (and $\Mul$ resp.),
+  which belows up the size of the ciphertext and leaves the actual arithmetic to $\Dec$.
+  However, in the above 1-hop Add and Mul definition, we have no way to require it
+  (because one may always pad $c_0$ with unused bits).
+  For more-than-constant hops, we require the ciphertext size to be small 
+  even after homomorphic evaluations.
+
+Alternatively, we define homomorphic encryption with respect to a class of circuits $\cC$.
+
+#### **Definition:** Homomorphic encryption for class $\cC$.
+
+{: .defn}
+> Let $\cC$ be a class of circuits.
+> We say the encryption scheme $(\Gen,\Enc,\Dec, \Eval)$ is homomorphic for $\cC$
+> if for any $C \in \cC$, for any $m_1,...,m_\ell \in \bit$ where $\ell$ is the input size of $C$, 
+> let $k \gets \Gen(1^n)$ be the encryption key,
+>   
+> $$
+> \Pr_k[(c_i \gets \Enc_k(m_i))_{i\in[\ell]}; \Dec_k(\Eval(C, c_1,..., c_\ell)) = C(m_1,...,m_\ell)] = 1.
+> $$
+> 
+> Moreover, we require the output size of $\Eval$ to be *compact*, that is, 
+> bounded by $\ell' \cdot |\Enc_k(m_i)|$.
+
+
+The above secret-key encryption based on LWE has a direct homomorphic addition.
+To see why, consider two ciphertexts that is encrypted using the same key $\vec{s}$,
+
+$$
+c_0:=(\vec{a}_0, \vec{a}_0 \cdot \vec{s} + 2e_0 + m_0),
+c_1:=(\vec{a}_1, \vec{a}_1 \cdot \vec{s} + 2e_1 + m_1) 
+$$
+
+The homomorphic $\Add(c_0, c_1)$ is defined to be the coordinate-wise addition:
+
+$$
+\begin{align*}
+\Add(c_0, c_1) := 
+& (\vec{a}_0+\vec{a}_1, (\vec{a}_0 \cdot \vec{s} + 2e_0 + m_0) + (\vec{a}_1 \cdot \vec{s} + 2e_1 + m_1))\\
+= & (\vec{a}', \vec{a}'\cdot \vec{s} + 2e' + (m_0+m_1))
+\end{align*}
+$$
+
+where $\vec{a}' = \vec{a}_0+\vec{a}_1$ and $e' = e_0+e_1$.
+The multiplication by constant is also coordinate-wise multiply by plaintext $m_1$.
+Notice that the correctness holds as long as $e' \le q / 4$ before modulo $q$.
+Hence, we can perform $O(q/B)$ operations (of addition or multiply by constant)
+and then still obtain the correct decrytion, where $B, q$ are the LWE parameters.
+
+Multiplicative homomorphism is more involved.
+We show an application of additive homomorphic encryption first.
+
+Public-key Encryption from Additive Homomorphic Encryption
+-----------------------------------
+
+#### **Theorem:**
+
