@@ -11,6 +11,7 @@ $$
 \newcommand{\LWE}{\mathsf{LWE}}
 \newcommand{\Add}{\mathsf{Add}}
 \newcommand{\Mul}{\mathsf{Mul}}
+\newcommand{\Eval}{\mathsf{Eval}}
 \newcommand{\norm}[1]{\| #1 \|}
 $$
 {: .d-none}
@@ -222,7 +223,7 @@ Homomorphic Encryption
 > Here, the message space and the arithmetic operations $(+,\cdot)$ are in $\Z_2$, 
 > but one may define similarly for other algebra.
 
-[Ref: Rothblum, Homomorphic Encryption: From Private-Key to Public-Key, TCC 11. [Barak@Prinecton](https://www.cs.princeton.edu/courses/archive/spring10/cos433/)]
+[Ref: [Barak@Prinecton](https://www.cs.princeton.edu/courses/archive/spring10/cos433/)]
 
 Discuss:
 
@@ -299,26 +300,56 @@ Public-key Encryption from Additive Homomorphic Encryption
 
 {: .defn}
 > Let $(G, E, D, \Eval)$ be a secret-key homomorphic encryption scheme for 
-> the class of inner product between $n$-bit binary vectors, 
-> where $n$ is the security parameter given to $G$.
+> the class of inner product between $\ell$-bit binary vectors, 
+> where $\ell:=\ell(n)$ to be chosen later is a polynomial of the security parameter $n$ given to $G$.
 > Then, the following $(\Gen, \Enc, \Dec)$ is a public-key encryption scheme.
 > 
-> - $\Gen(1^n)$: let $\sk = k \gets G(1^n)$, sample $n$-bit string $r=(r_1,...,r_n) \gets \bit^n$, 
->   compute $R_1 \gets E_k(r_1), ..., R_n \gets E_k(r_n)$.
+> - $\Gen(1^n)$: let $\sk = k \gets G(1^n)$, sample $n$-bit string $r=(r_1,...,r_\ell) \gets \bit^\ell$ such that $r \neq 0^\ell$, 
+>   compute $R_1 \gets E_k(r_1), ..., R_\ell \gets E_k(r_\ell)$.
 >   Output $\sk$ and public key 
 >   
 >   $$
->   \pk = (r_1,..., r_n, R_1, ..., R_n).
+>   \pk = (r_1,..., r_\ell, R_1, ..., R_\ell).
 >   $$
 > 
-> - $\Enc_\pk(m)$: sample $n$-bit string $u$ uniformly at random subject to $r \odot u = m$.
+> - $\Enc_\pk(m)$: sample $\ell$-bit string $u$ uniformly at random subject to $r \odot u = m$.
 >   Output
 >   
 >   $$
->   c := \Eval(f_u, R_1, ..., R_n),
+>   c := \Eval(f_u, R_1, ..., R_\ell),
 >   $$
 >   
->   where $f_u$ is the inner product $f_u(x) := u \odot x$ for any $x \in \bit^n$.
+>   where $f_u$ is the inner product $f_u(x) := u \odot x$ for any $x \in \bit^\ell$.
 > 
 > - $\Dec_\sk(c)$: it simply output $D_\sk(c)$.
+
+The correctness follows because $r \neq 0^n$ implies the existence of $u$ and then by the correctness of $\Eval$.
+The efficiency is also direct (just need to sample $r$ and $u$ with care).
+The security is sketched below.
+
+{:.proof}
+> Firstly, consider the hybrid scheme that in $\Gen$, we encrypt $R_i \gets \Enc_k(0)$
+> instead of $\Enc_k(r_i)$.
+> By CPA security of $(G,E,D)$, the hybrid is indistinguishable from the real $(\Gen, \Enc, \Dec)$.
+> 
+> Secondly in the hybrid, the ciphertext $c$ is an encryption of 0 of the $(G,E,D)$ scheme.
+> It could be attemping to think we were finished, but unfortunately as written,
+> $c$ depends on $u$ and then $u$ still depends on $m$ 
+> (indeed, different encryptions of 0 might reveal something).
+> To be formal, the key is to observe that $|c|$ is short.
+> Let $t:=|c|$ be the output size of $\Eval$, and let $\ell := 4t$.
+> Then, the adversary is given $(r, F_R(u))$ and aims to find $m = r \odot u$,
+> where $R$ is independent of $r$ and $F_R(\cdot)$ denotes $\Eval(f_{(\odot)}, R_1, ...,R_n)$.
+> Rewrite the computation as
+> 
+> $$
+> Ext(r, u) := (r, F_R(u), m = r \odot u).
+> $$
+> 
+> Notice that $r$ is uniform, $u$ is subject to $m$, and $F_R(u)$ is $t$-bits.
+> Because the min-entropy of $u$ subject to any fixed $m$ and any fixed $F_R(u)$ is at least $\ell/2$,
+> and because $h_r(u) = r \odot u$ is a universal hash family,
+> $r \odot u$ is statistically close to a uniform bit (by statistical difference $2^{-\Omega(t)}$).
+> 
+> [Rothblum, TCC 2011, Homomorphic Encryption: From Private-Key to Public-Key](https://www.iacr.org/archive/tcc2011/65970216/65970216.pdf)
 
