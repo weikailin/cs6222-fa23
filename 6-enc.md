@@ -412,4 +412,5 @@ The encryption of $s_{i}\cdot s_{j}$ are given as *public evaluation key* in suc
 Ref:
 - [Brakerski and Vaikuntanathan, Efficient fully homomorphic encryption from (standard) LWE, FOCS 2011](https://eprint.iacr.org/2011/344.pdf),
 - [Brakerski, Gentry, and Vaikuntanathan, (Leveled) fully homomorphic encryption without bootstrapping, ITCS 2012](https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf)
+- [Barak @ Princeton](https://www.cs.princeton.edu/courses/archive/spring10/cos433/lec21new.pdf)
 
