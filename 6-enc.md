@@ -238,6 +238,8 @@ Discuss:
   This is called *Fully Homomorphic Encryption, FHE*.
 - Less ideally, if a scheme achieves unlimited-hop $\Add$ and multiply by constant,
   it is called *additive* homomorphic encryption (or linear homomorphic), which is still useful.
+- Notice that $\Add$ and $\Mul$ need no key, which is essential 
+  (otherwise, given key, it would be trivial to perform the operations)
 - It is trivial and cheating to output $(\text{add}, c_0, c_1)$ as the output of $\Add$ (and $\Mul$ resp.),
   which belows up the size of the ciphertext and leaves the actual arithmetic to $\Dec$.
   However, in the above 1-hop Add and Mul definition, we have no way to require it
@@ -294,4 +296,29 @@ Public-key Encryption from Additive Homomorphic Encryption
 -----------------------------------
 
 #### **Theorem:**
+
+{: .defn}
+> Let $(G, E, D, \Eval)$ be a secret-key homomorphic encryption scheme for 
+> the class of inner product between $n$-bit binary vectors, 
+> where $n$ is the security parameter given to $G$.
+> Then, the following $(\Gen, \Enc, \Dec)$ is a public-key encryption scheme.
+> 
+> - $\Gen(1^n)$: let $\sk = k \gets G(1^n)$, sample $n$-bit string $r=(r_1,...,r_n) \gets \bit^n$, 
+>   compute $R_1 \gets E_k(r_1), ..., R_n \gets E_k(r_n)$.
+>   Output $\sk$ and public key 
+>   
+>   $$
+>   \pk = (r_1,..., r_n, R_1, ..., R_n).
+>   $$
+> 
+> - $\Enc_\pk(m)$: sample $n$-bit string $u$ uniformly at random subject to $r \odot u = m$.
+>   Output
+>   
+>   $$
+>   c := \Eval(f_u, R_1, ..., R_n),
+>   $$
+>   
+>   where $f_u$ is the inner product $f_u(x) := u \odot x$ for any $x \in \bit^n$.
+> 
+> - $\Dec_\sk(c)$: it simply output $D_\sk(c)$.
 
