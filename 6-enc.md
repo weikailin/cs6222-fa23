@@ -389,10 +389,10 @@ However, we begin with *linear* functions $f_{\vec a_1, b_1}$, but we end with
 
 $$
 (b_1 - \vec a_1^T \vec x)\cdot(b_2 - \vec a_2^T \vec x)
-= b_1 b_2 - \sum_{i,j} a_{1,i} a_{2,j} x_i x_j,
+= b_1 b_2 - (b_1 \vec a_2^T + b_2 \vec a_1^T) \vec x + \sum_{i,j} a_{1,i} a_{2,j} x_i x_j,
 $$
 
-a quadratic (degree 2 of $\vec x$). 
+a quadratic function (degree 2 of $\vec x$). 
 Moreover, the ciphertext size goes from $n+1$ to ~$n^2$.
 This is far from ideal, and there are many techniques to resolve this.
 One is known as "relinearization", and the trick is to provide encryptions of
@@ -409,6 +409,6 @@ the homomorphic multiplication can then
 The encryption of $s_{i}\cdot s_{j}$ are given as *public evaluation key* in such constructions.
 
 Ref:
-[Brakerski and Vaikuntanathan, Efficient fully homomorphic encryption from (standard) LWE, FOCS 2011](https://eprint.iacr.org/2011/344.pdf),
-[Brakerski, Gentry, and Vaikuntanathan, (Leveled) fully homomorphic encryption without bootstrapping, ITCS 2012](https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf)
+- [Brakerski and Vaikuntanathan, Efficient fully homomorphic encryption from (standard) LWE, FOCS 2011](https://eprint.iacr.org/2011/344.pdf),
+- [Brakerski, Gentry, and Vaikuntanathan, (Leveled) fully homomorphic encryption without bootstrapping, ITCS 2012](https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf)
 
