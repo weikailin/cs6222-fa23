@@ -39,8 +39,8 @@ Secret Sharing
 > $(\Share, \Recon)$ if it satisfies the following correctness and security.
 > 
 > 1. $\Share(x)$ produces an $n$-tuple $(s_1, . . . , s_n)$, and
-> 2. $\Recon(s'_{i_1} , . . . , s'_{i_k} )$ is such that 
->    if $\set{s'_{i_1} , . . . , s'_{i_k} } \subseteq \set{s_1, . . . , s_n}$ then $\Recon$ outputs $x$.
+> 2. $\Recon(s'\_{i\_1} , . . . , s'\_{i\_k} )$ is such that 
+>    if $\set{s'\_{i\_1} , . . . , s'\_{i\_k} } \subseteq \set{s\_1, . . . , s_n}$ then $\Recon$ outputs $x$.
 > 
 > Security: For any two $x$ and $x'$, and for any subset of at most $k-1$ indicies 
 > $S' \subset [1, n], |S'| < k$, the following two distributions are statistically close:
@@ -75,7 +75,7 @@ we will sample the same $(s_i)_{i\in S'}$ with identical probability (by modifyi
 [Ref: Ps, Sec 6.1]
 
 Discuss:
-Addition on two shares.
-Multiplication on two shares.
-How about FHE?
+- Addition on two shares.
+- Multiplication on two shares.
+- How about FHE?
 
