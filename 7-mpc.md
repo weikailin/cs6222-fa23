@@ -66,3 +66,4 @@ one-time pad is a $(2,2)$ secret sharing.
 > 1. Interpolate the unique polynomial $P$ that passes through all $k$ points given as input.
 >    (using the Lagrange formula). Output the value $P(0)$.
 
+[Ref: Ps, Sec 6.1]
