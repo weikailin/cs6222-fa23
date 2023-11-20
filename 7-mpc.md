@@ -45,8 +45,8 @@ Secret Sharing
 > Security: For any two $x$ and $x'$, and for any subset of at most $k-1$ indicies 
 > $S' \subset [1, n], |S'| < k$, the following two distributions are statistically close:
 > 
-> - $\set{(s_1, . . . , s_n) \gets \Share(x) : (s_i \vert i \in S')}$ and 
-> - $\set{(s_1, . . . , s_n) \gets \Share(x') : (s_i | i \in S')}$
+> - $\set{(s_1, . . . , s_n) \gets \Share(x) : (s_i)_{i \in S'}}$ and 
+> - $\set{(s_1, . . . , s_n) \gets \Share(x') : (s_i)_{i \in S'}}$
 > 
 > Note: we say that two ensembles $\set{X\_\lambda}\_{\lambda\in\N}$ and $\set{Y\_\lambda}\_{\lambda\in\N}$ are statistically
 > iff there exists a negligible function $\eps$ such that 
@@ -67,6 +67,10 @@ one-time pad is a $(2,2)$ secret sharing.
 > 
 > 1. Interpolate the unique polynomial $P$ that passes through all $k$ points given as input.
 >    (using the Lagrange formula). Output the value $P(0)$.
+
+The correctness follows by that Lagrange interpolation is unique.
+The security holds because for both $x,x'$, for any $|S'| \le k-1$,
+we will sample the same $(s_i)_{i\in S'}$ with identical probability (by modifying $\Share$ w.r.t. $S'$).
 
 [Ref: Ps, Sec 6.1]
 
