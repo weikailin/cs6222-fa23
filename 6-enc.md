@@ -479,3 +479,45 @@ That introduces a significant concern in security:
 we do not know how to prove or disprove that the encryption is still secure given such $\Enc_{k}(k)$,
 and this is called "circular security" and used as an additional assumption.
 Circular security gives a fully homomorphic encryption (and it is still the only known way).
+
+Application: Private Information Retrieval
+------------------------------
+
+#### **Definition**: Private information retrieval (PIR)
+
+{:.defn}
+> A protocol $(\Query, \Resp, \Dec)$ is a PIR if it satisfies the following 
+> syntax, correctness, and privacy.
+> Let $N$ be the size of a database $x$ such that $|x| = N$.
+> 
+> - $(q,\st) \gets \Query(i)$
+> - $a \gets \Resp(x, q)$
+> - $b \gets \Dec(\st, a)$
+> 
+> Correctness:
+> for all $x$, all $i\in[N]$,
+> 
+> $$
+> \Pr[(q,\st) \gets \Query(i), a \gets \Resp(x, q) :  \Dec(\st, a) = x_i] = 1
+> $$
+> 
+> Privacy:
+> for all $x$, all $i_0, i_1 \in [N]$, for all NUPPT $D$,
+> the following are indistinguishable:
+> 
+> $$
+> \set{q_0,\st_0) \gets \Query(i_0) : q_0} \approx
+> \set{q_1,\st_1) \gets \Query(i_1) : q_1}
+> $$
+> 
+> Moreover, we define the computation time and the communication to be
+> the time and output size of $\Query, \Resp, \Dec$.
+
+There are many settings of PIR, for example, the database $x$ and thus the query may be
+answered by *multiple* servers.
+We consider the simpler single server setting here.
+There is trivial solutions, but we want the protocol to be efficient.
+Using a somewhat homomorphic encryption,
+we can construct an efficient PIR with short communication and client time.
+
+
