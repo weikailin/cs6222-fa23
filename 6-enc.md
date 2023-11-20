@@ -441,7 +441,7 @@ However, the [homomorphic multiplication](#homomorphic-multiplication) incurs a 
 Since the error increases exponentially in the number of operations, 
 the $\lt q/4$ bar is indeed a critical limitation.
 
-To this end, Gentry (STOC 2009) introduced the idea of "bootstrapping."
+To this end, [Gentry (STOC 2009)](https://dl.acm.org/doi/10.1145/1536414.1536440) introduced the idea of "bootstrapping."
 That is, to view the high-error ciphertext as a constant string,
 the decryption algorithm plus the string as a circuit,
 and then the decryption key as the input of the circuit.
@@ -524,4 +524,4 @@ There is trivial solutions, but we want the protocol to be efficient.
 Using a somewhat homomorphic encryption,
 we can construct an efficient PIR with short communication and client time.
 
-
+[Ref: Lin, Mook, Wichs, Doubly Efficient Private Information Retrieval and Fully Homomorphic RAM Computation from Ring LWE. STOC 2023.](eprint.iacr.org/2022/1703.pdf)
