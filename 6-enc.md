@@ -12,6 +12,10 @@ $$
 \newcommand{\Add}{\mathsf{Add}}
 \newcommand{\Mul}{\mathsf{Mul}}
 \newcommand{\Eval}{\mathsf{Eval}}
+\newcommand{\Query}{\mathsf{Query}}
+\newcommand{\Resp}{\mathsf{Resp}}
+\newcommand{\ek}{\mathsf{ek}}
+\newcommand{\st}{\mathsf{st}}
 \newcommand{\norm}[1]{\| #1 \|}
 $$
 {: .d-none}
