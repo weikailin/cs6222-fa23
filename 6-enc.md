@@ -510,8 +510,8 @@ Application: Private Information Retrieval
 > the following are indistinguishable:
 > 
 > $$
-> \set{q_0,\st_0) \gets \Query(i_0) : q_0} \approx
-> \set{q_1,\st_1) \gets \Query(i_1) : q_1}
+> \set{(q_0,\st_0) \gets \Query(i_0) : q_0} \approx
+> \set{(q_1,\st_1) \gets \Query(i_1) : q_1}
 > $$
 > 
 > Moreover, we define the computation time and the communication to be
