@@ -409,8 +409,73 @@ the homomorphic multiplication can then
 
 The encryption of $s_{i}\cdot s_{j}$ are given as *public evaluation key* in such constructions.
 
+**Notice**
+This relinearization is oversimplified.
+Actually, the $b_1 b_2$ term in $f_{\vec a', b'}(\vec x)$ consists of products,
+such as $\vec a_1^T \vec s \cdot 2e_2$.
+The naive representation of $\vec a_1^T \vec s$ is a large integer of order $q$,
+but that would incur huge error and incorrect decryption.
+A careful bitwise decomposition of $b_1$ and $b_2$ will reduce the error factor to $\poly(n, \log q)$.
+
 Ref:
 - [Brakerski and Vaikuntanathan, Efficient fully homomorphic encryption from (standard) LWE, FOCS 2011](https://eprint.iacr.org/2011/344.pdf),
 - [Brakerski, Gentry, and Vaikuntanathan, (Leveled) fully homomorphic encryption without bootstrapping, ITCS 2012](https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf)
 - [Barak @ Princeton](https://www.cs.princeton.edu/courses/archive/spring10/cos433/lec21new.pdf)
 
+Fully Homomorphic using Bootstrapping
+-------------
+
+The above homomorphic addition and multiplication (over $Z_2$) are amazing
+because we can continue to perform the operations on the ciphertexts
+repeatedly *even when the ciphertexts comes from the previous homomorphic operation*.
+That correctness / functionality hold as long as the error term $2e$ is $\lt q/4$ before modulo $q$.
+
+The [homomorphic addition](#an-encryption-based-on-lwe) incurs a small error: each $\Add$ introduces a factor at most $2$.
+Starting with $B = \poly(n)$ and $q = n^{\poly(n)}$, we have the budget to perform many additions.
+
+However, the [homomorphic multiplication](#homomorphic-multiplication) incurs a much higher error due to the relinearization.
+Since the error increases exponentially in the number of operations, 
+the $\lt q/4$ bar is indeed a critical limitation.
+
+To this end, Gentry (STOC 2009) introduced the idea of "bootstrapping."
+That is, to view the high-error ciphertext as a constant string,
+the decryption algorithm plus the string as a circuit,
+and then the decryption key as the input of the circuit.
+That is, define
+
+- Circuit $f_{\Dec, c}(x)$: it takes input $x$ and then run and ouput $\Dec_x(c)$.
+
+Then, we can encrypt the decryption key $k_1$ using another key $k_2$, 
+and call the result as the evaluation key $\ek := \Enc_{k_2}(k_1)$.
+With that, we can homomorphically perform decryption on high-error $c$:
+
+- $c_2 \gets \Eval(f_{\Dec, c}, \ek = \Enc_{k_2}(k_1))$.
+
+The above $c_2$ can be later decrypted by $k_2$ as 
+
+$$
+\Dec_{k_2}(c') = f_{\Dec,c}(k_1) = \Dec_{k_1}(c),
+$$
+
+where the first equality holds if the error incurred by $f_{\Dec,c}$ is smaller than $O(q/B)$.
+Thus, we need a homomorhic encryption scheme such that
+
+- The circuit depth of $\Dec$ is bounded by small number $d$
+- The $\Eval$ works correctly for circuit depth more than $d+1$ 
+  (because we want to perform at least one operation on $c_2$)
+
+The LWE-based encryption has a simple $\Dec$, which computes firstly a linear operation and
+secondly a modulo $q$ division, which takes circuit depth $\poly(\log q)$. 
+This is why we want to minimize the error of homomorphic multiplication.
+
+With that, we can generate a chain of keys $k_1, k_2, ..., k_\ell$ such that
+each key encrypts the previous one, so that we can perform many operations.
+This is known as "leveled homomorphic encryption."
+
+Alternatively, let $k_1 = k_2 = k$, and thus $\ek = \Enc_{k}(k)$, which is known as "bootstrapping."
+Because $\ek$ is given to the evaluator (to perform $\Eval$), 
+$\ek$ is essentially public and known to any adversaries.
+That introduces a significant concern in security: 
+we do not know how to prove or disprove that the encryption is still secure given such $\Enc_{k}(k)$,
+and this is called "circular security" and used as an additional assumption.
+Circular security gives a fully homomorphic encryption (and it is still the only known way).
