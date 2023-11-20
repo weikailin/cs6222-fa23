@@ -48,9 +48,9 @@ Secret Sharing
 > - $\set{(s_1, . . . , s_n) \gets \Share(x) : (s_i \vert i \in S')}$ and 
 > - $\set{(s_1, . . . , s_n) \gets \Share(x') : (s_i | i \in S')}$
 > 
-> Note: we say that two ensembles $\set{X_\lambda}_{\lambda\in\N}$ and $\set{Y_\lambda}_{\lambda\in\N}$ are statistically
+> Note: we say that two ensembles $\set{X\_\lambda}\_{\lambda\in\N}$ and $\set{Y\_\lambda}\_{\lambda\in\N}$ are statistically
 > iff there exists a negligible function $\eps$ such that 
-> the statistical difference $\Delta(X_\lambda, Y_\lambda) \le \eps(\lambda)$ for all $\lambda\in\N$.
+> the statistical difference $\Delta(X\_\lambda, Y\_\lambda) \le \eps(\lambda)$ for all $\lambda\in\N$.
 
 Example:
 one-time pad is a $(2,2)$ secret sharing.
