@@ -217,3 +217,17 @@ as long as we permute the rows uniformly at random:
 |  |  | $\Enc_{k^a_1}(\Enc_{k^b_0}(k^c_0))$ |
 |  |  | $\Enc_{k^a_0}(\Enc_{k^b_1}(k^c_0))$ |
 
+Moreover, when an evaluator is given the above 4 rows and additionally the keys $(k^a_0, k^b_0)$, 
+the evaluator can decrypt exactly 1 row and then obtain $k^c_0$.
+Since $k^a_0, k^b_0, k^c_0$ are representing the values of the wires $a, b, c$,
+the evaluator can perform any computation *without knowing the values and logic gates*.
+
+A minor issue is that the evaluator needs to know *which row* decrypts correctly.
+This can be solved by either one of the two below:
+
+- Use an encryption scheme such that if the key is incorrect, $\Dec$ outputs $\bot$ with overwhelming probability
+  (so that the evaluator knows which row is correct)
+- Mark the 4 rows uniformly at random, and then attach the mark to the corresponding $k^a$'s and $k^b$'s
+  (so that the marks indicate which row to decrypt)
+
+
