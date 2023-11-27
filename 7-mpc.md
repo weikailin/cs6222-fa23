@@ -180,4 +180,15 @@ Discuss:
 - How about FHE?
 
 [Ref: Ps, Sec 6.1]
+[Arora@Princeton](https://www.cs.princeton.edu/courses/archive/fall16/cos521/Lectures/lec21.pdf)
 
+
+Yao's Garbling
+--------------
+
+| $a$ | $b$ | AND |
+-------------------
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
