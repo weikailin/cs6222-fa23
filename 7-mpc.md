@@ -186,9 +186,34 @@ Discuss:
 Yao's Garbling
 --------------
 
+For *computationally bounded* adversaries, we use *garbled circuits* to achieve MPC.
+Consider the truth table of any Boolean gate.
+
 | $a$ | $b$ | AND |
--------------------
+|---|---|---|
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
 | 1 | 0 | 0 |
 | 1 | 1 | 1 |
+
+The idea of Yao's garbling is to use two different keys to represent the 0-or-1 wire value. 
+
+| $a$ | $b$ | AND, $c$ |
+|---|---|---|
+| $k^a_0$ | $k^b_0$ | $\Enc_{k^a_0}(\Enc_{k^b_0}(k^c_0))$ |
+| $k^a_0$ | $k^b_1$ | $\Enc_{k^a_0}(\Enc_{k^b_1}(k^c_0))$ |
+| $k^a_1$ | $k^b_0$ | $\Enc_{k^a_1}(\Enc_{k^b_0}(k^c_0))$ |
+| $k^a_1$ | $k^b_1$ | $\Enc_{k^a_1}(\Enc_{k^b_1}(k^c_1))$ |
+
+We sample all key $k$'s (for all super- and sub-scripts) independently using $\Gen$,
+and we perform all $\Enc$ using a secure (symmetric-key) encryption scheme.
+Any NUPPT adversary that is given only the ciphertexts can not know the table is an AND gate,
+as long as we permute the rows uniformly at random:
+
+| $a$ | $b$ | $c$ |
+|---|---|---|
+|  |  | $\Enc_{k^a_0}(\Enc_{k^b_0}(k^c_0))$ |
+|  |  | $\Enc_{k^a_1}(\Enc_{k^b_1}(k^c_1))$ |
+|  |  | $\Enc_{k^a_1}(\Enc_{k^b_0}(k^c_0))$ |
+|  |  | $\Enc_{k^a_0}(\Enc_{k^b_1}(k^c_0))$ |
+
