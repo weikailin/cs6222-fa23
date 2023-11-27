@@ -230,4 +230,16 @@ This can be solved by either one of the two below:
 - Mark the 4 rows uniformly at random, and then attach the mark to the corresponding $k^a$'s and $k^b$'s
   (so that the marks indicate which row to decrypt)
 
+Composing the garbled Boolean gates, we can perform the following one-sided secure two-party computation.
 
+|Alice, input $x_1$    | Public computation, circuit $C$    |  Bob, private input $x_2$  |
+|----------------------|------------------------------------|----------------------------|
+| | | For each wire $w \in C$, sample wire keys $k^w_b \gets \Gen$ for $b = 0,1$ |
+| | | For each gate $g \in C$, compute 4 encrypted rows using the corresponding wire keys, and let $\set{\tilde g}_{g\in C}$ be the result|
+| | | Send $\set{\tilde g}_{g \in C}$ to Alice. For each input wire corresponding to $x_2$, send the garbled input, $\tilde x_2$, to Alice. |
+| Send $x_1$ to BoB | | |
+| | | For each input wire corresponding to $x_1$, send the garbled input, $\tilde x_1$, to Alice. |
+| Gate by gate evaluate $\tilde g$'s, and obtain $C(x_1, x_2)$ | | |
+
+Notice that one-sided security is actually trivial: Alice gives out $x_1$, and thus Bob can simply compute $C(x_1, x_2)$.
+Thus, *oblivious transfer* is typically used.
