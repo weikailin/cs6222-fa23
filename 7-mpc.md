@@ -161,16 +161,23 @@ See the protocol below.
 > 4. All parties jointly perform $\Recon$ using the addition of secret shares to obtain the new shares of $\pi'(0) = a\cdot b$;
 >    that is, do the following:
 >    
->    1. 
-> 
-> and moreover, $s^{a+b}_{i}$ for all $i \in [n]$ is a $(k,n)$ secret sharing of $a+b$.
+>    1. For all party $i$, $((1,s_{i,1}),...,(n,s_{i,n})) \gets \Share(\pi'(i))$ to all $n$ parties
+>    2. All parties locally compute $\Recon_{k,n}$ using shares; 
+>       that is, party $j$ takes the shares $(s_{1,j}, s_{2,j} ..., s_{n,j})$, 
+>       lets $(x_t, y_t) := (t, s_{t,j})$ for all $t$, and run the Lagrange interpolation using all $(x_t,y_t)$ pairs,
+>       and then let $S_j(x)$ be the resulting polynomial.
+>    
+>    The value $(j,S_j(0))$ is the new $(k,n)$ share of $a \cdot b$.
 
-
-
-[Ref: Ps, Sec 6.1]
+The security proof (for multiplication) is omitted due to involved notation.
+The efficiency is not great: each party sends and receives $O(n)$ messages.
+It requires $n > 2k$ to work, and it assumes that all parties are *honest but curious*,
+meaning that they always follow the prescribed protocol.
+The strength is that it achieves *perfect security*, that is,
+any (unbounded) adversary that corrupts $\lt k$ parties learns nothing more than the output.
 
 Discuss:
-- Addition on two shares.
-- Multiplication on two shares.
 - How about FHE?
+
+[Ref: Ps, Sec 6.1]
 
