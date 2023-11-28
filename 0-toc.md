@@ -33,5 +33,6 @@ Table of Lecture Notes
 | Nov 6     | [Zero-knowledge proofs, commitments](5-zkp.md)    | [Ps 4.1-4.6] |
 | Nov 8     | [ZKP for graph 3-coloring](5-zkp.md#graph-3-coloring)    | [Ps 4.7-4.9] |
 | Nov 13    | [Learning with errors, homomorphic encryption](6-enc.md)    | [KL 14.3] |
-| Nov 15    | [Public-key encryption, multiplicative HE](#public-key-encryption-from-additive-homomorphic-encryption)    | [Rothblum, TCC 2011](https://www.iacr.org/archive/tcc2011/65970216/65970216.pdf), [BV, FOCS 2011](https://eprint.iacr.org/2011/344.pdf) [BGV, ITCS 2012](https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf) |
-| Nov 20    | [Bootstrapping FHE, PIR](#fully-homomorphic-using-bootstrapping)    | [Gentry, STOC 2009](https://dl.acm.org/doi/10.1145/1536414.1536440), [LMW, STOC 2023](https://weikailin.github.io/cs6222-fa23/6-enc/eprint.iacr.org/2022/1703.pdf) |
+| Nov 15    | [Public-key encryption, multiplicative HE](6-enc.md#public-key-encryption-from-additive-homomorphic-encryption)    | [Rothblum, TCC 2011](https://www.iacr.org/archive/tcc2011/65970216/65970216.pdf), [BV, FOCS 2011](https://eprint.iacr.org/2011/344.pdf) [BGV, ITCS 2012](https://people.csail.mit.edu/vinodv/6892-Fall2013/BGV.pdf) |
+| Nov 20    | [Bootstrapping FHE, PIR](6-enc.md#fully-homomorphic-using-bootstrapping)    | [Gentry, STOC 2009](https://dl.acm.org/doi/10.1145/1536414.1536440), [LMW, STOC 2023](https://weikailin.github.io/cs6222-fa23/6-enc/eprint.iacr.org/2022/1703.pdf) |
+| Nov 27    | [Shamir secret sharing](7-mpc.md#secret-sharing)    | [Ps 6.1], [Arora@Princeton](https://www.cs.princeton.edu/courses/archive/fall16/cos521/Lectures/lec21.pdf) |
