@@ -237,7 +237,7 @@ Composing the garbled Boolean gates, we can perform the following one-sided secu
 | | | For each wire $w \in C$, sample wire keys $k^w_b \gets \Gen$ for $b = 0,1$ |
 | | | For each gate $g \in C$, compute 4 encrypted rows using the corresponding wire keys, and let $\set{\tilde g}_{g\in C}$ be the result|
 | | | Send $\set{\tilde g}_{g \in C}$ to Alice. For each input wire corresponding to $x_2$, send the garbled input, $\tilde x_2$, to Alice. |
-| Send $x_1$ to BoB | | |
+| Send $x_1$ to Bob | | |
 | | | For each input wire corresponding to $x_1$, send the garbled input, $\tilde x_1$, to Alice. |
 | Gate by gate evaluate $\tilde g$'s, and obtain $C(x_1, x_2)$ | | |
 
