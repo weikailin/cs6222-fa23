@@ -243,3 +243,34 @@ Composing the garbled Boolean gates, we can perform the following one-sided secu
 
 Notice that one-sided security is actually trivial: Alice gives out $x_1$, and thus Bob can simply compute $C(x_1, x_2)$.
 Thus, *oblivious transfer* is typically used.
+
+Oblivious Transfer
+------------------
+
+
+|    | Alice, sender    |  Bob, receiver  |
+|----------------------|------------------------------------|----------------------------|
+| Input   | bits $(a_0, a_1)$ | bit $i \in \bit$ |
+| Output  | nothing           | bit $a_i$  |
+| Security| learns nothing about $i$   | learns only $a_i$ but nothing about $a_{i'}$ for $i' \neq i$ |
+
+
+We often consider two variants of security definitions:
+
+- Semi-honest: both Alice and Bob follow the porescribed protocol
+- Malicious: even if Alice deviates from the protocol arbitrarily, she still learns nothing about $i$; 
+  similarly, even if Bob deviates from the protocol arbitrarily, he still learns only $a_i$.
+
+The malicious setting is involved an skipped in this lecture.
+The semi-honest setting can be formalized by indistinguishability (similar to encryption).
+
+Toy protocol based on public-key encryption:
+
+1. Bob samples $(\pk,\sk) \gets \Gen$, lets $\pk_i := \pk$, and samples $\pk_{\bar i}$ uniformly at random. Bob sends $(\pk_0, \pk_1)$ to Alice.
+2. Alice encrypts $a_j$ with $\pk_j$ and gets ciphertexts $c_j \gets \Enc_{\pk_j}(a_j)$ for $j=0,1$. Alice sends $(c_0, c_1)$ to Bob.
+3. Bob decrypts $c_i$ using $\sk$ and then gets $a_i$.
+
+This protocol requires that $\pk$ is indistinguishable from uniform random string.
+
+Using "trapdoor permutation" we can formalize this toy protocol.
+We can also instantiate the idea using concrete assumptions such as LWE (or DDH or RSA).
