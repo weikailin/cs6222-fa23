@@ -16,6 +16,8 @@ $$
 \newcommand{\Resp}{\mathsf{Resp}}
 \newcommand{\Share}{\mathsf{Share}}
 \newcommand{\Recon}{\mathsf{Recon}}
+\newcommand{\Garble}{\mathsf{Garble}}
+\newcommand{\label}{\mathsf{label}}
 \newcommand{\ek}{\mathsf{ek}}
 \newcommand{\st}{\mathsf{st}}
 \newcommand{\norm}[1]{\| #1 \|}
@@ -234,8 +236,8 @@ Composing the garbled Boolean gates, we can garble any Boolean circuit.
 Let $n$ be the security parameter (such as the length of the secret key).
 For any circuit $C$ and input $x$ that are of polynomial size in $n$: 
 
-- $(\tilde C, \labels) \gets \Garble(1^n, C)$
-- $\tilde x \gets \labels(x)$
+- $(\tilde C, \label) \gets \Garble(1^n, C)$
+- $\tilde x \gets \label(x)$
 - $y \gets \Eval(\tilde C, \tilde x)$
 
 We require that $y = C(x)$ for correctness.
