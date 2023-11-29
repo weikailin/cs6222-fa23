@@ -230,7 +230,25 @@ This can be solved by either one of the two below:
 - Mark the 4 rows uniformly at random, and then attach the mark to the corresponding $k^a$'s and $k^b$'s
   (so that the marks indicate which row to decrypt)
 
-Composing the garbled Boolean gates, we can perform the following one-sided secure two-party computation.
+Composing the garbled Boolean gates, we can garble any Boolean circuit.
+Let $n$ be the security parameter (such as the length of the secret key).
+For any circuit $C$ and input $x$ that are of polynomial size in $n$: 
+
+- $(\tilde C, \labels) \gets \Garble(1^n, C)$
+- $\tilde x \gets \labels(x)$
+- $y \gets \Eval(\tilde C, \tilde x)$
+
+We require that $y = C(x)$ for correctness.
+For security, we require that there exists a PPT simulator $S$ such that
+
+$$
+\set{(\tilde C, \tilde x)} \approx \set{S(1^n, |C|, |x|, C(x))}.
+$$
+
+That is, $S$ simulates the garbling $(\tilde C, \tilde x)$ given only the output $C(x)$.
+
+
+We can use garbled circuits to achieve one-sided secure two-party computation.
 
 |Alice, input $x_1$    | Public computation, circuit $C$    |  Bob, private input $x_2$  |
 |----------------------|------------------------------------|----------------------------|
@@ -274,3 +292,5 @@ This protocol requires that $\pk$ is indistinguishable from uniform random strin
 
 Using "trapdoor permutation" we can formalize this toy protocol.
 We can also instantiate the idea using concrete assumptions such as LWE (or DDH or RSA).
+
+
