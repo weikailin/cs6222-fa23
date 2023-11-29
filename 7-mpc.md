@@ -293,4 +293,4 @@ This protocol requires that $\pk$ is indistinguishable from uniform random strin
 Using "trapdoor permutation" we can formalize this toy protocol.
 We can also instantiate the idea using concrete assumptions such as LWE (or DDH or RSA).
 
-
+[Ps Sec 6.2.4] [Barak@Princeton](https://www.cs.princeton.edu/courses/archive/fall07/cos433/lec19.pdf)
