@@ -37,3 +37,4 @@ Table of Lecture Notes
 | Nov 20    | [Bootstrapping FHE, PIR](6-enc.md#fully-homomorphic-using-bootstrapping)    | [Gentry, STOC 2009](https://dl.acm.org/doi/10.1145/1536414.1536440), [LMW, STOC 2023](https://weikailin.github.io/cs6222-fa23/6-enc/eprint.iacr.org/2022/1703.pdf) |
 | Nov 27    | [Shamir secret sharing](7-mpc.md#secret-sharing)    | [Ps 6.1], [Arora@Princeton](https://www.cs.princeton.edu/courses/archive/fall16/cos521/Lectures/lec21.pdf) |
 | Nov 29    | [Yao's garbling, oblivious transfer](7-mpc.md#secret-sharing)    | [Ps 6.2], [Barak@Princeton](https://www.cs.princeton.edu/courses/archive/fall07/cos433/lec19.pdf) |
+| Dec 4     | Project presentations    |  |
