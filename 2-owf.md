@@ -746,7 +746,26 @@ The second step is to show that other composites have many strong witnesses.
 > For any prime $n$, this algo outputs 'Yes' w.p. 1.
 > For any composite $n$, this algo outputs 'Yes' w.p. $\le 2^{-\lambda}$.
 
-
+> See also: Solovay-Strassen Primality Test
+> 
+> [Article on Wikipedia](https://en.wikipedia.org/wiki/Solovay%E2%80%93Strassen_primality_test)
+> 
+> For odd $n$ and integer $a$, let $J(a,n)$ be the Jacobi symbol.
+> The Solovay-Strassen primality test checks the given input $n$ by 
+> 1. Sample random $a$
+> 2. Compute $J(a,n)$
+> 3. Output "NOT PRIME" if $a^{(n-1)/2} \neq J(a,n) \mod n$.
+> 
+> Similar to Miller-Rabin, any prime $n$ always passes the test:
+> $J(a,n)$ is exactly the Legengre symbol, 
+> and the test is [Euler's criteria](https://en.wikipedia.org/wiki/Euler%27s_criterion). 
+> For composit $n$, there are witnesses and liars such that 
+> $a$ is a witness iff $a$ yields NOT PRIME.
+> It can be shown that 1) the existence of witness and 2)
+> the liars are a subgroup.
+> That implies that there are at least half witnesses.
+> 
+> Ref: [Martin Dietzfelbinger, Primality Testing in Polynomial Time](https://link.springer.com/book/10.1007/b12334)
 
 A Universal OWF
 --------------------
