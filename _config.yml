@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: CS 6222-Fall23
+title: CS 6222-Fall 23
 tagline: 
 description: 
 author: Wei-Kai Lin
@@ -26,7 +26,7 @@ exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
 
 # Theme settings
 remote_theme: just-the-docs/just-the-docs@v0.5.4
-color_scheme: light
+color_scheme: dark
 search_enabled: true
 heading_anchors: true
 permalink: pretty
